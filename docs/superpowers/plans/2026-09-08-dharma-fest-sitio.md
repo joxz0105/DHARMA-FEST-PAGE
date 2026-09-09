@@ -714,7 +714,7 @@ export function alternates(path: string): { lang: Lang; href: string }[] {
 - [ ] **Step 4: Correr el test y verificar que pasa**
 
 Run: `npm run test`
-Expected: PASS — 39 tests en total.
+Expected: PASS — todos en verde. Los conteos exactos crecen tarea a tarea; no los tomes como cifra a alcanzar.
 
 - [ ] **Step 5: Crear el conmutador de idioma**
 
@@ -1181,7 +1181,7 @@ export function publicables<T extends { permiso: boolean }>(items: T[]): T[] {
 - [ ] **Step 10: Correr el test y verificar que pasa**
 
 Run: `npm run test`
-Expected: PASS — 47 tests en total.
+Expected: PASS — todos en verde. Los conteos exactos crecen tarea a tarea; no los tomes como cifra a alcanzar.
 
 - [ ] **Step 11: Escribir el generador de placeholders y el manifiesto**
 
@@ -2896,7 +2896,7 @@ Y el cuerpo, después de `<CampoLago lang={lang} />`:
 - [ ] **Step 10: Correr todos los tests**
 
 Run: `npm run test && npm run test:e2e`
-Expected: PASS — 52 unitarios y 19 end-to-end.
+Expected: PASS — todos en verde, unitarios y end-to-end.
 
 - [ ] **Step 11: Commit**
 
@@ -3341,7 +3341,7 @@ Aplicar lo mismo en `src/pages/en/index.astro`.
 - [ ] **Step 10: Correr todos los tests**
 
 Run: `npm run test && npm run test:e2e`
-Expected: PASS — 65 unitarios y 31 end-to-end.
+Expected: PASS — todos en verde, unitarios y end-to-end.
 
 - [ ] **Step 11: Verificar el hueco conocido a mano**
 
