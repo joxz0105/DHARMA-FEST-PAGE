@@ -3,6 +3,9 @@ import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { Archivo, Bodoni_Moda } from "next/font/google";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -42,7 +45,12 @@ export default async function LayoutRaiz({
   return (
     <html lang={locale} className={`${bodoni.variable} ${archivo.variable}`}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SkipLink />
+          <Header locale={locale} />
+          {children}
+          <Footer locale={locale} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
