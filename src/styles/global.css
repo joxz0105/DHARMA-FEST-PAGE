@@ -44,3 +44,6 @@ p { max-width: 60ch; }
     transition-duration: 0.001ms !important;
   }
 }
+
+.prose-dharma p + p { margin-top: 1.25rem; }
+.prose-dharma a { color: var(--color-copal-ink); text-underline-offset: 4px; }

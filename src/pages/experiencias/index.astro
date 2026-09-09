@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Seccion from '../../components/ui/Seccion.astro';
+import Kicker from '../../components/ui/Kicker.astro';
+import TarjetaExperiencia from '../../components/ui/TarjetaExperiencia.astro';
+import Reveal from '../../components/ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import { experienciasDe } from '../../lib/contenido';
+
+const lang = 'es' as const;
+const copy = getCopy(lang);
+
+const todas = experienciasDe(
+  (await getCollection('experiencias')).map((e) => ({ slug: e.id, ...e.data })),
+  lang,
+);
+
+const proximas = todas.filter((e) => e.estado === 'proxima');
+const pasadas = todas.filter((e) => e.estado === 'pasada');
+---
+
+<Base
+  titulo={`${copy.experiencias.titulo} ${copy.experiencias.tituloEnfasis} · Dharma Fest`}
+  descripcion={copy.experiencias.vacio}
+  lang={lang}
+  rutaCanonica="/experiencias"
+>
+  <Seccion class="pt-40">
+    <Kicker>{copy.experiencias.kicker}</Kicker>
+    <h1 class="mt-4 font-display text-hero text-bosque">
+      {copy.experiencias.titulo} <em class="italic">{copy.experiencias.tituloEnfasis}</em>
+    </h1>
+
+    {
+      proximas.length > 0 && (
+        <div data-grupo="proximas" class="mt-16 grid gap-8 md:grid-cols-3">
+          {proximas.map((e, i) => (
+            <Reveal indice={i}><TarjetaExperiencia {...e} lang={lang} /></Reveal>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      pasadas.length > 0 && (
+        <div data-grupo="pasadas" class="mt-16 grid gap-8 md:grid-cols-3">
+          {pasadas.map((e, i) => (
+            <Reveal indice={i}><TarjetaExperiencia {...e} lang={lang} /></Reveal>
+          ))}
+        </div>
+      )
+    }
+
+    {todas.length === 0 && <p class="mt-16 text-salvia">{copy.experiencias.vacio}</p>}
+  </Seccion>
+</Base>

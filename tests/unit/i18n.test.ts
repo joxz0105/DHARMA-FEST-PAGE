@@ -75,6 +75,16 @@ describe('localizePath', () => {
     expect(localizePath('/en/marcas', 'en')).toBe('/en/marcas');
     expect(localizePath('/en/marcas', 'es')).toBe('/marcas');
   });
+
+  it('es idempotente con una ruta anidada ya localizada', () => {
+    expect(localizePath('/en/experiencias/algo', 'en')).toBe('/en/experiencias/algo');
+    expect(localizePath('/en/experiencias/algo', 'es')).toBe('/experiencias/algo');
+  });
+
+  it('no duplica la barra final en una ruta canónica que ya trae una', () => {
+    expect(localizePath('/experiencias/', 'en')).toBe('/en/experiencias/');
+    expect(localizePath('/experiencias/', 'es')).toBe('/experiencias/');
+  });
 });
 
 describe('alternates', () => {
@@ -89,6 +99,20 @@ describe('alternates', () => {
     expect(alternates('/')).toEqual([
       { lang: 'es', href: '/' },
       { lang: 'en', href: '/en/' },
+    ]);
+  });
+
+  it('resuelve al par equivalente, no a la home, para una ruta anidada ya localizada', () => {
+    expect(alternates('/en/experiencias/algo')).toEqual([
+      { lang: 'es', href: '/experiencias/algo' },
+      { lang: 'en', href: '/en/experiencias/algo' },
+    ]);
+  });
+
+  it('conserva la barra final de una ruta canónica al generar ambos idiomas', () => {
+    expect(alternates('/experiencias/')).toEqual([
+      { lang: 'es', href: '/experiencias/' },
+      { lang: 'en', href: '/en/experiencias/' },
     ]);
   });
 });

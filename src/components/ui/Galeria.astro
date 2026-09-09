@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  imagenes: { src: ImageMetadata; alt: string }[];
+}
+
+const { imagenes } = Astro.props;
+---
+
+{
+  imagenes.length > 0 && (
+    <ul class="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
+      {imagenes.map((img) => (
+        <li>
+          <Image
+            src={img.src}
+            alt={img.alt}
+            widths={[400, 800]}
+            sizes="(min-width: 768px) 33vw, 50vw"
+            class="aspect-square w-full object-cover"
+          />
+        </li>
+      ))}
+    </ul>
+  )
+}

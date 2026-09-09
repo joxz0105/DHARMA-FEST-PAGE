@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import Seccion from '../../../components/ui/Seccion.astro';
+import Kicker from '../../../components/ui/Kicker.astro';
+import Galeria from '../../../components/ui/Galeria.astro';
+import Boton from '../../../components/ui/Boton.astro';
+import { getCopy } from '../../../lib/copy';
+
+export async function getStaticPaths() {
+  const todas = await getCollection('experiencias');
+
+  return todas
+    .filter((e) => e.data.lang === 'en')
+    .map((entrada) => ({
+      // El id es `en/nombre`; la URL lleva solo `nombre`.
+      params: { slug: entrada.id.split('/').pop()! },
+      props: { entrada },
+    }));
+}
+
+const { entrada } = Astro.props;
+const { Content } = await render(entrada);
+
+const lang = 'en' as const;
+const copy = getCopy(lang);
+const d = entrada.data;
+---
+
+<Base
+  titulo={`${d.titulo} · Dharma Fest`}
+  descripcion={d.resumen}
+  lang={lang}
+  rutaCanonica={`/experiencias/${Astro.params.slug}`}
+>
+  <Seccion class="pt-40">
+    <Kicker>
+      {d.lugar} · {d.fecha.toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}
+    </Kicker>
+    <h1 class="mt-4 font-display text-hero text-bosque">{d.titulo}</h1>
+
+    <Image
+      src={d.portada}
+      alt={d.portadaAlt}
+      widths={[800, 1400, 2000]}
+      sizes="100vw"
+      class="mt-12 aspect-[16/9] w-full object-cover"
+    />
+
+    <div class="prose-dharma mt-12 max-w-[60ch] text-salvia">
+      <Content />
+    </div>
+
+    <Galeria imagenes={d.galeria} />
+
+    {d.ctaUrl && <Boton href={d.ctaUrl} class="mt-12">{copy.hero.cta}</Boton>}
+  </Seccion>
+</Base>
