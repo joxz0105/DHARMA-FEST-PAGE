@@ -40,8 +40,9 @@ describe("diccionarios de copy", () => {
       "nav.festival",
       "nav.road",
       "pie.derechos",
-      // Nombre propio de la marca: no se traduce en ningun idioma.
+      // Nombres propios de la marca: no se traducen en ningun idioma.
       "home.roadTitulo",
+      "patrocinios.mercaditoTitulo",
     ]);
     const iguales = claves(es).filter((ruta) => {
       if (PERMITIDAS.has(ruta)) return false;

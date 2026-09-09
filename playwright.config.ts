@@ -5,6 +5,11 @@ const PUERTO = 3100;
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
+  // Cada pagina carga el muro de 58 logos mas las fotos de seccion, y encima
+  // axe recorre el arbol entero. Con los workers por defecto el navegador se
+  // quedaba sin memoria y las paginas se caian ("Target crashed"), que parecia
+  // un fallo del sitio y no lo era.
+  workers: 3,
   reporter: "list",
   use: { baseURL: `http://localhost:${PUERTO}`, trace: "on-first-retry" },
   projects: [
