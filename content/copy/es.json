@@ -98,5 +98,22 @@
     "mercaditoTitulo": "Mercadito",
     "mercaditoCuerpo": "Un espacio consciente con marcas locales que promueven el bienestar integral. Más de 30 marcas en la edición 2027.",
     "mercaditoCta": "Quiero un stand"
+  },
+  "borrador": {
+    "_nota": "BORRADOR. Copy escrito por nosotros, pendiente de aprobación del cliente. Ver spec §8.",
+    "roadTitulo": "Road to Dharma",
+    "roadIntro": "El festival es el encuentro anual. Road to Dharma es la comunidad todo el año.",
+    "roadCuerpo": "Entre una edición y otra del Dharma Fest la comunidad no se apaga. Los Road to Dharma son experiencias de 80 a 200 personas: lo bastante pequeñas para que te hablen por tu nombre, lo bastante seguidas para que el bienestar deje de ser un evento al año y se vuelva costumbre.",
+    "roadDato": "De 80 a 200 participantes · Formato íntimo · Durante todo el año",
+    "festivalTitulo": "Dharma Fest 2027",
+    "festivalIntro": "La cuarta edición. Por primera vez, dos días completos.",
+    "festivalFechaPendiente": "Fecha por confirmar",
+    "festivalCuerpo": "Dos días en Camp Lago con programación ampliada en movimiento, salud, gastronomía y música, más de 30 marcas en el Mercadito y 2.000 asistentes proyectados.",
+    "nosotrosTitulo": "Nosotros",
+    "nosotrosCuerpo": "Producimos las mejores experiencias de bienestar de Costa Rica. Conectamos personas con lo que las hace sentir bien y a las marcas, con su público meta.",
+    "nosotrosEquipoPendiente": "Falta la presentación del equipo que está detrás de Dharma Fest.",
+    "noEncontradaTitulo": "Esta página no existe",
+    "noEncontradaCuerpo": "Puede que el enlace esté viejo. Volvé al inicio y seguí desde ahí.",
+    "volverAlInicio": "Volver al inicio"
   }
 }

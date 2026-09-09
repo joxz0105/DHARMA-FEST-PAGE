@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { MenuMovil } from "./MenuMovil";
 import { SelectorIdioma } from "./SelectorIdioma";
 
 export function Header({ locale }: { locale: string }) {
@@ -40,7 +41,10 @@ export function Header({ locale }: { locale: string }) {
         ))}
       </nav>
 
-      <SelectorIdioma />
+      <div className="flex items-center gap-4">
+        <SelectorIdioma />
+        <MenuMovil enlaces={enlaces} />
+      </div>
     </header>
   );
 }
