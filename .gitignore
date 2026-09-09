@@ -1,36 +1,52 @@
-# dependencias
-node_modules/
-.pnpm-store/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# build de next
-.next/
-out/
-next-env.d.ts
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# despliegue (no se usa, pero que no se cuele)
-.vercel/
-.netlify/
+# testing
+/coverage
+test-results/
+playwright-report/
 
-# entorno
-.env
-.env.*
-!.env.example
+# next.js
+/.next/
+/out/
 
-# datos de personas capturados por los formularios
-data/
+# production
+/build
+
+# datos de personas capturados por los formularios (ver spec §9, Ley 8968)
+/data/
 
 # companion de brainstorming
 .superpowers/
 
-# sistema operativo / editor
+# misc
 .DS_Store
 Thumbs.db
 desktop.ini
-*.log
-.vscode/*
-!.vscode/extensions.json
-.idea/
+*.pem
 
-# pruebas
-test-results/
-playwright-report/
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel / netlify — no se despliega, pero que no se cuele
+.vercel
+.netlify
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

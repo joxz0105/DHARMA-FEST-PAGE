@@ -1,0 +1,877 @@
+[
+  {
+    "archivo": "portada-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 1,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "portada-02.png",
+    "ancho": 661,
+    "alto": 510,
+    "pagina": 1,
+    "grupo": "logo-dharma"
+  },
+  {
+    "archivo": "portada-03.png",
+    "ancho": 1000,
+    "alto": 477,
+    "pagina": 1,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "quienes-somos-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 2,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "por-que-dharma-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 3,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "perfil-publico-01.jpg",
+    "ancho": 2000,
+    "alto": 3000,
+    "pagina": 4,
+    "grupo": "fondo"
+  },
+  {
+    "archivo": "actividades-01.jpg",
+    "ancho": 1600,
+    "alto": 1067,
+    "pagina": 5,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "actividades-02.jpg",
+    "ancho": 801,
+    "alto": 1200,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-03.jpg",
+    "ancho": 1600,
+    "alto": 1067,
+    "pagina": 5,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "actividades-04.jpg",
+    "ancho": 1800,
+    "alto": 1200,
+    "pagina": 5,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "actividades-05.jpg",
+    "ancho": 800,
+    "alto": 1200,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-06.png",
+    "ancho": 394,
+    "alto": 262,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-07.png",
+    "ancho": 399,
+    "alto": 262,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-08.png",
+    "ancho": 371,
+    "alto": 268,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-09.png",
+    "ancho": 372,
+    "alto": 268,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "actividades-10.png",
+    "ancho": 384,
+    "alto": 268,
+    "pagina": 5,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-01.jpg",
+    "ancho": 801,
+    "alto": 1200,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-02.jpg",
+    "ancho": 1200,
+    "alto": 801,
+    "pagina": 6,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "temas-03.jpg",
+    "ancho": 1200,
+    "alto": 801,
+    "pagina": 6,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "temas-04.jpg",
+    "ancho": 486,
+    "alto": 495,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-05.jpg",
+    "ancho": 801,
+    "alto": 1200,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-06.png",
+    "ancho": 431,
+    "alto": 218,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-07.png",
+    "ancho": 423,
+    "alto": 218,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-08.jpg",
+    "ancho": 801,
+    "alto": 1200,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-09.png",
+    "ancho": 508,
+    "alto": 274,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-10.jpg",
+    "ancho": 1800,
+    "alto": 1200,
+    "pagina": 6,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "temas-11.png",
+    "ancho": 542,
+    "alto": 274,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-12.jpg",
+    "ancho": 710,
+    "alto": 533,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-13.png",
+    "ancho": 450,
+    "alto": 213,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-14.png",
+    "ancho": 431,
+    "alto": 214,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-15.png",
+    "ancho": 434,
+    "alto": 222,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "temas-16.png",
+    "ancho": 434,
+    "alto": 222,
+    "pagina": 6,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "galeria-1-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 7,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-1-02.jpg",
+    "ancho": 801,
+    "alto": 789,
+    "pagina": 7,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "galeria-1-03.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 7,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-1-04.jpg",
+    "ancho": 1067,
+    "alto": 1600,
+    "pagina": 7,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-1-05.png",
+    "ancho": 720,
+    "alto": 398,
+    "pagina": 7,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "galeria-2-01.jpg",
+    "ancho": 853,
+    "alto": 1280,
+    "pagina": 8,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "galeria-2-02.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 8,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-2-03.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 8,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-3-01.jpg",
+    "ancho": 1067,
+    "alto": 1600,
+    "pagina": 9,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-3-02.jpg",
+    "ancho": 1600,
+    "alto": 1067,
+    "pagina": 9,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-3-03.jpg",
+    "ancho": 1600,
+    "alto": 1067,
+    "pagina": 9,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "galeria-3-04.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 9,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "comunidad-cifras-01.jpg",
+    "ancho": 433,
+    "alto": 206,
+    "pagina": 10,
+    "grupo": "otro"
+  },
+  {
+    "archivo": "comunidad-cifras-02.png",
+    "ancho": 1076,
+    "alto": 469,
+    "pagina": 10,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "road-to-dharma-01.jpg",
+    "ancho": 2000,
+    "alto": 3001,
+    "pagina": 11,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "espacios-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 12,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "salones-01.jpg",
+    "ancho": 1344,
+    "alto": 756,
+    "pagina": 13,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "salones-02.jpg",
+    "ancho": 1344,
+    "alto": 756,
+    "pagina": 13,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "salones-03.jpg",
+    "ancho": 1344,
+    "alto": 756,
+    "pagina": 13,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "salones-04.jpg",
+    "ancho": 1344,
+    "alto": 756,
+    "pagina": 13,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "salones-05.png",
+    "ancho": 991,
+    "alto": 765,
+    "pagina": 13,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "mercadito-01.jpg",
+    "ancho": 2000,
+    "alto": 1333,
+    "pagina": 14,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "impacto-social-01.jpg",
+    "ancho": 2000,
+    "alto": 3007,
+    "pagina": 15,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "impacto-social-02.png",
+    "ancho": 225,
+    "alto": 225,
+    "pagina": 15,
+    "grupo": "logo-asociacion"
+  },
+  {
+    "archivo": "impacto-social-03.png",
+    "ancho": 186,
+    "alto": 227,
+    "pagina": 15,
+    "grupo": "logo-asociacion"
+  },
+  {
+    "archivo": "impacto-social-04.png",
+    "ancho": 320,
+    "alto": 208,
+    "pagina": 15,
+    "grupo": "logo-asociacion"
+  },
+  {
+    "archivo": "impacto-social-05.png",
+    "ancho": 496,
+    "alto": 231,
+    "pagina": 15,
+    "grupo": "logo-asociacion"
+  },
+  {
+    "archivo": "plan-de-medios-01.jpg",
+    "ancho": 2000,
+    "alto": 3000,
+    "pagina": 16,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "marcas-01.png",
+    "ancho": 661,
+    "alto": 510,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-02.png",
+    "ancho": 982,
+    "alto": 978,
+    "pagina": 20,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "marcas-03.png",
+    "ancho": 256,
+    "alto": 177,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-04.png",
+    "ancho": 196,
+    "alto": 196,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-05.png",
+    "ancho": 473,
+    "alto": 237,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-06.png",
+    "ancho": 640,
+    "alto": 640,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-07.png",
+    "ancho": 240,
+    "alto": 240,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-08.png",
+    "ancho": 239,
+    "alto": 204,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-09.png",
+    "ancho": 300,
+    "alto": 300,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-10.png",
+    "ancho": 505,
+    "alto": 139,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-11.png",
+    "ancho": 473,
+    "alto": 107,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-12.png",
+    "ancho": 320,
+    "alto": 289,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-13.png",
+    "ancho": 377,
+    "alto": 377,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-14.png",
+    "ancho": 200,
+    "alto": 200,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-15.png",
+    "ancho": 615,
+    "alto": 410,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-16.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-17.png",
+    "ancho": 2000,
+    "alto": 1632,
+    "pagina": 20,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "marcas-18.png",
+    "ancho": 387,
+    "alto": 347,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-19.png",
+    "ancho": 501,
+    "alto": 501,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-20.png",
+    "ancho": 594,
+    "alto": 743,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-21.png",
+    "ancho": 384,
+    "alto": 154,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-22.png",
+    "ancho": 308,
+    "alto": 461,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-23.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-24.png",
+    "ancho": 158,
+    "alto": 104,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-25.png",
+    "ancho": 277,
+    "alto": 154,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-26.png",
+    "ancho": 308,
+    "alto": 461,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-27.png",
+    "ancho": 308,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-28.png",
+    "ancho": 308,
+    "alto": 461,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-29.png",
+    "ancho": 205,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-30.png",
+    "ancho": 290,
+    "alto": 195,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-31.png",
+    "ancho": 328,
+    "alto": 129,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-32.png",
+    "ancho": 250,
+    "alto": 250,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-33.png",
+    "ancho": 384,
+    "alto": 140,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-34.png",
+    "ancho": 615,
+    "alto": 63,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-35.png",
+    "ancho": 308,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-36.png",
+    "ancho": 361,
+    "alto": 118,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-37.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-38.png",
+    "ancho": 360,
+    "alto": 162,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-39.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-40.png",
+    "ancho": 400,
+    "alto": 259,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-41.png",
+    "ancho": 500,
+    "alto": 501,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-42.png",
+    "ancho": 209,
+    "alto": 224,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-43.png",
+    "ancho": 410,
+    "alto": 410,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-44.png",
+    "ancho": 308,
+    "alto": 461,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-45.png",
+    "ancho": 253,
+    "alto": 114,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-46.png",
+    "ancho": 643,
+    "alto": 246,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-47.png",
+    "ancho": 308,
+    "alto": 461,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-48.png",
+    "ancho": 308,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-49.png",
+    "ancho": 308,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-50.png",
+    "ancho": 308,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-51.png",
+    "ancho": 205,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-52.png",
+    "ancho": 205,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-53.png",
+    "ancho": 709,
+    "alto": 877,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-54.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-55.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-56.png",
+    "ancho": 341,
+    "alto": 205,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-57.png",
+    "ancho": 112,
+    "alto": 120,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-58.png",
+    "ancho": 324,
+    "alto": 130,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-59.png",
+    "ancho": 152,
+    "alto": 152,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-60.png",
+    "ancho": 360,
+    "alto": 240,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-61.png",
+    "ancho": 191,
+    "alto": 157,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-62.png",
+    "ancho": 308,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "marcas-63.png",
+    "ancho": 461,
+    "alto": 308,
+    "pagina": 20,
+    "grupo": "logo-marca"
+  },
+  {
+    "archivo": "contacto-01.jpg",
+    "ancho": 2000,
+    "alto": 1334,
+    "pagina": 21,
+    "grupo": "foto"
+  },
+  {
+    "archivo": "contacto-02.png",
+    "ancho": 600,
+    "alto": 287,
+    "pagina": 21,
+    "grupo": "logo-dharma"
+  }
+]
