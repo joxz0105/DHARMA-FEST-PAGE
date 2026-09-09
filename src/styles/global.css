@@ -1,0 +1,46 @@
+@import './tokens.css';
+
+@font-face { font-display: swap; }
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-lino);
+  color: var(--color-bosque);
+  font-family: var(--font-ui);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.08;
+  margin: 0;
+}
+
+p { max-width: 60ch; }
+
+:focus-visible {
+  outline: 2px solid var(--color-copal);
+  outline-offset: 3px;
+}
+
+/* Restricción global: nada se mueve si la persona pidió menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

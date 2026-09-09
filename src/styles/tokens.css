@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bosque: #1E3527;
+  --color-bosque-deep: #16281D;
+  --color-salvia: #4A5B4F;
+  --color-lino: #F6F2E9;
+  --color-arena: #D9CFBB;
+  --color-piedra: #61563E;
+  --color-copal: #E38B4A;
+  --color-copal-ink: #854417;
+
+  --font-display: 'Cormorant Garamond Variable', Georgia, serif;
+  --font-ui: 'Jost Variable', system-ui, sans-serif;
+
+  --text-hero: clamp(2.75rem, 7vw, 6rem);
+  --text-seccion: clamp(2rem, 4.5vw, 3.5rem);
+  --text-subtitulo: 1.5rem;
+  --text-kicker: 0.6875rem;
+
+  --spacing-seccion: clamp(5rem, 12vh, 10rem);
+  --ease-dharma: cubic-bezier(0.22, 1, 0.36, 1);
+}

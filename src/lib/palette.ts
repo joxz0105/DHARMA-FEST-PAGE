@@ -15,9 +15,9 @@ export const PALETA: Record<NombreToken, string> = {
   salvia: '#4A5B4F',
   lino: '#F6F2E9',
   arena: '#D9CFBB',
-  piedra: '#8A7B5F',
+  piedra: '#61563E',
   copal: '#E38B4A',
-  copalInk: '#A85A24',
+  copalInk: '#854417',
 };
 
 /** Nombre del token tal como aparece en tokens.css, p. ej. `--color-bosque-deep`. */

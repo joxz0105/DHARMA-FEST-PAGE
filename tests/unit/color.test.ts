@@ -23,38 +23,67 @@ describe('contrastRatio', () => {
   });
 });
 
-describe('pares de la paleta que el diseño usa', () => {
-  it('salvia sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.salvia, PALETA.lino)).toBe(true);
+describe('texto sobre los dos fondos claros', () => {
+  // El sitio tiene DOS fondos claros: lino y el más oscuro arena.
+  // Todo color de texto debe cumplir sobre ambos, no solo sobre lino.
+  const fondosClaros = [
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ] as const;
+
+  const textosSobreClaro = [
+    ['bosque', PALETA.bosque],
+    ['salvia', PALETA.salvia],
+    ['piedra', PALETA.piedra],
+    ['copalInk', PALETA.copalInk],
+  ] as const;
+
+  for (const [nombreFondo, fondo] of fondosClaros) {
+    for (const [nombreTexto, texto] of textosSobreClaro) {
+      it(`${nombreTexto} sobre ${nombreFondo} cumple AA`, () => {
+        expect(cumpleAA(texto, fondo)).toBe(true);
+      });
+    }
+  }
+});
+
+describe('texto sobre los fondos oscuros', () => {
+  it.each([
+    ['lino', PALETA.lino, 'bosque', PALETA.bosque],
+    ['arena', PALETA.arena, 'bosque', PALETA.bosque],
+    ['copal', PALETA.copal, 'bosque', PALETA.bosque],
+    ['lino', PALETA.lino, 'bosqueDeep', PALETA.bosqueDeep],
+    ['arena', PALETA.arena, 'bosqueDeep', PALETA.bosqueDeep],
+    ['copal', PALETA.copal, 'bosqueDeep', PALETA.bosqueDeep],
+  ])('%s sobre %s cumple AA', (_t, texto, _f, fondo) => {
+    expect(cumpleAA(texto, fondo)).toBe(true);
+  });
+});
+
+describe('botones', () => {
+  it('bosque sobre relleno copal cumple AA', () => {
+    expect(cumpleAA(PALETA.bosque, PALETA.copal)).toBe(true);
   });
 
-  it('bosque sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.bosque, PALETA.lino)).toBe(true);
-  });
-
-  it('piedra sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.piedra, PALETA.lino)).toBe(true);
-  });
-
-  it('arena sobre bosque cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.arena, PALETA.bosque)).toBe(true);
-  });
-
-  it('copal sobre bosque cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.bosque)).toBe(true);
-  });
-
-  it('copalInk sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copalInk, PALETA.lino)).toBe(true);
+  it('lino sobre relleno copalInk cumple AA', () => {
+    expect(cumpleAA(PALETA.lino, PALETA.copalInk)).toBe(true);
   });
 });
 
 describe('la regla que motiva copalInk', () => {
-  it('copal sobre lino NO cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.lino)).toBe(false);
+  // copal es inservible como TEXTO sobre claro. No es que falle solo en
+  // tamaño pequeño: no llega ni al 3:1 que pide el texto grande.
+  it.each([
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ])('copal sobre %s no cumple AA ni en texto pequeño', (_n, fondo) => {
+    expect(cumpleAA(PALETA.copal, fondo)).toBe(false);
   });
 
-  it('copal sobre lino sí cumple AA en texto grande', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.lino, true)).toBe(true);
+  it.each([
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ])('copal sobre %s tampoco cumple AA en texto grande', (_n, fondo) => {
+    expect(cumpleAA(PALETA.copal, fondo, true)).toBe(false);
   });
 });
