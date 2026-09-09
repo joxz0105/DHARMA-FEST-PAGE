@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "titulo": "Dharma Fest · Experiencias de bienestar en Costa Rica",
+    "descripcion": "Movimiento, conexión y comunidad. El festival de bienestar de Costa Rica y sus experiencias durante todo el año."
+  },
+  "nav": {
+    "nosotros": "Nosotros",
+    "experiencias": "Experiencias",
+    "fest": "2027",
+    "marcas": "Marcas",
+    "cta": "Sumate"
+  },
+  "hero": {
+    "kicker": "Festival de bienestar · Costa Rica",
+    "titulo": "El bienestar no tiene",
+    "tituloEnfasis": "una sola forma",
+    "subtitulo": "Movimiento · Comunidad · Campo Lago",
+    "cta": "Sumate a la comunidad"
+  },
+  "ejes": [
+    { "nombre": "Charlas", "descripcion": "Conocimiento que se comparte." },
+    { "nombre": "Artistas", "descripcion": "Música en vivo todo el día." },
+    { "nombre": "Mercadito", "descripcion": "Marcas locales, hechas acá." },
+    { "nombre": "Actividades", "descripcion": "Respiración, movimiento, cuerpo." },
+    { "nombre": "Gastronomía", "descripcion": "Comida real, gente real." },
+    { "nombre": "Asociaciones", "descripcion": "Causas que nos importan." },
+    { "nombre": "Entretenimiento", "descripcion": "Arte, fuego y sorpresa." }
+  ],
+  "filosofia": {
+    "kicker": "Qué significa Dharma",
+    "titulo": "Mucho más",
+    "tituloEnfasis": "que bienestar",
+    "cuerpo": "Es movimiento, conexión, comunidad, conciencia y espacios para volver a nosotros mismos. Es compartir, aprender, apoyar lo local, cuidar nuestro entorno y descubrir nuevas formas de sentirnos bien."
+  },
+  "ejesSeccion": {
+    "kicker": "Qué vas a encontrar",
+    "titulo": "Siete formas de",
+    "tituloEnfasis": "estar bien"
+  },
+  "campoLago": {
+    "kicker": "Campo Lago",
+    "titulo": "Nuestra casa, donde",
+    "tituloEnfasis": "sucede la magia",
+    "cuerpo": "El lugar al que volvemos edición tras edición. Naturaleza, lago y espacio para que la comunidad se encuentre."
+  },
+  "experiencias": {
+    "kicker": "Todo el año",
+    "titulo": "Experiencias",
+    "tituloEnfasis": "Dharma",
+    "verTodas": "Ver todas",
+    "etiquetaProxima": "Próxima",
+    "etiquetaPasada": "Edición pasada",
+    "vacio": "Estamos preparando la próxima. Sumate a la comunidad para enterarte primero."
+  },
+  "fest2027": {
+    "kicker": "La próxima gran edición",
+    "titulo": "Dharma Fest",
+    "tituloEnfasis": "2027",
+    "cuerpo": "El encuentro grande vuelve. Sé de los primeros en enterarte de fechas, line-up y preventa.",
+    "cta": "Quiero enterarme primero",
+    "dias": "Días",
+    "horas": "Horas",
+    "minutos": "Min"
+  },
+  "numeros2025": {
+    "kicker": "Dharma Fest 2025",
+    "titulo": "Lo que",
+    "tituloEnfasis": "ya pasó",
+    "cifras": [
+      { "valor": "40+", "etiqueta": "Marcas locales" },
+      { "valor": "9", "etiqueta": "Charlas" },
+      { "valor": "6", "etiqueta": "Artistas" },
+      { "valor": "3", "etiqueta": "Asociaciones" }
+    ]
+  },
+  "marcas": {
+    "kicker": "Lo construimos entre todos",
+    "titulo": "Las marcas que",
+    "tituloEnfasis": "lo hacen posible",
+    "cta": "Quiero ser parte"
+  },
+  "voces": { "kicker": "La comunidad" },
+  "nosotros": {
+    "kicker": "Detrás de Dharma",
+    "cita": "Creemos que el bienestar no tiene una sola forma. Se vive, se comparte y se construye en comunidad.",
+    "autor": "Equipo Dharma Fest"
+  },
+  "sumate": {
+    "kicker": "Comenzá tu camino",
+    "titulo": "Sumate a la",
+    "tituloEnfasis": "comunidad",
+    "cuerpo": "Enterate primero de cada experiencia, del Dharma Fest 2027 y de lo que estamos creando.",
+    "etiquetaCorreo": "Tu correo electrónico",
+    "placeholder": "tu@correo.com",
+    "boton": "Sumarme",
+    "errorCorreo": "Revisá el correo, parece que tiene un error.",
+    "errorGeneral": "Algo falló de nuestro lado. Probá de nuevo en un momento."
+  },
+  "gracias": {
+    "titulo": "Ya sos parte",
+    "cuerpo": "Te vamos a escribir cuando haya algo que valga la pena. Nada más.",
+    "volver": "Volver al inicio"
+  },
+  "error404": {
+    "titulo": "Esta página no existe",
+    "cuerpo": "Puede que la hayamos movido, o que el enlace esté viejo.",
+    "volver": "Volver al inicio"
+  },
+  "footer": {
+    "tagline": "Experiencias de bienestar en Costa Rica",
+    "sitio": "Sitio",
+    "marcas": "Marcas",
+    "contacto": "Contacto",
+    "aplicar": "Aplicar",
+    "prensa": "Prensa",
+    "derechos": "Todos los derechos reservados."
+  },
+  "a11y": {
+    "saltarContenido": "Saltar al contenido",
+    "menuAbrir": "Abrir menú",
+    "menuCerrar": "Cerrar menú",
+    "navPrincipal": "Navegación principal",
+    "idioma": "Idioma"
+  }
+}

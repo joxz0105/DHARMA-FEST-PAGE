@@ -10,7 +10,8 @@
     "test": "vitest run",
     "dev": "astro dev",
     "build": "astro build",
-    "check": "astro check"
+    "check": "astro check",
+    "placeholders": "node scripts/generar-placeholders.mjs"
   },
   "keywords": [],
   "author": "",

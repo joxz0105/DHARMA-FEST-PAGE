@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "titulo": "Dharma Fest · Wellness Experiences in Costa Rica",
+    "descripcion": "Movement, connection, and community. Costa Rica's wellness festival and its experiences all year round."
+  },
+  "nav": {
+    "nosotros": "About",
+    "experiencias": "Experiences",
+    "fest": "2027",
+    "marcas": "Brands",
+    "cta": "Join"
+  },
+  "hero": {
+    "kicker": "Wellness festival · Costa Rica",
+    "titulo": "Wellness has",
+    "tituloEnfasis": "more than one shape",
+    "subtitulo": "Movement · Community · Campo Lago",
+    "cta": "Join the community"
+  },
+  "ejes": [
+    { "nombre": "Talks", "descripcion": "Knowledge worth sharing." },
+    { "nombre": "Artists", "descripcion": "Live music all day long." },
+    { "nombre": "Market", "descripcion": "Local brands, made right here." },
+    { "nombre": "Activities", "descripcion": "Breathwork, movement, body." },
+    { "nombre": "Food", "descripcion": "Real food, real people." },
+    { "nombre": "Partners", "descripcion": "Causes that matter to us." },
+    { "nombre": "Entertainment", "descripcion": "Art, fire, and surprise." }
+  ],
+  "filosofia": {
+    "kicker": "What Dharma means",
+    "titulo": "So much more",
+    "tituloEnfasis": "than wellness",
+    "cuerpo": "It's movement, connection, community, awareness, and space to come back to ourselves. It's sharing, learning, supporting local, caring for our surroundings, and discovering new ways to feel good."
+  },
+  "ejesSeccion": {
+    "kicker": "What you'll find",
+    "titulo": "Seven ways to",
+    "tituloEnfasis": "feel good"
+  },
+  "campoLago": {
+    "kicker": "Campo Lago",
+    "titulo": "Our home, where",
+    "tituloEnfasis": "the magic happens",
+    "cuerpo": "The place we return to, edition after edition. Nature, a lake, and space for the community to come together."
+  },
+  "experiencias": {
+    "kicker": "All year round",
+    "titulo": "Experiences",
+    "tituloEnfasis": "Dharma",
+    "verTodas": "See all",
+    "etiquetaProxima": "Coming up",
+    "etiquetaPasada": "Past edition",
+    "vacio": "We're getting the next one ready. Join the community to be the first to know."
+  },
+  "fest2027": {
+    "kicker": "The next big edition",
+    "titulo": "Dharma Fest",
+    "tituloEnfasis": "2027",
+    "cuerpo": "The big gathering returns. Be among the first to hear about dates, line-up, and presale.",
+    "cta": "I want to know first",
+    "dias": "Days",
+    "horas": "Hours",
+    "minutos": "Min"
+  },
+  "numeros2025": {
+    "kicker": "Dharma Fest 2025",
+    "titulo": "What already",
+    "tituloEnfasis": "happened",
+    "cifras": [
+      { "valor": "40+", "etiqueta": "Local brands" },
+      { "valor": "9", "etiqueta": "Talks" },
+      { "valor": "6", "etiqueta": "Artists" },
+      { "valor": "3", "etiqueta": "Partners" }
+    ]
+  },
+  "marcas": {
+    "kicker": "We build it together",
+    "titulo": "The brands that",
+    "tituloEnfasis": "make it possible",
+    "cta": "I want to be part of it"
+  },
+  "voces": { "kicker": "The community" },
+  "nosotros": {
+    "kicker": "Behind Dharma",
+    "cita": "We believe wellness has more than one shape. You live it, you share it, and you build it together.",
+    "autor": "Dharma Fest Team"
+  },
+  "sumate": {
+    "kicker": "Start your path",
+    "titulo": "Join the",
+    "tituloEnfasis": "community",
+    "cuerpo": "Be the first to know about every experience, Dharma Fest 2027, and what we're creating.",
+    "etiquetaCorreo": "Your email address",
+    "placeholder": "you@email.com",
+    "boton": "Join",
+    "errorCorreo": "Check your email, it looks like there's a typo.",
+    "errorGeneral": "Something failed on our end. Please try again in a moment."
+  },
+  "gracias": {
+    "titulo": "You're in",
+    "cuerpo": "We'll write to you when there's something worth sharing. Nothing more.",
+    "volver": "Back to home"
+  },
+  "error404": {
+    "titulo": "This page doesn't exist",
+    "cuerpo": "We may have moved it, or the link may be outdated.",
+    "volver": "Back to home"
+  },
+  "footer": {
+    "tagline": "Wellness experiences in Costa Rica",
+    "sitio": "Site",
+    "marcas": "Brands",
+    "contacto": "Contact",
+    "aplicar": "Apply",
+    "prensa": "Press",
+    "derechos": "All rights reserved."
+  },
+  "a11y": {
+    "saltarContenido": "Skip to content",
+    "menuAbrir": "Open menu",
+    "menuCerrar": "Close menu",
+    "navPrincipal": "Main navigation",
+    "idioma": "Language"
+  }
+}
