@@ -39,8 +39,10 @@ const retraso = retrasoEscalonado(indice);
 </style>
 
 <noscript>
-  <style>
-    .dh-reveal { opacity: 1; transform: none; }
+  <style is:inline>
+    /* Regla sin scope para vencer la regla base scoped por Astro (especificidad 0-2-0).
+       Sin !important, la base rule gana y el contenido queda invisible. */
+    .dh-reveal { opacity: 1 !important; transform: none !important; }
   </style>
 </noscript>
 
