@@ -19,6 +19,11 @@ interface Props {
 const { lang, fechaObjetivo, nivelTitulo = 2 } = Astro.props;
 const copy = getCopy(lang);
 
+// El sitio es estático: esta cuenta regresiva se calcula una sola vez, en el
+// momento del build, con la hora del build como "ahora". No se actualiza en
+// el navegador ni minuto a minuto — queda congelada en la hora en que se
+// generó la página hasta el próximo build. Quien active `fechaObjetivo`
+// debe saberlo antes de prometer un contador en vivo.
 const cuenta = fechaObjetivo ? countdownParts(fechaObjetivo, new Date()) : null;
 
 const unidades = cuenta

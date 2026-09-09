@@ -11,8 +11,10 @@
     "test:e2e": "playwright test",
     "dev": "astro dev",
     "build": "astro build",
+    "preview": "astro preview",
     "check": "astro check",
-    "placeholders": "node scripts/generar-placeholders.mjs"
+    "placeholders": "node scripts/generar-placeholders.mjs",
+    "verificar": "astro check && vitest run && astro build && playwright test"
   },
   "keywords": [],
   "author": "",

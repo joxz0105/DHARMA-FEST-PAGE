@@ -1,7 +1,5 @@
 @import './tokens.css';
 
-@font-face { font-display: swap; }
-
 :root {
   color-scheme: light;
 }

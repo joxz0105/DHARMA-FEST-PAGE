@@ -34,18 +34,25 @@ const d = entrada.data;
   lang={lang}
   rutaCanonica={`/experiencias/${Astro.params.slug}`}
 >
-  <Seccion class="pt-40">
-    <Kicker>
+  <!--
+    Encabezado en fondo oscuro, igual que /marcas y /nosotros: el header del
+    sitio flota transparente sobre el tope de la página, y su texto es claro.
+    Sin una franja oscura detrás, queda invisible sobre un fondo lino.
+  -->
+  <Seccion fondo="bosque" class="pt-40">
+    <Kicker tono="oscuro">
       {d.lugar} · {d.fecha.toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}
     </Kicker>
-    <h1 class="mt-4 font-display text-hero text-bosque">{d.titulo}</h1>
+    <h1 class="mt-4 font-display text-hero text-lino">{d.titulo}</h1>
+  </Seccion>
 
+  <Seccion>
     <Image
       src={d.portada}
       alt={d.portadaAlt}
       widths={[800, 1400, 2000]}
       sizes="100vw"
-      class="mt-12 aspect-[16/9] w-full object-cover"
+      class="aspect-[16/9] w-full object-cover"
     />
 
     <div class="prose-dharma mt-12 max-w-[60ch] text-salvia">

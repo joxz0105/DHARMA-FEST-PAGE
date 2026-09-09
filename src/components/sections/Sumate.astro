@@ -63,9 +63,11 @@ const destinoGracias = localizePath('/gracias', lang);
   const form = document.getElementById('form-sumate') as HTMLFormElement | null;
   const campo = document.getElementById('correo') as HTMLInputElement | null;
   const aviso = document.getElementById('error-sumate');
+  const boton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 
-  if (form && campo && aviso) {
+  if (form && campo && aviso && boton) {
     const lang = (form.dataset.lang ?? 'es') as Lang;
+    let enVuelo = false;
 
     const mostrarError = (mensaje: string) => {
       aviso.textContent = mensaje;
@@ -76,21 +78,32 @@ const destinoGracias = localizePath('/gracias', lang);
 
     form.addEventListener('submit', async (evento) => {
       evento.preventDefault();
+      if (enVuelo) return;
+
+      enVuelo = true;
+      boton.disabled = true;
       aviso.hidden = true;
       campo.removeAttribute('aria-invalid');
 
-      const resultado = await subscribe(campo.value, lang);
+      try {
+        const resultado = await subscribe(campo.value, lang);
 
-      if (resultado.ok) {
-        window.location.assign(form.dataset.gracias ?? '/gracias');
-        return;
+        if (resultado.ok) {
+          // El servidor siempre pone data-gracias (ver arriba); no hace
+          // falta un valor de respaldo que nunca se usaría.
+          window.location.assign(form.dataset.gracias!);
+          return;
+        }
+
+        mostrarError(
+          resultado.error === 'correo-invalido'
+            ? (form.dataset.errorCorreo ?? '')
+            : (form.dataset.errorGeneral ?? ''),
+        );
+      } finally {
+        enVuelo = false;
+        boton.disabled = false;
       }
-
-      mostrarError(
-        resultado.error === 'correo-invalido'
-          ? (form.dataset.errorCorreo ?? '')
-          : (form.dataset.errorGeneral ?? ''),
-      );
     });
   }
 </script>

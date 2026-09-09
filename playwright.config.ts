@@ -9,10 +9,13 @@ export default defineConfig({
     { name: 'escritorio', use: { ...devices['Desktop Chrome'] } },
     { name: 'movil', use: { ...devices['Pixel 5'] } },
   ],
+  // Build real + `astro preview` (no `astro dev`): el sitemap solo existe en
+  // el build, y el status del 404 solo se comporta bien contra el sitio
+  // estático real. Ver README, sección de trampas ya encontradas.
   webServer: {
-    command: 'npm run dev',
+    command: 'npm run build && npm run preview',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
+    timeout: 120_000,
   },
 });

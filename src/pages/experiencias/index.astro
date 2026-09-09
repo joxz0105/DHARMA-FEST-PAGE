@@ -27,16 +27,23 @@ const pasadas = todas.filter((e) => e.estado === 'pasada');
   lang={lang}
   rutaCanonica="/experiencias"
 >
-  <Seccion class="pt-40">
-    <Kicker>{copy.experiencias.kicker}</Kicker>
-    <h1 class="mt-4 font-display text-hero text-bosque">
+  <!--
+    Encabezado en fondo oscuro, igual que /marcas y /nosotros: el header del
+    sitio flota transparente sobre el tope de la página, y su texto es claro.
+    Sin una franja oscura detrás, queda invisible sobre un fondo lino.
+  -->
+  <Seccion fondo="bosque" class="pt-40">
+    <Kicker tono="oscuro">{copy.experiencias.kicker}</Kicker>
+    <h1 class="mt-4 font-display text-hero text-lino">
       {copy.experiencias.titulo} <em class="italic">{copy.experiencias.tituloEnfasis}</em>
     </h1>
+  </Seccion>
 
+  <Seccion>
     {
       proximas.length > 0 && (
         <>
-          <TituloSeccion texto={copy.experiencias.tituloProximas} nivel={2} class="mt-16" />
+          <TituloSeccion texto={copy.experiencias.tituloProximas} nivel={2} />
           <div data-grupo="proximas" class="mt-8 grid gap-8 md:grid-cols-3">
             {proximas.map((e, i) => (
               <Reveal indice={i}><TarjetaExperiencia {...e} lang={lang} /></Reveal>
