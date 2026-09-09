@@ -15,9 +15,15 @@ export function experienciasDe<T extends ExperienciaLike>(todas: T[], lang: Lang
     .sort((a, b) => b.fecha.getTime() - a.fecha.getTime());
 }
 
-/** La próxima experiencia del idioma, o null si no hay ninguna anunciada. */
+/**
+ * La próxima experiencia del idioma, o null si no hay ninguna anunciada.
+ * Si hay varias marcadas como próximas, devuelve la MÁS CERCANA en el tiempo:
+ * `experienciasDe` ordena de más reciente a más antigua, así que hay que tomar
+ * la última de las próximas, no la primera.
+ */
 export function proximaExperiencia<T extends ExperienciaLike>(todas: T[], lang: Lang): T | null {
-  return experienciasDe(todas, lang).find((e) => e.estado === 'proxima') ?? null;
+  const proximas = experienciasDe(todas, lang).filter((e) => e.estado === 'proxima');
+  return proximas.at(-1) ?? null;
 }
 
 /**

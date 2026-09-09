@@ -32,6 +32,15 @@ describe('proximaExperiencia', () => {
   it('devuelve null si no hay ninguna próxima', () => {
     expect(proximaExperiencia(muestras, 'en')).toBeNull();
   });
+
+  it('devuelve la más cercana cuando hay varias próximas', () => {
+    const con2Proximas = [
+      { slug: 'es/uno', lang: 'es' as const, fecha: new Date('2026-12-15'), estado: 'proxima' as const },
+      { slug: 'es/dos', lang: 'es' as const, fecha: new Date('2026-11-10'), estado: 'proxima' as const },
+      { slug: 'es/tres', lang: 'es' as const, fecha: new Date('2026-08-01'), estado: 'pasada' as const },
+    ];
+    expect(proximaExperiencia(con2Proximas, 'es')?.slug).toBe('es/dos');
+  });
 });
 
 describe('publicables', () => {
