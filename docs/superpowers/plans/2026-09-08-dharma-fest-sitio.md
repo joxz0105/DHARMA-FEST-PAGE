@@ -16,8 +16,9 @@
 
 Cada tarea hereda implícitamente estas reglas.
 
-- **Paleta exacta.** `--dh-bosque #1E3527` · `--dh-bosque-deep #16281D` · `--dh-salvia #4A5B4F` · `--dh-lino #F6F2E9` · `--dh-arena #D9CFBB` · `--dh-piedra #8A7B5F` · `--dh-copal #E38B4A` · `--dh-copal-ink #A85A24`. No inventar tonos intermedios.
-- **Regla de contraste.** `--dh-copal` sobre fondo claro solo en texto ≥24 px, decoración, o relleno de botón con texto oscuro. Texto pequeño de acento sobre claro usa `--dh-copal-ink`. Sobre fondo oscuro, `--dh-copal` vale en cualquier tamaño.
+- **Paleta exacta.** `--dh-bosque #1E3527` · `--dh-bosque-deep #16281D` · `--dh-salvia #4A5B4F` · `--dh-lino #F6F2E9` · `--dh-arena #D9CFBB` · `--dh-piedra #61563E` · `--dh-copal #E38B4A` · `--dh-copal-ink #854417`. No inventar tonos intermedios.
+- **Regla de contraste.** Sobre fondo claro (`lino` o `arena`), `--dh-copal` **nunca es texto, a ningún tamaño** — da 2.33:1 y 1.69:1, ni siquiera llega al 3:1 de texto grande. Sobre claro solo vale como relleno de botón con texto `--dh-bosque` encima, o como decoración. Todo texto de acento sobre claro usa `--dh-copal-ink`. Sobre fondo oscuro, `--dh-copal` vale en cualquier tamaño.
+- **Fondos claros son dos, no uno.** Varias secciones usan `arena`, que es más oscuro que `lino`. Todo color de texto debe cumplir 4.5:1 sobre **ambos**. Es lo que obligó a oscurecer `piedra` y `copal-ink`.
 - **Tipografía.** Display: Cormorant Garamond 300/400 + itálica. Interfaz: Jost 300/400/500. Auto-hospedadas con los paquetes **variables** de Fontsource, ya instalados. Las familias CSS se llaman **`'Cormorant Garamond Variable'`** y **`'Jost Variable'`** — con el nombre sin sufijo la fuente no carga y cae al respaldo del sistema sin avisar. Prohibido pedir fuentes a Google en runtime.
 - **Movimiento.** Toda animación se desactiva bajo `prefers-reduced-motion: reduce`, incluido el marquee.
 - **Alt obligatorio.** Toda imagen de contenido lleva `alt` no vacío, forzado por esquema Zod. El build debe fallar si falta.
@@ -118,39 +119,68 @@ describe('contrastRatio', () => {
   });
 });
 
-describe('pares de la paleta que el diseño usa', () => {
-  it('salvia sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.salvia, PALETA.lino)).toBe(true);
+describe('texto sobre los dos fondos claros', () => {
+  // El sitio tiene DOS fondos claros: lino y el más oscuro arena.
+  // Todo color de texto debe cumplir sobre ambos, no solo sobre lino.
+  const fondosClaros = [
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ] as const;
+
+  const textosSobreClaro = [
+    ['bosque', PALETA.bosque],
+    ['salvia', PALETA.salvia],
+    ['piedra', PALETA.piedra],
+    ['copalInk', PALETA.copalInk],
+  ] as const;
+
+  for (const [nombreFondo, fondo] of fondosClaros) {
+    for (const [nombreTexto, texto] of textosSobreClaro) {
+      it(`${nombreTexto} sobre ${nombreFondo} cumple AA`, () => {
+        expect(cumpleAA(texto, fondo)).toBe(true);
+      });
+    }
+  }
+});
+
+describe('texto sobre los fondos oscuros', () => {
+  it.each([
+    ['lino', PALETA.lino, 'bosque', PALETA.bosque],
+    ['arena', PALETA.arena, 'bosque', PALETA.bosque],
+    ['copal', PALETA.copal, 'bosque', PALETA.bosque],
+    ['lino', PALETA.lino, 'bosqueDeep', PALETA.bosqueDeep],
+    ['arena', PALETA.arena, 'bosqueDeep', PALETA.bosqueDeep],
+    ['copal', PALETA.copal, 'bosqueDeep', PALETA.bosqueDeep],
+  ])('%s sobre %s cumple AA', (_t, texto, _f, fondo) => {
+    expect(cumpleAA(texto, fondo)).toBe(true);
+  });
+});
+
+describe('botones', () => {
+  it('bosque sobre relleno copal cumple AA', () => {
+    expect(cumpleAA(PALETA.bosque, PALETA.copal)).toBe(true);
   });
 
-  it('bosque sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.bosque, PALETA.lino)).toBe(true);
-  });
-
-  it('piedra sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.piedra, PALETA.lino)).toBe(true);
-  });
-
-  it('arena sobre bosque cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.arena, PALETA.bosque)).toBe(true);
-  });
-
-  it('copal sobre bosque cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.bosque)).toBe(true);
-  });
-
-  it('copalInk sobre lino cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copalInk, PALETA.lino)).toBe(true);
+  it('lino sobre relleno copalInk cumple AA', () => {
+    expect(cumpleAA(PALETA.lino, PALETA.copalInk)).toBe(true);
   });
 });
 
 describe('la regla que motiva copalInk', () => {
-  it('copal sobre lino NO cumple AA en texto pequeño', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.lino)).toBe(false);
+  // copal es inservible como TEXTO sobre claro. No es que falle solo en
+  // tamaño pequeño: no llega ni al 3:1 que pide el texto grande.
+  it.each([
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ])('copal sobre %s no cumple AA ni en texto pequeño', (_n, fondo) => {
+    expect(cumpleAA(PALETA.copal, fondo)).toBe(false);
   });
 
-  it('copal sobre lino sí cumple AA en texto grande', () => {
-    expect(cumpleAA(PALETA.copal, PALETA.lino, true)).toBe(true);
+  it.each([
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+  ])('copal sobre %s tampoco cumple AA en texto grande', (_n, fondo) => {
+    expect(cumpleAA(PALETA.copal, fondo, true)).toBe(false);
   });
 });
 ```
@@ -199,9 +229,9 @@ export const PALETA: Record<NombreToken, string> = {
   salvia: '#4A5B4F',
   lino: '#F6F2E9',
   arena: '#D9CFBB',
-  piedra: '#8A7B5F',
+  piedra: '#61563E',
   copal: '#E38B4A',
-  copalInk: '#A85A24',
+  copalInk: '#854417',
 };
 
 /** Nombre del token tal como aparece en tokens.css, p. ej. `--color-bosque-deep`. */
@@ -274,9 +304,9 @@ export function cumpleAA(hexTexto: string, hexFondo: string, textoGrande = false
 - [ ] **Step 5: Correr el test y verificar que pasa**
 
 Run: `npm run test`
-Expected: PASS — 12 tests.
+Expected: PASS — 24 tests.
 
-Si `copal sobre lino NO cumple AA` falla porque el par sí alcanza 4.5:1, no ajustar el test: significa que la paleta cambió y hay que revisar la regla completa de la spec §5.
+Si alguno de los tests de `la regla que motiva copalInk` falla porque el par sí alcanza el mínimo, no ajustar el test: significa que la paleta cambió y hay que rehacer la matriz de contraste completa de la spec §5.
 
 - [ ] **Step 6: Escribir el test de consistencia entre paleta y tokens CSS**
 
@@ -323,9 +353,9 @@ Crear `src/styles/tokens.css`. Los hex deben coincidir carácter por carácter c
   --color-salvia: #4A5B4F;
   --color-lino: #F6F2E9;
   --color-arena: #D9CFBB;
-  --color-piedra: #8A7B5F;
+  --color-piedra: #61563E;
   --color-copal: #E38B4A;
-  --color-copal-ink: #A85A24;
+  --color-copal-ink: #854417;
 
   --font-display: 'Cormorant Garamond Variable', Georgia, serif;
   --font-ui: 'Jost Variable', system-ui, sans-serif;
@@ -394,7 +424,7 @@ p { max-width: 60ch; }
 - [ ] **Step 9: Correr el test y verificar que pasa**
 
 Run: `npm run test`
-Expected: PASS — 22 tests.
+Expected: PASS — 33 tests (24 de color + 9 de tokens).
 
 - [ ] **Step 10: Configurar Astro y crear la página mínima**
 

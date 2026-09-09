@@ -84,17 +84,39 @@ por la paleta de Dharma.
 | `--dh-salvia` | `#4A5B4F` | Texto de párrafo sobre claro |
 | `--dh-lino` | `#F6F2E9` | Fondo base del sitio |
 | `--dh-arena` | `#D9CFBB` | Bordes, separadores, texto sobre oscuro |
-| `--dh-piedra` | `#8A7B5F` | Kickers sobre claro, texto terciario |
+| `--dh-piedra` | `#61563E` | Kickers sobre claro, texto terciario |
 | `--dh-copal` | `#E38B4A` | Acento: botones, subrayados, cifras, kickers sobre oscuro |
-| `--dh-copal-ink` | `#A85A24` | **Obligatorio** para texto pequeño color acento sobre fondo claro |
+| `--dh-copal-ink` | `#854417` | **Obligatorio** para texto pequeño color acento sobre fondo claro |
 
-**Regla de contraste:** `--dh-copal` sobre `--dh-lino` no alcanza AA en texto pequeño. Sobre
-fondos claros, el acento solo se usa en texto ≥24 px, en elementos decorativos o rellenando
-un botón con texto oscuro. Para texto pequeño se usa `--dh-copal-ink`. Sobre fondos oscuros
-`--dh-copal` es válido en cualquier tamaño.
+**Regla de contraste:** sobre fondo claro, `--dh-copal` **nunca se usa como texto, a ningún
+tamaño**. Da 2.33:1 sobre lino y 1.69:1 sobre arena, así que no llega ni al mínimo de 3:1 de
+texto grande. Sobre claro solo vale como relleno de botón con texto `--dh-bosque` encima
+(5.06:1) o como elemento decorativo. Todo texto de acento sobre claro usa `--dh-copal-ink`.
+Sobre fondos oscuros, `--dh-copal` es válido en cualquier tamaño (5.06:1 sobre bosque).
+
+Matriz verificada, todos los pares que el diseño realmente usa, mínimo AA 4.5:1:
+
+| | sobre `lino` | sobre `arena` | sobre `bosque` | sobre `bosque-deep` |
+|---|---|---|---|---|
+| `bosque` | 11.79 | 8.53 | — | — |
+| `salvia` | 6.48 | 4.69 | — | — |
+| `piedra` | 6.46 | 4.67 | — | — |
+| `copal-ink` | 6.63 | 4.79 | — | — |
+| `lino` | — | — | 11.79 | 13.87 |
+| `arena` | — | — | 8.53 | 10.03 |
+| `copal` | ✗ 2.33 | ✗ 1.69 | 5.06 | 5.95 |
+
+Botones: `bosque` sobre `copal` 5.06 · `lino` sobre `copal-ink` 6.63.
+
+> **Corrección del 2026-09-08.** La primera versión de esta paleta daba `piedra` en `#8A7B5F` y
+> `copal-ink` en `#A85A24`, y afirmaba que `copal` servía para texto grande sobre claro. Los tres
+> puntos eran falsos: `piedra` daba 3.70:1 sobre lino, `copal-ink` fallaba sobre arena (3.27:1) y
+> `copal` no alcanza 3:1 sobre ningún fondo claro. Se corrigió al implementar, cuando los tests de
+> contraste de la Tarea 1 lo delataron. Los valores de arriba están verificados uno por uno.
 
 > **Pendiente de validar:** esta paleta se derivó del Instagram, no de un manual de marca. Si
-> el cliente entrega códigos oficiales, se sustituyen los tokens y el resto del sitio no cambia.
+> el cliente entrega códigos oficiales, se sustituyen los tokens — pero hay que volver a correr
+> la matriz de contraste, porque un verde o un naranja de marca pueden fallar igual que estos.
 
 ### Tipografía
 
