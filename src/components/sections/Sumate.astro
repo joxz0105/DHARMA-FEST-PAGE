@@ -1,0 +1,96 @@
+---
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+const destinoGracias = localizePath('/gracias', lang);
+---
+
+<Seccion id="sumate" fondo="bosque" class="text-center">
+  <Reveal>
+    <Kicker tono="oscuro">{copy.sumate.kicker}</Kicker>
+    <TituloSeccion
+      texto={copy.sumate.titulo}
+      enfasis={copy.sumate.tituloEnfasis}
+      tono="oscuro"
+      class="mt-4"
+    />
+    <p class="mx-auto mt-6 text-arena">{copy.sumate.cuerpo}</p>
+
+    <form
+      id="form-sumate"
+      novalidate
+      data-lang={lang}
+      data-gracias={destinoGracias}
+      data-error-correo={copy.sumate.errorCorreo}
+      data-error-general={copy.sumate.errorGeneral}
+      class="mx-auto mt-8 flex max-w-lg flex-col gap-3 sm:flex-row"
+    >
+      <label for="correo" class="sr-only">{copy.sumate.etiquetaCorreo}</label>
+      <input
+        id="correo"
+        name="correo"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        placeholder={copy.sumate.placeholder}
+        aria-describedby="error-sumate"
+        class="flex-1 border border-arena/40 bg-transparent px-4 py-3 text-lino placeholder:text-arena/60"
+      />
+      <button
+        type="submit"
+        class="bg-copal px-7 py-3 font-ui text-kicker uppercase tracking-[0.24em] text-bosque transition-colors hover:bg-copal-ink hover:text-lino"
+      >
+        {copy.sumate.boton}
+      </button>
+    </form>
+
+    <p id="error-sumate" role="alert" hidden class="mt-4 font-ui text-sm text-copal"></p>
+  </Reveal>
+</Seccion>
+
+<script>
+  import { subscribe } from '../../lib/subscribe';
+  import type { Lang } from '../../lib/i18n';
+
+  const form = document.getElementById('form-sumate') as HTMLFormElement | null;
+  const campo = document.getElementById('correo') as HTMLInputElement | null;
+  const aviso = document.getElementById('error-sumate');
+
+  if (form && campo && aviso) {
+    const lang = (form.dataset.lang ?? 'es') as Lang;
+
+    const mostrarError = (mensaje: string) => {
+      aviso.textContent = mensaje;
+      aviso.hidden = false;
+      campo.setAttribute('aria-invalid', 'true');
+      campo.focus();
+    };
+
+    form.addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      aviso.hidden = true;
+      campo.removeAttribute('aria-invalid');
+
+      const resultado = await subscribe(campo.value, lang);
+
+      if (resultado.ok) {
+        window.location.assign(form.dataset.gracias ?? '/gracias');
+        return;
+      }
+
+      mostrarError(
+        resultado.error === 'correo-invalido'
+          ? (form.dataset.errorCorreo ?? '')
+          : (form.dataset.errorGeneral ?? ''),
+      );
+    });
+  }
+</script>

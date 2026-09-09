@@ -10,6 +10,9 @@ import Experiencias from '../components/sections/Experiencias.astro';
 import Fest2027 from '../components/sections/Fest2027.astro';
 import Numeros2025 from '../components/sections/Numeros2025.astro';
 import Marcas from '../components/sections/Marcas.astro';
+import Voces from '../components/sections/Voces.astro';
+import Nosotros from '../components/sections/Nosotros.astro';
+import Sumate from '../components/sections/Sumate.astro';
 import { getCopy } from '../lib/copy';
 import { experienciasDe, publicables } from '../lib/contenido';
 
@@ -24,6 +27,12 @@ const experiencias = experienciasDe(
 
 const marcas = publicables(
   (await getCollection('marcas')).map((m) => ({ id: m.id, ...m.data })),
+);
+
+const testimonios = publicables(
+  (await getCollection('testimonios'))
+    .map((t) => ({ id: t.id, ...t.data }))
+    .filter((t) => t.lang === lang),
 );
 ---
 
@@ -42,4 +51,7 @@ const marcas = publicables(
   <Fest2027 lang={lang} />
   <Numeros2025 lang={lang} />
   <Marcas lang={lang} marcas={marcas} />
+  <Voces lang={lang} testimonios={testimonios} />
+  <Nosotros lang={lang} />
+  <Sumate lang={lang} />
 </Base>
