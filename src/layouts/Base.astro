@@ -4,23 +4,54 @@ import '@fontsource-variable/cormorant-garamond';
 import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 import '@fontsource-variable/jost';
 
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
+import { DEFAULT_LANG, alternates, type Lang } from '../lib/i18n';
+
 interface Props {
   titulo: string;
   descripcion: string;
+  lang: Lang;
+  /** Ruta sin prefijo de idioma, p. ej. `/experiencias`. */
+  rutaCanonica: string;
 }
 
-const { titulo, descripcion } = Astro.props;
+const { titulo, descripcion, lang, rutaCanonica } = Astro.props;
+
+const alternativas = alternates(rutaCanonica);
+const canonica = new URL(Astro.url.pathname, Astro.site);
+const porDefecto = alternativas.find((a) => a.lang === DEFAULT_LANG)!;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica.href} />
+
+    {
+      alternativas.map((a) => (
+        <link rel="alternate" hreflang={a.lang} href={new URL(a.href, Astro.site).href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={new URL(porDefecto.href, Astro.site).href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica.href} />
   </head>
+
   <body>
-    <slot />
+    <SkipLink lang={lang} />
+    <Header lang={lang} />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
   </body>
 </html>

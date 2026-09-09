@@ -1,0 +1,99 @@
+---
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+
+const enlaces = [
+  { texto: copy.nav.nosotros, href: localizePath('/nosotros', lang) },
+  { texto: copy.nav.experiencias, href: localizePath('/experiencias', lang) },
+  { texto: copy.nav.fest, href: localizePath('/2027', lang) },
+  { texto: copy.nav.marcas, href: localizePath('/marcas', lang) },
+];
+---
+
+<header class="absolute inset-x-0 top-0 z-40 text-lino">
+  <div class="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-5 md:px-10">
+    <a href={localizePath('/', lang)} class="font-display text-2xl tracking-[0.12em]">
+      DHARMA
+    </a>
+
+    <nav
+      id="nav-principal"
+      aria-label={copy.a11y.navPrincipal}
+      class="hidden items-center gap-8 md:flex"
+    >
+      {
+        enlaces.map((e) => (
+          <a
+            href={e.href}
+            class="font-ui text-kicker uppercase tracking-[0.20em] opacity-90 transition-opacity hover:opacity-100"
+          >
+            {e.texto}
+          </a>
+        ))
+      }
+      <LanguageSwitcher />
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      aria-expanded="false"
+      aria-controls="nav-movil"
+      aria-label={copy.a11y.menuAbrir}
+      class="md:hidden"
+    >
+      <span aria-hidden="true" class="block h-px w-7 bg-lino"></span>
+      <span aria-hidden="true" class="mt-2 block h-px w-7 bg-lino"></span>
+    </button>
+  </div>
+
+  <nav
+    id="nav-movil"
+    aria-label={copy.a11y.navPrincipal}
+    hidden
+    class="bg-bosque px-6 pb-8 md:hidden"
+  >
+    <ul class="flex flex-col gap-5">
+      {
+        enlaces.map((e) => (
+          <li>
+            <a href={e.href} class="font-display text-3xl">{e.texto}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8"><LanguageSwitcher /></div>
+  </nav>
+</header>
+
+<script>
+  const boton = document.getElementById('menu-toggle');
+  const menu = document.getElementById('nav-movil');
+
+  if (boton && menu) {
+    // El nombre accesible del botón se mantiene fijo; aria-expanded ya
+    // comunica el estado a la tecnología de asistencia. Cambiarlo en cada
+    // toggle rompería a quien busque el botón por su nombre accesible.
+    const fijar = (abierto: boolean) => {
+      boton.setAttribute('aria-expanded', String(abierto));
+      menu.hidden = !abierto;
+    };
+
+    boton.addEventListener('click', () => {
+      fijar(boton.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') {
+        fijar(false);
+        boton.focus(); // devolver el foco a donde estaba
+      }
+    });
+  }
+</script>

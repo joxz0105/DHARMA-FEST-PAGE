@@ -1,0 +1,16 @@
+---
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<a
+  href="#contenido"
+  class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-copal focus:px-5 focus:py-3 focus:font-ui focus:text-kicker focus:uppercase focus:tracking-[0.2em] focus:text-bosque"
+>
+  {copy.a11y.saltarContenido}
+</a>

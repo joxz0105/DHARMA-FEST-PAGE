@@ -1,0 +1,62 @@
+---
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+const anio = new Date().getFullYear();
+
+const columnas = [
+  {
+    titulo: copy.footer.sitio,
+    enlaces: [
+      { texto: copy.nav.nosotros, href: localizePath('/nosotros', lang) },
+      { texto: copy.nav.experiencias, href: localizePath('/experiencias', lang) },
+      { texto: copy.nav.fest, href: localizePath('/2027', lang) },
+    ],
+  },
+  {
+    titulo: copy.footer.marcas,
+    enlaces: [
+      { texto: copy.nav.marcas, href: localizePath('/marcas', lang) },
+      { texto: copy.footer.aplicar, href: `${localizePath('/marcas', lang)}#aplicar` },
+    ],
+  },
+  {
+    titulo: copy.footer.contacto,
+    enlaces: [
+      { texto: 'Instagram', href: 'https://www.instagram.com/dharma_festcr/' },
+    ],
+  },
+];
+---
+
+<footer class="bg-bosque text-arena">
+  <div class="mx-auto grid max-w-[1280px] gap-10 px-6 py-16 md:grid-cols-4 md:px-10">
+    <div>
+      <p class="font-display text-3xl tracking-[0.12em] text-lino">DHARMA</p>
+      <p class="mt-3 text-sm">{copy.footer.tagline}</p>
+    </div>
+
+    {
+      columnas.map((col) => (
+        <nav aria-label={col.titulo}>
+          <p class="font-ui text-kicker uppercase tracking-[0.24em] text-copal">{col.titulo}</p>
+          <ul class="mt-4 flex flex-col gap-2 text-sm">
+            {col.enlaces.map((e) => (
+              <li>
+                <a href={e.href} class="transition-colors hover:text-lino">{e.texto}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+
+  <div class="mx-auto max-w-[1280px] border-t border-salvia px-6 py-6 text-xs md:px-10">
+    © {anio} Dharma Fest. {copy.footer.derechos}
+  </div>
+</footer>
