@@ -18,9 +18,11 @@ interface Props {
   lang: Lang;
   /** Ya filtradas con publicables(). Si viene vacío, la sección no se renderiza. */
   marcas: MarcaEnGrid[];
+  /** h2 por defecto (uso en la home); h1 cuando la sección abre su propia página. */
+  nivelTitulo?: 1 | 2;
 }
 
-const { lang, marcas } = Astro.props;
+const { lang, marcas, nivelTitulo = 2 } = Astro.props;
 const copy = getCopy(lang);
 ---
 
@@ -32,6 +34,7 @@ const copy = getCopy(lang);
         <TituloSeccion
           texto={copy.marcas.titulo}
           enfasis={copy.marcas.tituloEnfasis}
+          nivel={nivelTitulo}
           class="mt-4"
         />
       </Reveal>

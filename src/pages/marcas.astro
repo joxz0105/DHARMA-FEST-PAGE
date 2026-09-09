@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Seccion from '../components/ui/Seccion.astro';
+import Kicker from '../components/ui/Kicker.astro';
+import TituloSeccion from '../components/ui/TituloSeccion.astro';
+import Marcas from '../components/sections/Marcas.astro';
+import FormularioMarcas from '../components/sections/FormularioMarcas.astro';
+import { getCopy } from '../lib/copy';
+import { publicables } from '../lib/contenido';
+
+const lang = 'es' as const;
+const copy = getCopy(lang);
+
+const marcas = publicables(
+  (await getCollection('marcas')).map((m) => ({ id: m.id, ...m.data })),
+);
+---
+
+<Base
+  titulo={`${copy.marcas.titulo} ${copy.marcas.tituloEnfasis} · Dharma Fest`}
+  descripcion={copy.marcas.cuerpoAplicar}
+  lang={lang}
+  rutaCanonica="/marcas"
+>
+  <!--
+    El h1 de esta página vive acá, no en <Marcas>: mientras ninguna marca
+    tenga permiso, ese componente no se renderiza (ver Marcas.astro), y la
+    página igual necesita su encabezado. `nivelTitulo` queda disponible en
+    <Marcas> para cuando el cliente autorice logos y quiera usarlo en otro
+    lugar, pero acá se deja en su nivel por defecto (h2) para no duplicar
+    el h1 el día que la grilla empiece a aparecer.
+  -->
+  <Seccion fondo="bosque" class="pt-40 text-center">
+    <Kicker tono="oscuro">{copy.marcas.kicker}</Kicker>
+    <TituloSeccion
+      texto={copy.marcas.titulo}
+      enfasis={copy.marcas.tituloEnfasis}
+      nivel={1}
+      tono="oscuro"
+      class="mt-4"
+    />
+  </Seccion>
+
+  <Marcas lang={lang} marcas={marcas} />
+  <FormularioMarcas lang={lang} />
+</Base>

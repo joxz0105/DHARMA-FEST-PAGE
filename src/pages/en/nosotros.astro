@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Seccion from '../../components/ui/Seccion.astro';
+import Kicker from '../../components/ui/Kicker.astro';
+import Filosofia from '../../components/sections/Filosofia.astro';
+import CampoLago from '../../components/sections/CampoLago.astro';
+import Nosotros from '../../components/sections/Nosotros.astro';
+import Sumate from '../../components/sections/Sumate.astro';
+import { getCopy } from '../../lib/copy';
+
+const lang = 'en' as const;
+const copy = getCopy(lang);
+---
+
+<Base
+  titulo={`${copy.nav.nosotros} · Dharma Fest`}
+  descripcion={copy.nosotros.cita}
+  lang={lang}
+  rutaCanonica="/nosotros"
+>
+  <Seccion fondo="bosque" class="pt-40 text-center">
+    <Kicker tono="oscuro">{copy.nosotros.kicker}</Kicker>
+    <h1 class="mx-auto mt-4 max-w-[38ch] font-display text-3xl italic text-lino">
+      {copy.nosotros.cita}
+    </h1>
+  </Seccion>
+
+  <Filosofia lang={lang} />
+  <CampoLago lang={lang} />
+  <Nosotros lang={lang} />
+  <Sumate lang={lang} />
+</Base>

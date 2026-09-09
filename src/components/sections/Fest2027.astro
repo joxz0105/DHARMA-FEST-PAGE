@@ -12,9 +12,11 @@ interface Props {
   lang: Lang;
   /** Sin fecha confirmada por el cliente, el bloque va sin contador. */
   fechaObjetivo?: Date;
+  /** h2 por defecto (uso en la home); h1 cuando la sección abre su propia página. */
+  nivelTitulo?: 1 | 2;
 }
 
-const { lang, fechaObjetivo } = Astro.props;
+const { lang, fechaObjetivo, nivelTitulo = 2 } = Astro.props;
 const copy = getCopy(lang);
 
 const cuenta = fechaObjetivo ? countdownParts(fechaObjetivo, new Date()) : null;
@@ -34,6 +36,7 @@ const unidades = cuenta
     <TituloSeccion
       texto={copy.fest2027.titulo}
       enfasis={copy.fest2027.tituloEnfasis}
+      nivel={nivelTitulo}
       tono="oscuro"
       class="mt-4"
     />

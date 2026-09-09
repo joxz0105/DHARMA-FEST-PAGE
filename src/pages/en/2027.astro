@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Fest2027 from '../../components/sections/Fest2027.astro';
+import Numeros2025 from '../../components/sections/Numeros2025.astro';
+import Marcas from '../../components/sections/Marcas.astro';
+import Sumate from '../../components/sections/Sumate.astro';
+import { getCopy } from '../../lib/copy';
+import { publicables } from '../../lib/contenido';
+
+const lang = 'en' as const;
+const copy = getCopy(lang);
+
+const marcas = publicables(
+  (await getCollection('marcas')).map((m) => ({ id: m.id, ...m.data })),
+);
+---
+
+<Base
+  titulo={`${copy.fest2027.titulo} ${copy.fest2027.tituloEnfasis} · Dharma Fest`}
+  descripcion={copy.fest2027.cuerpo}
+  lang={lang}
+  rutaCanonica="/2027"
+>
+  <Fest2027 lang={lang} nivelTitulo={1} />
+  <Numeros2025 lang={lang} />
+  <Marcas lang={lang} marcas={marcas} />
+  <Sumate lang={lang} />
+</Base>

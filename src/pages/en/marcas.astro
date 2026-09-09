@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Seccion from '../../components/ui/Seccion.astro';
+import Kicker from '../../components/ui/Kicker.astro';
+import TituloSeccion from '../../components/ui/TituloSeccion.astro';
+import Marcas from '../../components/sections/Marcas.astro';
+import FormularioMarcas from '../../components/sections/FormularioMarcas.astro';
+import { getCopy } from '../../lib/copy';
+import { publicables } from '../../lib/contenido';
+
+const lang = 'en' as const;
+const copy = getCopy(lang);
+
+const marcas = publicables(
+  (await getCollection('marcas')).map((m) => ({ id: m.id, ...m.data })),
+);
+---
+
+<Base
+  titulo={`${copy.marcas.titulo} ${copy.marcas.tituloEnfasis} · Dharma Fest`}
+  descripcion={copy.marcas.cuerpoAplicar}
+  lang={lang}
+  rutaCanonica="/marcas"
+>
+  <!--
+    This page's h1 lives here, not in <Marcas>: while no brand has permiso,
+    that component doesn't render (see Marcas.astro), and the page still
+    needs its heading. `nivelTitulo` stays available on <Marcas> for when
+    the client authorises logos, left at its default (h2) here so the grid
+    never duplicates this h1 once it starts appearing.
+  -->
+  <Seccion fondo="bosque" class="pt-40 text-center">
+    <Kicker tono="oscuro">{copy.marcas.kicker}</Kicker>
+    <TituloSeccion
+      texto={copy.marcas.titulo}
+      enfasis={copy.marcas.tituloEnfasis}
+      nivel={1}
+      tono="oscuro"
+      class="mt-4"
+    />
+  </Seccion>
+
+  <Marcas lang={lang} marcas={marcas} />
+  <FormularioMarcas lang={lang} />
+</Base>

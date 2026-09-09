@@ -1,0 +1,29 @@
+---
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<Seccion id="aplicar" fondo="bosque">
+  <Kicker tono="oscuro">{copy.marcas.kicker}</Kicker>
+  <TituloSeccion texto={copy.marcas.cta} tono="oscuro" class="mt-4" />
+
+  <p class="mt-6 max-w-[60ch] text-arena">
+    {copy.marcas.cuerpoAplicar}
+  </p>
+
+  <a
+    href="https://www.instagram.com/dharma_festcr/"
+    rel="noopener"
+    class="mt-8 inline-block bg-copal px-7 py-3 font-ui text-kicker uppercase tracking-[0.24em] text-bosque transition-colors hover:bg-copal-ink hover:text-lino"
+  >
+    {copy.marcas.ctaInstagram}
+  </a>
+</Seccion>
