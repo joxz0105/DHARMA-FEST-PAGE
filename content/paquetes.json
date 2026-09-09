@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "oficial",
+    "nombre": "Oficial",
+    "lema": {
+      "es": "Tu marca en la comunidad, todo el año",
+      "en": "Your brand in the community, all year long"
+    },
+    "inversionUSD": 7000,
+    "presencia": [
+      {
+        "es": "Zona exclusiva con stand 8x8 en ubicación principal",
+        "en": "Exclusive area with an 8x8 stand in a prime location"
+      },
+      {
+        "es": "Cortesías: 10 Experiencia + 20 regulares",
+        "en": "Courtesy passes: 10 Experience + 20 regular"
+      },
+      {
+        "es": "Logo en backdrop oficial, pantallas y material impreso",
+        "en": "Logo on the official backdrop, screens and printed material"
+      },
+      {
+        "es": "Presencia en 2 ediciones de Road to Dharma, una co-creada con tu marca",
+        "en": "Presence at 2 Road to Dharma editions, one co-created with your brand"
+      }
+    ],
+    "visibilidad": [
+      { "es": "Exclusividad de categoría", "en": "Category exclusivity" },
+      {
+        "es": "Gira de medios y campaña con influenciadores",
+        "en": "Media tour and influencer campaign"
+      },
+      {
+        "es": "Presencia en toda la comunicación del evento",
+        "en": "Presence across all event communications"
+      },
+      {
+        "es": "Activaciones BTL y pauta digital segmentada",
+        "en": "BTL activations and targeted digital advertising"
+      }
+    ],
+    "captacion": [
+      {
+        "es": "Registro digital en festival y en ambos Road to Dharma",
+        "en": "Digital sign-up at the festival and both Road to Dharma editions"
+      },
+      { "es": "Reporte consolidado de leads del año", "en": "Consolidated annual lead report" },
+      {
+        "es": "Contenido audiovisual exclusivo de todas tus activaciones",
+        "en": "Exclusive video content of all your activations"
+      },
+      {
+        "es": "Video POST Dharma Fest exclusivo de la marca",
+        "en": "Brand-exclusive post-festival video"
+      }
+    ]
+  },
+  {
+    "slug": "oro",
+    "nombre": "Oro",
+    "lema": {
+      "es": "El festival, más presencia continua",
+      "en": "The festival, plus year-round presence"
+    },
+    "inversionUSD": 4000,
+    "presencia": [
+      {
+        "es": "Stand 6x6 en zona de alto tránsito",
+        "en": "6x6 stand in a high-traffic area"
+      },
+      {
+        "es": "Cortesías: 5 Experiencia + 15 regulares",
+        "en": "Courtesy passes: 5 Experience + 15 regular"
+      },
+      {
+        "es": "Logo en backdrop oficial y en pantalla durante charlas",
+        "en": "Logo on the official backdrop and on screen during talks"
+      },
+      {
+        "es": "Presencia de marca en 1 edición de Road to Dharma",
+        "en": "Brand presence at 1 Road to Dharma edition"
+      }
+    ],
+    "visibilidad": [
+      {
+        "es": "Gira de medios y campaña con influenciadores",
+        "en": "Media tour and influencer campaign"
+      },
+      {
+        "es": "Una publicación (post y story) en redes de Dharma y Campo Lago",
+        "en": "One post and story on the Dharma and Campo Lago channels"
+      },
+      { "es": "Presencia en activaciones BTL", "en": "Presence at BTL activations" },
+      {
+        "es": "Contenido audiovisual de tu activación",
+        "en": "Video content of your activation"
+      }
+    ],
+    "captacion": [
+      { "es": "Reporte de leads de ambos momentos", "en": "Lead report from both moments" },
+      {
+        "es": "Video POST Dharma Fest con mención de marca",
+        "en": "Post-festival video with a brand mention"
+      }
+    ]
+  },
+  {
+    "slug": "plata",
+    "nombre": "Plata",
+    "lema": { "es": "2 días de presencia", "en": "Two full days of presence" },
+    "inversionUSD": 2000,
+    "presencia": [
+      {
+        "es": "Stand 3x3 con mesa y 2 sillas, ambos días",
+        "en": "3x3 stand with a table and 2 chairs, both days"
+      },
+      { "es": "Cortesías: 10 entradas regulares", "en": "Courtesy passes: 10 regular tickets" },
+      { "es": "Logo en material oficial del evento", "en": "Logo on official event material" }
+    ],
+    "visibilidad": [
+      {
+        "es": "Una publicación (post y story) en redes de Campo Lago y Dharma en colaboración con la marca",
+        "en": "One collaborative post and story on the Campo Lago and Dharma channels"
+      },
+      {
+        "es": "Mención en comunicaciones oficiales y actividades del evento",
+        "en": "Mention in official communications and event activities"
+      },
+      {
+        "es": "Invitación preferente a los Road to Dharma",
+        "en": "Priority invitation to Road to Dharma editions"
+      }
+    ],
+    "captacion": [
+      {
+        "es": "Registro digital de contactos en tu stand",
+        "en": "Digital contact capture at your stand"
+      },
+      {
+        "es": "Reporte de leads al cierre del evento",
+        "en": "Lead report at the close of the event"
+      }
+    ]
+  }
+]

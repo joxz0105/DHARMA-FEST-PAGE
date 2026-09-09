@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "movimiento-corporal",
+    "nombre": { "es": "Movimiento Corporal", "en": "Body Movement" },
+    "imagen": "actividades-02.jpg"
+  },
+  {
+    "slug": "entretenimiento",
+    "nombre": { "es": "Entretenimiento", "en": "Entertainment" },
+    "imagen": "actividades-01.jpg"
+  },
+  {
+    "slug": "talleres-y-conferencias",
+    "nombre": { "es": "Talleres y Conferencias", "en": "Workshops & Talks" },
+    "imagen": "actividades-03.jpg"
+  },
+  {
+    "slug": "gastronomia-funcional",
+    "nombre": { "es": "Gastronomía Funcional", "en": "Functional Food" },
+    "imagen": "actividades-04.jpg"
+  },
+  {
+    "slug": "mercadito-prosalud",
+    "nombre": { "es": "Mercadito ProSalud", "en": "ProSalud Market" },
+    "imagen": "actividades-05.jpg"
+  }
+]

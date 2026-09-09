@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "salud-mental",
+    "nombre": { "es": "Salud Mental", "en": "Mental Health" },
+    "imagen": "temas-01.jpg"
+  },
+  {
+    "slug": "higiene-del-sueno",
+    "nombre": { "es": "Higiene del sueño", "en": "Sleep Hygiene" },
+    "imagen": "temas-08.jpg"
+  },
+  {
+    "slug": "amor-propio",
+    "nombre": { "es": "Amor propio", "en": "Self-Love" },
+    "imagen": "temas-12.jpg"
+  },
+  {
+    "slug": "medio-ambiente",
+    "nombre": { "es": "Medio Ambiente", "en": "Environment" },
+    "imagen": "temas-04.jpg"
+  },
+  { "slug": "yoga", "nombre": { "es": "Yoga", "en": "Yoga" }, "imagen": "temas-02.jpg" },
+  { "slug": "pilates", "nombre": { "es": "Pilates", "en": "Pilates" }, "imagen": "temas-03.jpg" },
+  { "slug": "zumba", "nombre": { "es": "Zumba", "en": "Zumba" }, "imagen": "temas-10.jpg" },
+  {
+    "slug": "terapia-de-sonido",
+    "nombre": {
+      "es": "Terapia de Sonido & Breathwork",
+      "en": "Sound Therapy & Breathwork"
+    },
+    "imagen": "temas-05.jpg"
+  }
+]

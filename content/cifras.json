@@ -1,0 +1,15 @@
+{
+  "personas": 4000,
+  "experienciasAnuales": 8,
+  "crecimiento": 67,
+  "baseDeDatos": 26000,
+  "profesionales": 100,
+  "genero": { "mujeres": 68.2, "hombres": 31.8 },
+  "edades": [
+    { "rango": "25-34", "porcentaje": 43.1 },
+    { "rango": "35-44", "porcentaje": 30.7 },
+    { "rango": "18-24", "porcentaje": 11.0 },
+    { "rango": "45-54", "porcentaje": 10.9 }
+  ],
+  "alcanceOrganico": [20000, 18000, 11000, 6200]
+}
