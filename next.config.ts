@@ -1,7 +1,8 @@
+import createNextIntlPlugin from "next-intl/plugin";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: { formats: ["image/avif", "image/webp"] },
 };
 
-export default nextConfig;
+export default createNextIntlPlugin("./i18n/request.ts")(nextConfig);

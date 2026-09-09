@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "festival": "Dharma Fest 2027",
+    "road": "Road to Dharma",
+    "patrocinios": "Patrocinios",
+    "nosotros": "Nosotros",
+    "saltarAlContenido": "Saltar al contenido",
+    "abrirMenu": "Abrir el menú",
+    "cerrarMenu": "Cerrar el menú",
+    "cambiarIdioma": "Cambiar idioma"
+  },
+  "pie": {
+    "derechos": "Dharma Fest Costa Rica",
+    "privacidad": "Privacidad",
+    "contacto": "Contacto"
+  }
+}
