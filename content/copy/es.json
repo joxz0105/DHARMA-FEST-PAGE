@@ -43,5 +43,30 @@
     "impactoCuerpo": "Nuestro propósito es dejar huella y fomentar la comunidad en cada evento.",
     "marcasTitulo": "Marcas",
     "marcasSubtitulo": "que confían en Dharma"
+  },
+  "formularios": {
+    "sumateTitulo": "Sumate",
+    "sumateCuerpo": "Dejanos tu correo y te avisamos del Dharma Fest 2027 y de cada Road to Dharma.",
+    "nombre": "Nombre",
+    "correo": "Correo electrónico",
+    "marca": "Marca o empresa",
+    "mensaje": "Contanos qué buscás",
+    "consentimiento": "Autorizo a Dharma Fest a guardar mi correo para enviarme información del festival y de las experiencias Road to Dharma. Puedo darme de baja cuando quiera.",
+    "finalidad": "Usamos tus datos solo para eso. No los compartimos con terceros.",
+    "enviar": "Sumate",
+    "enviarPropuesta": "Solicitá la propuesta",
+    "enviando": "Enviando…",
+    "correoInvalido": "Revisá el correo, no parece válido.",
+    "marcaRequerida": "Necesitamos el nombre de la marca.",
+    "consentimientoRequerido": "Necesitamos tu autorización para guardarte el correo.",
+    "graciasComunidad": "Ya estás en la comunidad. Te escribimos pronto.",
+    "graciasPropuesta": "Recibimos tu solicitud. Te mandamos la propuesta por correo.",
+    "propuestaTitulo": "Solicitá la propuesta",
+    "propuestaCuerpo": "Contanos de tu marca y te mandamos los paquetes con la inversión de cada uno."
+  },
+  "privacidad": {
+    "titulo": "Privacidad",
+    "pendiente": "Esta página está pendiente del texto legal que debe entregar Dharma Fest: la política de tratamiento de datos y la identidad del responsable, según la Ley 8968 de Costa Rica.",
+    "mientrasTanto": "Mientras tanto: los correos que se dejan en este sitio se usan solo para avisar del festival y de las experiencias Road to Dharma. No se comparten con terceros. Para darte de baja, escribí a info@dharmafestcr.com."
   }
 }

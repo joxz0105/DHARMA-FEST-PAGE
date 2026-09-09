@@ -8,6 +8,7 @@ import { ImpactoSocial } from "@/components/secciones/ImpactoSocial";
 import { MarcasQueConfian } from "@/components/secciones/MarcasQueConfian";
 import { QuienesSomos } from "@/components/secciones/QuienesSomos";
 import { RoadToDharma } from "@/components/secciones/RoadToDharma";
+import { Sumate } from "@/components/secciones/Sumate";
 import { Temas } from "@/components/secciones/Temas";
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
@@ -26,6 +27,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <CampoLago />
       <ImpactoSocial />
       <MarcasQueConfian />
+      <Sumate />
     </main>
   );
 }

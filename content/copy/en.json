@@ -43,5 +43,30 @@
     "impactoCuerpo": "Our purpose is to leave a mark and grow community at every event.",
     "marcasTitulo": "Brands",
     "marcasSubtitulo": "that trust Dharma"
+  },
+  "formularios": {
+    "sumateTitulo": "Join us",
+    "sumateCuerpo": "Leave us your email and we will let you know about Dharma Fest 2027 and every Road to Dharma.",
+    "nombre": "Name",
+    "correo": "Email address",
+    "marca": "Brand or company",
+    "mensaje": "Tell us what you are looking for",
+    "consentimiento": "I allow Dharma Fest to store my email address in order to send me information about the festival and the Road to Dharma experiences. I can unsubscribe at any time.",
+    "finalidad": "We use your data for that and nothing else. We never share it with third parties.",
+    "enviar": "Join us",
+    "enviarPropuesta": "Request the proposal",
+    "enviando": "Sending…",
+    "correoInvalido": "That email does not look right, please check it.",
+    "marcaRequerida": "We need the name of your brand.",
+    "consentimientoRequerido": "We need your permission to store your email.",
+    "graciasComunidad": "You are in. We will be in touch soon.",
+    "graciasPropuesta": "We got your request. The proposal is on its way to your inbox.",
+    "propuestaTitulo": "Request the proposal",
+    "propuestaCuerpo": "Tell us about your brand and we will send you the packages with the investment for each one."
+  },
+  "privacidad": {
+    "titulo": "Privacy",
+    "pendiente": "This page is waiting on the legal text that Dharma Fest must provide: the data processing policy and the identity of the data controller, as required by Costa Rican Law 8968.",
+    "mientrasTanto": "In the meantime: emails left on this site are used only to announce the festival and the Road to Dharma experiences. They are never shared with third parties. To unsubscribe, write to info@dharmafestcr.com."
   }
 }

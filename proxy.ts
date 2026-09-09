@@ -6,5 +6,8 @@ import { routing } from "@/i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: "/((?!api|_next|_vercel|img|.*\..*).*)",
+  // OJO con el escape: en una cadena de TS, "\." colapsa a "." y el patron
+  // pasa a ser ".*..*", que excluye toda ruta de un caracter o mas. El sitio
+  // entero devolvia 404 salvo la raiz. El backslash tiene que ir doble.
+  matcher: "/((?!api|_next|_vercel|.*\\..*).*)",
 };
