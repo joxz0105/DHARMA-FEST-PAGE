@@ -9,6 +9,7 @@ import { Mercadito } from "@/components/secciones/Mercadito";
 import { NuestroPublico } from "@/components/secciones/NuestroPublico";
 import { Paquetes } from "@/components/secciones/Paquetes";
 import { PlanDeMedios } from "@/components/secciones/PlanDeMedios";
+import { alternativas } from "@/lib/rutas";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -19,7 +20,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: `${t("patrocinios")} · Dharma Fest` };
+  return {
+    title: `${t("patrocinios")} · Dharma Fest`,
+    alternates: alternativas("/patrocinios", locale),
+  };
 }
 
 export default async function Patrocinios({

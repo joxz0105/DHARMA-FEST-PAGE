@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Actividades } from "@/components/secciones/Actividades";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
+import { alternativas } from "@/lib/rutas";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -13,7 +14,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "borrador" });
-  return { title: `${t("festivalTitulo")} · Dharma Fest` };
+  return {
+    title: `${t("festivalTitulo")} · Dharma Fest`,
+    alternates: alternativas("/2027", locale),
+  };
 }
 
 export default async function Festival2027({

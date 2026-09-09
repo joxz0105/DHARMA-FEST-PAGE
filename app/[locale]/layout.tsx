@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { routing } from "@/i18n/routing";
+import { SITIO } from "@/lib/rutas";
 import "../globals.css";
 
 // Este es el layout raiz: lleva <html>. Vive dentro de [locale] para que
@@ -24,6 +25,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITIO),
   title: "Dharma Fest",
 };
 

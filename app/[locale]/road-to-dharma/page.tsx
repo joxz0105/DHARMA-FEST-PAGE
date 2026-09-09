@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
+import { alternativas } from "@/lib/rutas";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -12,7 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "borrador" });
-  return { title: `${t("roadTitulo")} · Dharma Fest` };
+  return {
+    title: `${t("roadTitulo")} · Dharma Fest`,
+    alternates: alternativas("/road-to-dharma", locale),
+  };
 }
 
 export default async function RoadPage({

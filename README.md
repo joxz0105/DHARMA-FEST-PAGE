@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dharma Fest CR — sitio
 
-## Getting Started
+Casa de marca bilingüe para **Dharma Fest Costa Rica**, festival de bienestar en Camp Lago.
+La home habla al público; `/patrocinios` reemplaza al PDF de patrocinios que hoy se manda a
+las marcas.
 
-First, run the development server:
+Construido contra el material real del cliente: el deck *DHARMA Fest 2027 — Patrocinios
+Oficiales* (21 láminas), de donde salen la identidad visual, el copy aprobado, las cifras y
+las 125 imágenes del sitio.
+
+## Arrancar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Español en `http://localhost:3000`, inglés en `http://localhost:3000/en`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pruebas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run verificar
+```
 
-## Learn More
+Encadena las tres: unitarias (Vitest), build y end-to-end (Playwright + axe).
+Por separado: `npm test`, `npm run build`, `npm run test:e2e`.
 
-To learn more about Next.js, take a look at the following resources:
+Los e2e levantan **su propio servidor de producción en el puerto 3100**, con su propio
+directorio de build. No pisan el `npm run dev` que tengas abierto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## No se despliega
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Este proyecto se trabaja **en local**. Para mostrarle avances al cliente se abre un túnel
+temporal:
 
-## Deploy on Vercel
+```bash
+cloudflared tunnel --url http://localhost:3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hay un MCP de Vercel conectado y Next.js hace el despliegue de un clic. **No lo hagas** sin
+que el cliente lo pida.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Cómo está armado
+
+| | |
+|---|---|
+| `app/[locale]/` | Páginas. El layout raíz vive acá dentro para que `next/root-params` exponga el idioma |
+| `components/secciones/` | Una por sección de página |
+| `components/ui/` | Primitivas del lenguaje visual del deck |
+| `content/` | Datos en JSON, validados con Zod al cargarlos |
+| `lib/leads.ts` | **Único** punto de escritura de datos personales |
+| `proxy.ts` | Ruteo bilingüe. En Next 16 el archivo se llama así, no `middleware.ts` |
+| `scripts/` | Extracción de las imágenes del deck. Ver `scripts/README.md` |
+
+**El contenido no vive en el código.** Para cambiar una cifra, sumar una marca o ajustar un
+beneficio de patrocinio se toca un JSON en `content/`, no un componente.
+
+## Datos de personas
+
+El sitio alimenta una base que ya tiene 26.000 personas, así que cae bajo la **Ley 8968** de
+Costa Rica. Los formularios llevan casilla de consentimiento explícita —nunca premarcada—,
+declaran la finalidad al lado del campo y enlazan a `/privacidad`.
+
+Las capturas se escriben en `data/leads.jsonl`, **fuera de git**. El día que el cliente elija
+proveedor de correo se cambia `lib/leads.ts` y ningún otro archivo.
+
+## Reglas que hay tests vigilando
+
+Estas no dependen de que alguien se acuerde:
+
+- **Los precios de patrocinio no se publican.** Están en `content/paquetes.json` para tenerlos
+  a mano, pero un test recorre `/patrocinios` y falla si aparece un monto o un `US$`.
+- **El lima nunca va sobre fondo claro.** Da 1.68:1. Hay un test de contraste WCAG sobre toda
+  la paleta.
+- **`palido` (`#E4E8AD`) no es un beige**, es lima al 79% de luz. Un test comprueba que
+  comparte tono con el lima.
+- **La casilla de consentimiento no viene premarcada.**
+- **Los logos son PNG con transparencia.** En JPEG salen con un rectángulo de fondo.
+
+## Falta del cliente
+
+Lo que bloquea trabajo, en orden:
+
+1. **La fecha del Dharma Fest 2027.** No está en el deck. Sin ella no hay cuenta regresiva ni
+   `schema.org/Event`, y `/2027` pierde su dato principal.
+2. **Quién está detrás de la marca.** `/nosotros` queda corta hasta saberlo.
+3. **Qué es Camp Lago respecto de Dharma** —¿sede, productor, socios?— y si se escribe
+   *Camp* o *Campo*: el deck usa las dos.
+4. **Precio y condiciones del stand del Mercadito.**
+5. **La política de privacidad** y la identidad del responsable del tratamiento.
+
+No bloquea, pero mejora el sitio: si hay venta de entradas, logo vectorial y manual de marca,
+handles de Facebook y TikTok, confirmación del dominio, y el número de WhatsApp.
+
+Además, dos logos del deck (`marcas-51` y `marcas-52`) no tienen texto legible y quedaron
+fuera de `content/marcas.json`: hay que preguntarle al cliente de qué marcas son.
+
+## Documentos
+
+- Diseño: `docs/superpowers/specs/2026-09-09-dharma-fest-v2-design.md`
+- Plan de implementación: `docs/superpowers/plans/2026-09-09-dharma-fest-v2.md`
+
+El trabajo anterior, hecho sin material del cliente, quedó como registro en la rama
+`v1-referencia-retreat`.

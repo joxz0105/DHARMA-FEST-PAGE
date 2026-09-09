@@ -1,6 +1,6 @@
 # Dharma Fest CR v2 — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Construir el sitio bilingüe de Dharma Fest CR contra el material real del cliente: home para el público y `/patrocinios` para marcas, con la identidad extraída del deck de patrocinios 2027.
 
@@ -75,7 +75,7 @@ Deja el proyecto arrancando en limpio: Next 16, TypeScript, Tailwind 4, Vitest y
 - Consumes: nada, es la primera tarea.
 - Produces: scripts `npm run dev` (puerto 3000), `npm test` (Vitest), `npm run test:e2e` (Playwright), `npm run build`, `npm run verificar` (encadena los tres).
 
-- [ ] **Step 1: Crear el proyecto**
+- [x] **Step 1: Crear el proyecto**
 
 Desde la raíz del repo, que hoy solo tiene `.gitignore` y `docs/`:
 
@@ -86,7 +86,7 @@ npm install
 
 Si `create-next-app` se queja de que el directorio no está vacío, es correcto: acepta continuar. No debe borrar `docs/` ni `.gitignore`.
 
-- [ ] **Step 2: Instalar dependencias de prueba y de contenido**
+- [x] **Step 2: Instalar dependencias de prueba y de contenido**
 
 ```bash
 npm install next-intl@4.14.2 zod
@@ -94,7 +94,7 @@ npm install -D vitest@5 @vitejs/plugin-react @playwright/test@1.63.0 @axe-core/p
 npx playwright install chromium
 ```
 
-- [ ] **Step 3: Configurar Vitest**
+- [x] **Step 3: Configurar Vitest**
 
 `vitest.config.ts`:
 
@@ -115,7 +115,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 4: Configurar Playwright**
+- [x] **Step 4: Configurar Playwright**
 
 `playwright.config.ts`:
 
@@ -140,7 +140,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 5: Añadir los scripts a `package.json`**
+- [x] **Step 5: Añadir los scripts a `package.json`**
 
 En el bloque `"scripts"`:
 
@@ -155,7 +155,7 @@ En el bloque `"scripts"`:
 }
 ```
 
-- [ ] **Step 6: Escribir los tests de humo**
+- [x] **Step 6: Escribir los tests de humo**
 
 `tests/unit/humo.test.ts`:
 
@@ -180,7 +180,7 @@ test("el servidor responde", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 7: Correr ambos y verificar que pasan**
+- [x] **Step 7: Correr ambos y verificar que pasan**
 
 ```bash
 npm test
@@ -192,7 +192,7 @@ npm run test:e2e
 ```
 Esperado: `2 passed` (un proyecto de escritorio y uno móvil).
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -217,7 +217,7 @@ Un script reproducible que saca las 132 imágenes del deck, las redimensiona a t
   donde `grupo` es uno de `"fondo" | "foto" | "logo-marca" | "logo-asociacion" | "logo-dharma" | "otro"`.
   Las tareas 8 en adelante consumen este manifiesto.
 
-- [ ] **Step 1: Escribir el script**
+- [x] **Step 1: Escribir el script**
 
 `scripts/extraer_imagenes.py`:
 
@@ -355,7 +355,7 @@ if __name__ == "__main__":
     raise SystemExit(main())
 ```
 
-- [ ] **Step 2: Correrlo**
+- [x] **Step 2: Correrlo**
 
 ```bash
 python -m pip install pymupdf pillow
@@ -364,7 +364,7 @@ python scripts/extraer_imagenes.py "C:/Users/jovag/Downloads/DHARMA Fest 2027-  
 
 Esperado: alrededor de 127 imágenes (132 menos las cinco copias repetidas de la textura), con el desglose por grupo. Debe imprimir al menos `logo-marca: 61` y `logo-asociacion: 4`.
 
-- [ ] **Step 3: Verificar el peso total**
+- [x] **Step 3: Verificar el peso total**
 
 ```bash
 du -sh public/img
@@ -372,7 +372,7 @@ du -sh public/img
 
 Esperado: por debajo de 60 MB. Si se pasa, bajar `CALIDAD` a 78 y volver a correr. El PDF crudo pesa 185 MB; si la salida se le acerca, el redimensionado no corrió.
 
-- [ ] **Step 4: Escribir el test del manifiesto**
+- [x] **Step 4: Escribir el test del manifiesto**
 
 `tests/unit/manifiesto.test.ts`:
 
@@ -412,14 +412,14 @@ describe("manifiesto de imágenes", () => {
 });
 ```
 
-- [ ] **Step 5: Correr el test**
+- [x] **Step 5: Correr el test**
 
 ```bash
 npm test -- manifiesto
 ```
 Esperado: 5 passed.
 
-- [ ] **Step 6: Escribir `scripts/README.md`**
+- [x] **Step 6: Escribir `scripts/README.md`**
 
 ```markdown
 # Scripts
@@ -438,7 +438,7 @@ correrlo si el cliente entrega un deck nuevo.
 El PDF **no** está en el repositorio: pesa 185 MB y es material del cliente.
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A
@@ -463,7 +463,7 @@ La paleta del deck como custom properties y como tema de Tailwind 4, con las fue
   - Tokens CSS: `--color-noche`, `--color-lima`, `--color-lima-humo`, `--color-lima-hondo`, `--color-palido`, `--color-hueso`, `--color-oro`. En Tailwind quedan como `bg-noche`, `text-lima`, etc.
   - Variables de fuente: `--font-display` (Bodoni Moda), `--font-texto` (Archivo). En Tailwind: `font-display`, `font-texto`.
 
-- [ ] **Step 1: Escribir el test de contraste primero**
+- [x] **Step 1: Escribir el test de contraste primero**
 
 `tests/unit/contraste.test.ts`:
 
@@ -500,14 +500,14 @@ describe("contraste de la paleta", () => {
 });
 ```
 
-- [ ] **Step 2: Correr el test y verificar que falla**
+- [x] **Step 2: Correr el test y verificar que falla**
 
 ```bash
 npm test -- contraste
 ```
 Esperado: FAIL, `Failed to resolve import "@/lib/contraste"`.
 
-- [ ] **Step 3: Escribir `lib/contraste.ts`**
+- [x] **Step 3: Escribir `lib/contraste.ts`**
 
 ```ts
 /** Utilidades WCAG 2.1 para verificar la paleta. Solo se usan en tests. */
@@ -536,14 +536,14 @@ export function ratio(a: string, b: string): number {
 }
 ```
 
-- [ ] **Step 4: Correr el test y verificar que pasa**
+- [x] **Step 4: Correr el test y verificar que pasa**
 
 ```bash
 npm test -- contraste
 ```
 Esperado: 4 passed.
 
-- [ ] **Step 5: Escribir los tokens en `app/globals.css`**
+- [x] **Step 5: Escribir los tokens en `app/globals.css`**
 
 Reemplazar el contenido completo del archivo:
 
@@ -595,7 +595,7 @@ body {
 }
 ```
 
-- [ ] **Step 6: Cargar las fuentes en `app/layout.tsx`**
+- [x] **Step 6: Cargar las fuentes en `app/layout.tsx`**
 
 ```tsx
 import type { Metadata } from "next";
@@ -627,14 +627,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 7: Verificar que compila**
+- [x] **Step 7: Verificar que compila**
 
 ```bash
 npm run build
 ```
 Esperado: build exitoso, sin errores de TypeScript.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -660,7 +660,7 @@ next-intl con español sin prefijo e inglés bajo `/en/`, más el selector de id
   - `content/copy/{es,en}.json`: mismo conjunto de claves en ambos. Las secciones leen de aquí vía `useTranslations` / `getTranslations`.
   - `components/layout/SelectorIdioma.tsx`: componente cliente que cambia de idioma conservando la ruta.
 
-- [ ] **Step 1: Escribir primero el test que exige simetría entre idiomas**
+- [x] **Step 1: Escribir primero el test que exige simetría entre idiomas**
 
 `tests/unit/copy.test.ts`:
 
@@ -693,14 +693,14 @@ describe("diccionarios de copy", () => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm test -- copy
 ```
 Esperado: FAIL, no resuelve `@/content/copy/es.json`.
 
-- [ ] **Step 3: Crear los diccionarios iniciales**
+- [x] **Step 3: Crear los diccionarios iniciales**
 
 `content/copy/es.json`:
 
@@ -748,14 +748,14 @@ Esperado: FAIL, no resuelve `@/content/copy/es.json`.
 }
 ```
 
-- [ ] **Step 4: Correr el test y verificar que pasa**
+- [x] **Step 4: Correr el test y verificar que pasa**
 
 ```bash
 npm test -- copy
 ```
 Esperado: 2 passed.
 
-- [ ] **Step 5: Configurar next-intl**
+- [x] **Step 5: Configurar next-intl**
 
 `i18n/routing.ts`:
 
@@ -817,7 +817,7 @@ const nextConfig: NextConfig = {
 export default createNextIntlPlugin("./i18n/request.ts")(nextConfig);
 ```
 
-- [ ] **Step 6: Mover la home al segmento de idioma**
+- [x] **Step 6: Mover la home al segmento de idioma**
 
 Borrar `app/page.tsx`. Crear `app/[lang]/layout.tsx`:
 
@@ -881,7 +881,7 @@ export default async function RootLayout({
 }
 ```
 
-- [ ] **Step 7: Escribir el selector de idioma**
+- [x] **Step 7: Escribir el selector de idioma**
 
 `components/layout/SelectorIdioma.tsx`:
 
@@ -927,7 +927,7 @@ export function SelectorIdioma() {
 }
 ```
 
-- [ ] **Step 8: Escribir el test e2e del ruteo**
+- [x] **Step 8: Escribir el test e2e del ruteo**
 
 `tests/e2e/idioma.spec.ts`:
 
@@ -950,14 +950,14 @@ test("una ruta de idioma inexistente da 404", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 9: Correr los tests**
+- [x] **Step 9: Correr los tests**
 
 ```bash
 npm test && npm run test:e2e -- idioma
 ```
 Esperado: unitarios en verde; los tres e2e pasan en ambos proyectos (6 passed).
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add -A
@@ -982,7 +982,7 @@ Los archivos de datos del spec §7 con validación Zod, para que un JSON mal esc
   Cada una lanza si el JSON no valida. Los tipos se infieren de los esquemas Zod y se exportan como
   `Cifras`, `Actividad`, `Tema`, `Paquete`, `Marca`, `Asociacion`, `Espacio`, `Medio`.
 
-- [ ] **Step 1: Escribir el test primero**
+- [x] **Step 1: Escribir el test primero**
 
 `tests/unit/contenido.test.ts`:
 
@@ -1057,14 +1057,14 @@ describe("contenido", () => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm test -- contenido
 ```
 Esperado: FAIL, no resuelve `@/lib/contenido`.
 
-- [ ] **Step 3: Escribir los esquemas**
+- [x] **Step 3: Escribir los esquemas**
 
 `lib/esquemas.ts`:
 
@@ -1129,7 +1129,7 @@ export type Espacio = z.infer<typeof esquemaEspacio>;
 export type Medio = z.infer<typeof esquemaMedio>;
 ```
 
-- [ ] **Step 4: Escribir el cargador**
+- [x] **Step 4: Escribir el cargador**
 
 `lib/contenido.ts`:
 
@@ -1179,7 +1179,7 @@ export const getMedios = () => validar(z.array(esquemaMedio).min(1), medios, "me
 export type * from "./esquemas";
 ```
 
-- [ ] **Step 5: Escribir los archivos de datos**
+- [x] **Step 5: Escribir los archivos de datos**
 
 `content/cifras.json` — todas las cifras salen del deck, láminas 6 y 10:
 
@@ -1353,14 +1353,14 @@ export type * from "./esquemas";
 
 Completar las restantes leyendo `public/img/marcas-*.png` una por una. Si un logo resulta ilegible, poner el nombre en blanco **no** es opción: el `alt` de un logo es su nombre. Dejarlo fuera del JSON y anotarlo en el commit para preguntarle al cliente.
 
-- [ ] **Step 6: Correr el test**
+- [x] **Step 6: Correr el test**
 
 ```bash
 npm test -- contenido
 ```
 Esperado: 8 passed. Si falla por nombres de imagen, ajustar los JSON a lo que realmente produjo Task 2.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A
@@ -1389,7 +1389,7 @@ Los ladrillos visuales que el deck repite. Sin ellos cada sección reinventaría
   - `<FondoSelva />` — la textura del deck, `aria-hidden`, absolutamente posicionada.
   - `<MuroLogos logos={{nombre, logo}[]} />` — grilla de logos en escala de grises que recuperan color al pasar el mouse.
 
-- [ ] **Step 1: Escribir las primitivas**
+- [x] **Step 1: Escribir las primitivas**
 
 `components/ui/Seccion.tsx`:
 
@@ -1575,7 +1575,7 @@ export function MuroLogos({
 }
 ```
 
-- [ ] **Step 2: Montar una página de laboratorio para verlas**
+- [x] **Step 2: Montar una página de laboratorio para verlas**
 
 `app/[lang]/laboratorio/page.tsx`:
 
@@ -1620,7 +1620,7 @@ export default function Laboratorio() {
 }
 ```
 
-- [ ] **Step 3: Escribir el test de accesibilidad de las primitivas**
+- [x] **Step 3: Escribir el test de accesibilidad de las primitivas**
 
 `tests/e2e/primitivas.spec.ts`:
 
@@ -1653,14 +1653,14 @@ test("cada logo de marca lleva su nombre como texto alternativo", async ({ page 
 });
 ```
 
-- [ ] **Step 4: Correr los tests**
+- [x] **Step 4: Correr los tests**
 
 ```bash
 npm run test:e2e -- primitivas
 ```
 Esperado: 6 passed (3 tests × 2 proyectos).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -1680,7 +1680,7 @@ git commit -m "Agrega las primitivas visuales que el deck repite"
 - Consumes: `SelectorIdioma` de Task 4, copy `nav.*` y `pie.*` de Task 4.
 - Produces: el layout que envuelve todas las páginas. `SkipLink` apunta a `#contenido`; **toda página debe tener un `<main id="contenido">`**.
 
-- [ ] **Step 1: Escribir el test primero**
+- [x] **Step 1: Escribir el test primero**
 
 `tests/e2e/layout.spec.ts`:
 
@@ -1714,14 +1714,14 @@ test("el selector de idioma marca el idioma activo", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm run test:e2e -- layout
 ```
 Esperado: FAIL — no hay `header`, ni `footer`, ni salto.
 
-- [ ] **Step 3: Escribir el `SkipLink`**
+- [x] **Step 3: Escribir el `SkipLink`**
 
 `components/layout/SkipLink.tsx`:
 
@@ -1741,7 +1741,7 @@ export function SkipLink() {
 }
 ```
 
-- [ ] **Step 4: Escribir la cabecera**
+- [x] **Step 4: Escribir la cabecera**
 
 `components/layout/Header.tsx`:
 
@@ -1783,7 +1783,7 @@ export function Header({ lang }: { lang: string }) {
 
 Si tras Task 2 el logo no quedó en `portada-02.png`, buscar en el manifiesto la entrada de grupo `logo-dharma` y usar ese archivo.
 
-- [ ] **Step 5: Escribir el pie**
+- [x] **Step 5: Escribir el pie**
 
 `components/layout/Footer.tsx`:
 
@@ -1818,7 +1818,7 @@ export function Footer({ lang }: { lang: string }) {
 }
 ```
 
-- [ ] **Step 6: Enchufarlos en el layout de idioma**
+- [x] **Step 6: Enchufarlos en el layout de idioma**
 
 En `app/[lang]/layout.tsx`, reemplazar el `return`:
 
@@ -1835,14 +1835,14 @@ En `app/[lang]/layout.tsx`, reemplazar el `return`:
 
 Con los imports correspondientes. Y en `app/[lang]/page.tsx`, envolver en `<main id="contenido" tabIndex={-1}>` — el `tabIndex={-1}` es lo que permite que el salto le dé el foco.
 
-- [ ] **Step 7: Correr los tests**
+- [x] **Step 7: Correr los tests**
 
 ```bash
 npm run test:e2e -- layout
 ```
 Esperado: 8 passed.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -1862,7 +1862,7 @@ git commit -m "Agrega cabecera, pie y salto al contenido"
 - Consumes: primitivas de Task 6, `getActividades()` y `getTemas()` de Task 5.
 - Produces: las cuatro primeras secciones de la home. `Hero` contiene el único `<h1>` de la página.
 
-- [ ] **Step 1: Añadir el copy**
+- [x] **Step 1: Añadir el copy**
 
 En `content/copy/es.json`, agregar al nivel raíz:
 
@@ -1900,7 +1900,7 @@ En `content/copy/en.json`, las mismas claves:
 
 El copy en español de `quienesSomosCuerpo` es literal de la lámina 2 del deck. No reescribirlo.
 
-- [ ] **Step 2: Escribir el hero**
+- [x] **Step 2: Escribir el hero**
 
 `components/secciones/Hero.tsx`:
 
@@ -1944,7 +1944,7 @@ export function Hero({ lang }: { lang: string }) {
 }
 ```
 
-- [ ] **Step 3: Escribir quiénes somos**
+- [x] **Step 3: Escribir quiénes somos**
 
 `components/secciones/QuienesSomos.tsx`:
 
@@ -1974,7 +1974,7 @@ export function QuienesSomos() {
 }
 ```
 
-- [ ] **Step 4: Escribir actividades y temas**
+- [x] **Step 4: Escribir actividades y temas**
 
 `components/secciones/Actividades.tsx`:
 
@@ -2047,7 +2047,7 @@ export function Temas() {
 }
 ```
 
-- [ ] **Step 5: Montarlas en la home**
+- [x] **Step 5: Montarlas en la home**
 
 `app/[lang]/page.tsx`:
 
@@ -2073,7 +2073,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 }
 ```
 
-- [ ] **Step 6: Escribir el test**
+- [x] **Step 6: Escribir el test**
 
 `tests/e2e/home-superior.spec.ts`:
 
@@ -2121,14 +2121,14 @@ test("la home en inglés traduce el hero", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 7: Correr los tests**
+- [x] **Step 7: Correr los tests**
 
 ```bash
 npm test && npm run test:e2e -- home-superior
 ```
 Esperado: 12 passed.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -2148,7 +2148,7 @@ git commit -m "Agrega el hero y las tres primeras secciones de la home"
 - Consumes: primitivas de Task 6; `getCifras()`, `getMarcas()`, `getAsociaciones()`, `getEspacios()` de Task 5; manifiesto de Task 2 para las fotos de galería (`grupo === "foto"` y páginas 7, 8 y 9).
 - Produces: las seis secciones restantes de la home, en ese orden.
 
-- [ ] **Step 1: Añadir el copy**
+- [x] **Step 1: Añadir el copy**
 
 En `content/copy/es.json`, dentro de `home`:
 
@@ -2182,7 +2182,7 @@ En `content/copy/en.json`, las mismas claves traducidas. `roadCuerpo` en inglés
 }
 ```
 
-- [ ] **Step 2: Escribir la galería**
+- [x] **Step 2: Escribir la galería**
 
 `components/secciones/Galeria.tsx`:
 
@@ -2227,7 +2227,7 @@ export function Galeria() {
 
 Las fotos de galería llevan `alt=""` a propósito: son decorativas y la sección ya tiene título. Poner descripciones inventadas de personas que no conocemos sería peor que no ponerlas.
 
-- [ ] **Step 3: Escribir las cifras**
+- [x] **Step 3: Escribir las cifras**
 
 `components/secciones/Cifras.tsx`:
 
@@ -2258,7 +2258,7 @@ export function Cifras() {
 }
 ```
 
-- [ ] **Step 4: Escribir Road to Dharma, Camp Lago, impacto y marcas**
+- [x] **Step 4: Escribir Road to Dharma, Camp Lago, impacto y marcas**
 
 `components/secciones/RoadToDharma.tsx`:
 
@@ -2373,7 +2373,7 @@ export function MarcasQueConfian() {
 }
 ```
 
-- [ ] **Step 5: Montarlas en la home**
+- [x] **Step 5: Montarlas en la home**
 
 En `app/[lang]/page.tsx`, tras `<Temas />`:
 
@@ -2386,7 +2386,7 @@ En `app/[lang]/page.tsx`, tras `<Temas />`:
       <MarcasQueConfian />
 ```
 
-- [ ] **Step 6: Escribir el test**
+- [x] **Step 6: Escribir el test**
 
 `tests/e2e/home-inferior.spec.ts`:
 
@@ -2446,14 +2446,14 @@ test("los encabezados no saltan niveles", async ({ page }) => {
 
 El último test va a fallar hasta que exista `/road-to-dharma` (Task 11). Si estorba, marcarlo `test.fixme` y quitarle la marca en Task 11.
 
-- [ ] **Step 7: Correr los tests**
+- [x] **Step 7: Correr los tests**
 
 ```bash
 npm run test:e2e -- home-inferior
 ```
 Esperado: todos en verde salvo el de navegación a `/road-to-dharma`, que pasa en Task 11.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -2485,7 +2485,7 @@ anuncia el cambio sin recargar. **No se crea `/gracias`**, y por eso tampoco apa
     **Este es el único lugar del código que escribe datos de personas.** Cambiar de proveedor de correo se hace aquí y en ningún otro archivo.
   - `lib/acciones.ts` exporta `suscribirComunidad(estadoPrevio, formData)` y `solicitarPropuesta(estadoPrevio, formData)`, ambas Server Actions con la firma de `useActionState`, devolviendo `{ ok: boolean; errores?: Record<string, string> }`.
 
-- [ ] **Step 1: Escribir primero el test de `leads.ts`**
+- [x] **Step 1: Escribir primero el test de `leads.ts`**
 
 `tests/unit/leads.test.ts`:
 
@@ -2539,14 +2539,14 @@ describe("guardarLead", () => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm test -- leads
 ```
 Esperado: FAIL, no resuelve `@/lib/leads`.
 
-- [ ] **Step 3: Escribir `lib/leads.ts`**
+- [x] **Step 3: Escribir `lib/leads.ts`**
 
 ```ts
 import { appendFile, mkdir } from "node:fs/promises";
@@ -2586,14 +2586,14 @@ export async function guardarLead(lead: Lead): Promise<void> {
 }
 ```
 
-- [ ] **Step 4: Correr el test y verificar que pasa**
+- [x] **Step 4: Correr el test y verificar que pasa**
 
 ```bash
 npm test -- leads
 ```
 Esperado: 3 passed.
 
-- [ ] **Step 5: Escribir las Server Actions**
+- [x] **Step 5: Escribir las Server Actions**
 
 `lib/acciones.ts`:
 
@@ -2661,7 +2661,7 @@ export async function solicitarPropuesta(
 }
 ```
 
-- [ ] **Step 6: Añadir el copy de los formularios**
+- [x] **Step 6: Añadir el copy de los formularios**
 
 En `content/copy/es.json`, al nivel raíz:
 
@@ -2699,7 +2699,7 @@ En `content/copy/en.json`, las mismas claves traducidas. El consentimiento en in
 }
 ```
 
-- [ ] **Step 7: Escribir la casilla de consentimiento y los formularios**
+- [x] **Step 7: Escribir la casilla de consentimiento y los formularios**
 
 `components/formularios/CasillaConsentimiento.tsx`:
 
@@ -2852,7 +2852,7 @@ export function FormPropuesta() {
 }
 ```
 
-- [ ] **Step 8: Montar la sección Sumate y las páginas de apoyo**
+- [x] **Step 8: Montar la sección Sumate y las páginas de apoyo**
 
 `components/secciones/Sumate.tsx`:
 
@@ -2903,7 +2903,7 @@ export default async function Privacidad({ params }: { params: Promise<{ lang: s
 }
 ```
 
-- [ ] **Step 9: Escribir el test e2e de los formularios**
+- [x] **Step 9: Escribir el test e2e de los formularios**
 
 `tests/e2e/formularios.spec.ts`:
 
@@ -2946,21 +2946,21 @@ test("el formulario se puede recorrer con el teclado", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 10: Correr todo**
+- [x] **Step 10: Correr todo**
 
 ```bash
 npm test && npm run test:e2e -- formularios
 ```
 Esperado: unitarios en verde, 10 e2e passed.
 
-- [ ] **Step 11: Verificar que los datos no se cuelan a git**
+- [x] **Step 11: Verificar que los datos no se cuelan a git**
 
 ```bash
 git status --porcelain | grep -c "^?? data/" || echo "data/ correctamente ignorado"
 ```
 Esperado: `data/ correctamente ignorado`.
 
-- [ ] **Step 12: Commit**
+- [x] **Step 12: Commit**
 
 ```bash
 git add -A
@@ -2982,7 +2982,7 @@ La que reemplaza al PDF. Sin precios.
 - Consumes: `getPaquetes()`, `getCifras()`, `getMedios()`, `getMarcas()` de Task 5; `FormPropuesta` de Task 10; primitivas de Task 6.
 - Produces: la ruta `/patrocinios` y `/en/patrocinios`.
 
-- [ ] **Step 1: Escribir primero el test que blinda la regla de los precios**
+- [x] **Step 1: Escribir primero el test que blinda la regla de los precios**
 
 `tests/e2e/patrocinios.spec.ts`:
 
@@ -3036,14 +3036,14 @@ test("patrocinios no tiene violaciones de accesibilidad", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm run test:e2e -- patrocinios
 ```
 Esperado: FAIL, la ruta da 404.
 
-- [ ] **Step 3: Añadir el copy**
+- [x] **Step 3: Añadir el copy**
 
 En `content/copy/es.json`, al nivel raíz. El copy de `heroKicker`, `heroItalica`, `heroTitulo` y `heroCuerpo` es literal de la lámina 3:
 
@@ -3084,7 +3084,7 @@ En `content/copy/es.json`, al nivel raíz. El copy de `heroKicker`, `heroItalica
 
 En `content/copy/en.json`, las mismas claves. El hero necesita transcreación, no traducción literal — `heroItalica`: `"Stop buying seconds"`, `heroTitulo`: `"Buy presence"`.
 
-- [ ] **Step 4: Escribir las secciones**
+- [x] **Step 4: Escribir las secciones**
 
 `components/secciones/Paquetes.tsx` — el componente donde vive la regla de negocio más importante:
 
@@ -3330,18 +3330,18 @@ export function Mercadito() {
 }
 ```
 
-- [ ] **Step 5: Montar la página**
+- [x] **Step 5: Montar la página**
 
 `app/[lang]/patrocinios/page.tsx` con el orden del spec: hero → NuestroPublico → Cifras → PlanDeMedios → LoQueViene → Paquetes → Mercadito → MarcasQueConfian → FormPropuesta. Un solo `<h1>`, en el hero.
 
-- [ ] **Step 6: Correr los tests**
+- [x] **Step 6: Correr los tests**
 
 ```bash
 npm run test:e2e -- patrocinios
 ```
 Esperado: 14 passed. Si falla el test de precios, buscar qué componente está imprimiendo `inversionUSD` y quitarlo — el dato se guarda, no se muestra.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A
@@ -3363,7 +3363,7 @@ Las tres páginas de apoyo. Su copy es borrador y va marcado como tal.
 - Consumes: primitivas de Task 6, contenido de Task 5, `FormComunidad` de Task 10.
 - Produces: las rutas restantes. Cada página exporta su propio `generateMetadata` con título propio.
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 `tests/e2e/paginas.spec.ts`:
 
@@ -3403,14 +3403,14 @@ test("una ruta inexistente da 404 con página propia", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm run test:e2e -- paginas
 ```
 Esperado: FAIL, las rutas dan 404.
 
-- [ ] **Step 3: Escribir el copy, marcando los borradores**
+- [x] **Step 3: Escribir el copy, marcando los borradores**
 
 En `content/copy/es.json`, añadir una sección `borrador` con las cadenas que el cliente aún no aprobó. La clave del asunto: **que se note en el código cuáles son inventadas**.
 
@@ -3433,7 +3433,7 @@ En `content/copy/es.json`, añadir una sección `borrador` con las cadenas que e
 }
 ```
 
-- [ ] **Step 4: Escribir las tres páginas y el 404**
+- [x] **Step 4: Escribir las tres páginas y el 404**
 
 Cada una sigue el mismo molde. `app/[lang]/road-to-dharma/page.tsx`:
 
@@ -3524,14 +3524,14 @@ export default function NoEncontrada() {
 }
 ```
 
-- [ ] **Step 5: Correr los tests**
+- [x] **Step 5: Correr los tests**
 
 ```bash
 npm run test:e2e -- paginas
 ```
 Esperado: 20 passed. Quitar el `test.fixme` del test de navegación de `home-inferior.spec.ts` si se puso en Task 9, y volver a correrlo.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add -A
@@ -3555,7 +3555,7 @@ Sitemap, robots, títulos por página, `hreflang`, y limpieza del laboratorio.
 - Consumes: `routing` de Task 4.
 - Produces: `lib/rutas.ts` exporta `RUTAS: readonly string[]` (`["", "/2027", "/road-to-dharma", "/patrocinios", "/nosotros", "/privacidad"]`) y `SITIO = "https://dharmafestcr.com"`, consumidos por el sitemap y por los `alternates`.
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 `tests/e2e/seo.spec.ts`:
 
@@ -3598,14 +3598,14 @@ test("el laboratorio ya no existe", async ({ page }) => {
 });
 ```
 
-- [ ] **Step 2: Correr y verificar que falla**
+- [x] **Step 2: Correr y verificar que falla**
 
 ```bash
 npm run test:e2e -- seo
 ```
 Esperado: FAIL en casi todo.
 
-- [ ] **Step 3: Escribir `lib/rutas.ts`**
+- [x] **Step 3: Escribir `lib/rutas.ts`**
 
 ```ts
 export const SITIO = "https://dharmafestcr.com";
@@ -3626,7 +3626,7 @@ export function urlDe(ruta: string, idioma: string): string {
 }
 ```
 
-- [ ] **Step 4: Escribir sitemap y robots**
+- [x] **Step 4: Escribir sitemap y robots**
 
 `app/sitemap.ts`:
 
@@ -3664,7 +3664,7 @@ export default function robots(): MetadataRoute.Robots {
 }
 ```
 
-- [ ] **Step 5: Añadir `alternates` a cada página**
+- [x] **Step 5: Añadir `alternates` a cada página**
 
 En cada `generateMetadata`, además del título:
 
@@ -3681,7 +3681,7 @@ En cada `generateMetadata`, además del título:
 
 La home usa `rutaBase = ""`.
 
-- [ ] **Step 6: Borrar el laboratorio y los tests de humo**
+- [x] **Step 6: Borrar el laboratorio y los tests de humo**
 
 ```bash
 rm -rf app/\[lang\]/laboratorio tests/unit/humo.test.ts tests/e2e/humo.spec.ts
@@ -3689,14 +3689,14 @@ rm -rf app/\[lang\]/laboratorio tests/unit/humo.test.ts tests/e2e/humo.spec.ts
 
 En `tests/e2e/primitivas.spec.ts`, cambiar los tres `page.goto("/laboratorio")` por `page.goto("/")`.
 
-- [ ] **Step 7: Correr la verificación completa**
+- [x] **Step 7: Correr la verificación completa**
 
 ```bash
 npm run verificar
 ```
 Esperado: unitarios en verde, build sin errores ni advertencias de TypeScript, y toda la batería e2e en verde en los dos proyectos.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -3715,15 +3715,15 @@ git commit -m "Agrega sitemap, hreflang y metadata por pagina"
 - Consumes: todo lo anterior.
 - Produces: la documentación de arranque del proyecto.
 
-- [ ] **Step 1: Escribir el README**
+- [x] **Step 1: Escribir el README**
 
 Debe cubrir, sin adornos: qué es el proyecto, cómo levantarlo (`npm install && npm run dev`), cómo correr las pruebas (`npm run verificar`), de dónde salen las imágenes (`scripts/README.md`), **la advertencia de que no se despliega**, dónde viven los datos capturados y por qué están fuera de git, y la lista de lo que falta del cliente con enlace al spec §10.
 
-- [ ] **Step 2: Marcar en este plan las tareas completadas**
+- [x] **Step 2: Marcar en este plan las tareas completadas**
 
-Cambiar `- [ ]` por `- [x]` en los pasos ejecutados.
+Cambiar `- [x]` por `- [x]` en los pasos ejecutados.
 
-- [ ] **Step 3: Verificación final**
+- [x] **Step 3: Verificación final**
 
 ```bash
 npm run verificar
@@ -3731,7 +3731,7 @@ git status --porcelain
 ```
 Esperado: todo en verde y el árbol limpio salvo lo que se vaya a commitear.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -3751,3 +3751,39 @@ git commit -m "Agrega el README y cierra la primera vuelta del sitio v2"
 - No reemplazar `palido` (`#E4E8AD`) por un beige.
 
 **Si un test falla por nombres de archivo de imagen:** Task 2 genera los nombres, y las tareas 5 en adelante los consumen. Ante una discrepancia, la fuente de verdad es `content/manifiesto-imagenes.json`, no lo que este plan escribió a mano.
+
+---
+
+## Estado de ejecucion
+
+Ejecutado completo el 2026-09-09. Todas las tareas cerradas, con **128 tests unitarios y
+129 e2e en verde**, incluida la auditoria de accesibilidad con axe sobre cada pagina.
+
+### Desvios respecto de lo planeado
+
+Lo que el plan no podia saber y solo aparecio al ejecutarlo:
+
+1. **`middleware.ts` -> `proxy.ts`.** Next 16 lo renombro. Con el nombre viejo Next lo ignora
+   en silencio: el sitio compila y arranca con el ruteo bilingue muerto, sin un solo error.
+2. **El segmento es `[locale]`, no `[lang]`,** y el layout raiz vive dentro de el, para usar
+   `next/root-params` en vez del `requestLocale` que next-intl ya marca como deprecado.
+3. **Se apago `localeDetection`.** Con la deteccion por Accept-Language, la raiz servia ingles
+   a cualquier navegador configurado en ingles, incluido el de las pruebas.
+4. **El matcher del proxy llevaba `\.` en una cadena de TS,** donde JS lo colapsa a `.`. El
+   patron efectivo excluia toda ruta de un caracter o mas: el sitio entero daba 404 salvo la
+   raiz.
+5. **La extraccion de imagenes tuvo que reconstruir el canal alfa.** Un PDF guarda color y
+   mascara por separado; sin unirlos, los 61 logos salian con un rectangulo de fondo.
+6. **Los pareos de foto del plan estaban mal.** Se corrigieron mirando hojas de contacto: el
+   logo de la cabecera era el de Camp Lago, actividades y temas estaban corridos, y las
+   asociaciones eran otros archivos y en otro orden.
+7. **Los salones no se parean con sus fotos.** El deck pone cuatro fotos y tres nombres sin
+   relacion posicional. El esquema directamente no admite el campo.
+8. **No habia navegacion en movil.** El plan nunca la pidio y la cabecera oculta los enlaces
+   por debajo de `lg`. Se agrego `MenuMovil`.
+9. **El 404 caia en la pagina interna de Next.** Hizo falta un atrapatodo dentro de `[locale]`.
+10. **Los e2e corren contra el build de produccion,** en su propio puerto y su propio
+    `distDir`, con 3 workers. Contra `next dev` fallaban por timeout y por falta de memoria
+    sin que hubiera nada roto.
+11. **No se creo `/gracias`:** la confirmacion ocurre en el propio formulario con
+    `role="status"`.
