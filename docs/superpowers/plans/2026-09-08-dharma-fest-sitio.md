@@ -1583,8 +1583,10 @@ const retraso = retrasoEscalonado(indice);
 </style>
 
 <noscript>
-  <style>
-    .dh-reveal { opacity: 1; transform: none; }
+  <style is:inline>
+    /* Regla sin scope para vencer la regla base scoped por Astro (especificidad 0-2-0).
+       Sin !important, la base rule gana y el contenido queda invisible. */
+    .dh-reveal { opacity: 1 !important; transform: none !important; }
   </style>
 </noscript>
 
@@ -1615,6 +1617,14 @@ const retraso = retrasoEscalonado(indice);
 ```
 
 El `<style>` deja el contenido invisible antes de que corra el script, así que un fallo del JS lo escondería. El `<noscript>` cubre el caso de JavaScript deshabilitado y la media query cubre el de movimiento reducido. Nunca envolver el `<h1>` del hero en `Reveal`: debe pintarse de inmediato para no castigar el LCP.
+
+**Por qué el `<noscript>` lleva `is:inline` y `!important`** (verificado contra la salida real del build): Astro **no** sube ese bloque al CSS — lo deja en el HTML. Pero mientras la regla base sale con scope (`.dh-reveal[data-astro-cid-…]`, especificidad 0-2-0), la del `noscript` sale sin scope (`.dh-reveal`, 0-1-0). La base gana, y sin `!important` el seguro no sirve de nada: quien navegue sin JavaScript no ve el contenido, nunca. No quitar ninguna de las dos cosas.
+
+**Cómo comprobarlo si alguien lo toca:** `grep -o '<noscript>.*</noscript>'` **no** cruza saltos de línea y hace creer que el bloque desapareció. Usar una búsqueda multilínea:
+
+```bash
+node -e "const h=require('fs').readFileSync('dist/index.html','utf8'); const i=h.indexOf('noscript'); console.log(i>=0 ? JSON.stringify(h.slice(i-40, i+220)) : 'AUSENTE')"
+```
 
 - [ ] **Step 7: Verificar que compila**
 
