@@ -30,7 +30,8 @@
     "kicker": "Qué significa Dharma",
     "titulo": "Mucho más",
     "tituloEnfasis": "que bienestar",
-    "cuerpo": "Es movimiento, conexión, comunidad, conciencia y espacios para volver a nosotros mismos. Es compartir, aprender, apoyar lo local, cuidar nuestro entorno y descubrir nuevas formas de sentirnos bien."
+    "cuerpo": "Es movimiento, conexión, comunidad, conciencia y espacios para volver a nosotros mismos. Es compartir, aprender, apoyar lo local, cuidar nuestro entorno y descubrir nuevas formas de sentirnos bien.",
+    "imagenAlt": "Personas compartiendo en una experiencia Dharma"
   },
   "ejesSeccion": {
     "kicker": "Qué vas a encontrar",
@@ -41,7 +42,8 @@
     "kicker": "Campo Lago",
     "titulo": "Nuestra casa, donde",
     "tituloEnfasis": "sucede la magia",
-    "cuerpo": "El lugar al que volvemos edición tras edición. Naturaleza, lago y espacio para que la comunidad se encuentre."
+    "cuerpo": "El lugar al que volvemos edición tras edición. Naturaleza, lago y espacio para que la comunidad se encuentre.",
+    "imagenAlt": "Campo Lago, sede de Dharma Fest, rodeado de naturaleza"
   },
   "experiencias": {
     "kicker": "Todo el año",
@@ -89,7 +91,8 @@
     "kicker": "Detrás de Dharma",
     "tituloPagina": "Quiénes somos",
     "cita": "Creemos que el bienestar no tiene una sola forma. Se vive, se comparte y se construye en comunidad.",
-    "autor": "Equipo Dharma Fest"
+    "autor": "Equipo Dharma Fest",
+    "imagenAlt": "Equipo de Dharma Fest"
   },
   "sumate": {
     "kicker": "Comenzá tu camino",
@@ -126,6 +129,9 @@
     "menu": "Menú",
     "navPrincipal": "Navegación principal",
     "navPrincipalMovil": "Navegación principal (móvil)",
-    "idioma": "Idioma"
+    "idioma": "Idioma",
+    "idiomaActual": "idioma actual",
+    "verEnIdioma": "Ver esta página en",
+    "nombresIdioma": { "es": "Español", "en": "English" }
   }
 }

@@ -1,14 +1,17 @@
 ---
 import { alternates, langFromUrl, type Lang } from '../../lib/i18n';
+import { getCopy } from '../../lib/copy';
 
 const actual: Lang = langFromUrl(Astro.url);
 const opciones = alternates(Astro.url.pathname);
+// El texto que rodea al conmutador debe hablar el idioma de LA PÁGINA
+// ACTUAL, no el del destino (ver a11y.idiomaActual / a11y.verEnIdioma).
+const copy = getCopy(actual);
 
 const etiqueta: Record<Lang, string> = { es: 'ES', en: 'EN' };
-const nombreCompleto: Record<Lang, string> = { es: 'Español', en: 'English' };
 ---
 
-<nav class="flex items-center gap-2" aria-label="Idioma">
+<nav class="flex items-center gap-2" aria-label={copy.a11y.idioma}>
   {
     opciones.map(({ lang, href }) =>
       lang === actual ? (
@@ -16,7 +19,9 @@ const nombreCompleto: Record<Lang, string> = { es: 'Español', en: 'English' };
           class="text-kicker uppercase tracking-[0.2em] text-copal"
           aria-current="true"
         >
-          <span class="sr-only">{nombreCompleto[lang]}, idioma actual</span>
+          <span class="sr-only">
+            {copy.a11y.nombresIdioma[lang]}, {copy.a11y.idiomaActual}
+          </span>
           <span aria-hidden="true">{etiqueta[lang]}</span>
         </span>
       ) : (
@@ -25,7 +30,9 @@ const nombreCompleto: Record<Lang, string> = { es: 'Español', en: 'English' };
           hreflang={lang}
           class="text-kicker uppercase tracking-[0.2em] opacity-70 transition-opacity hover:opacity-100"
         >
-          <span class="sr-only">Ver esta página en {nombreCompleto[lang]}</span>
+          <span class="sr-only">
+            {copy.a11y.verEnIdioma} {copy.a11y.nombresIdioma[lang]}
+          </span>
           <span aria-hidden="true">{etiqueta[lang]}</span>
         </a>
       ),

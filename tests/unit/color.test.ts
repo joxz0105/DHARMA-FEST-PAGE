@@ -60,6 +60,29 @@ describe('texto sobre los fondos oscuros', () => {
   });
 });
 
+describe('anillo de foco', () => {
+  // src/styles/global.css dibuja el foco con dos tonos: un aro bosque
+  // (outline) sobre un halo lino (box-shadow). En cada fondo del sitio,
+  // al menos uno de los dos debe cumplir el 3:1 que exige WCAG 2.1 SC 1.4.11
+  // para indicadores de foco. Este test es la guarda contra volver a usar
+  // copal, que nunca llega a 3:1 sobre lino ni arena.
+  const fondosDelSitio = [
+    ['lino', PALETA.lino],
+    ['arena', PALETA.arena],
+    ['bosque', PALETA.bosque],
+    ['bosqueDeep', PALETA.bosqueDeep],
+  ] as const;
+
+  const NIVEL_MINIMO_NO_TEXTO = 3;
+
+  it.each(fondosDelSitio)('el anillo de foco cumple 3:1 sobre %s', (_nombre, fondo) => {
+    const contrasteAro = contrastRatio(PALETA.bosque, fondo);
+    const contrasteHalo = contrastRatio(PALETA.lino, fondo);
+    const mejorContraste = Math.max(contrasteAro, contrasteHalo);
+    expect(mejorContraste).toBeGreaterThanOrEqual(NIVEL_MINIMO_NO_TEXTO);
+  });
+});
+
 describe('botones', () => {
   it('bosque sobre relleno copal cumple AA', () => {
     expect(cumpleAA(PALETA.bosque, PALETA.copal)).toBe(true);

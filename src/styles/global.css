@@ -27,9 +27,18 @@ h1, h2, h3, h4 {
 
 p { max-width: 60ch; }
 
+/*
+ * Anillo de foco de dos tonos: un aro bosque (afuera) sobre un halo lino
+ * (adentro, vía box-shadow). En cualquier fondo del sitio uno de los dos
+ * tonos se funde con el fondo y el otro queda visible con contraste alto,
+ * así el foco nunca desaparece. Verificado ≥3:1 contra los cuatro fondos
+ * que usa el sitio: lino, arena, bosque y bosque-deep (ver
+ * tests/unit/color.test.ts, sección "anillo de foco").
+ */
 :focus-visible {
-  outline: 2px solid var(--color-copal);
-  outline-offset: 3px;
+  outline: 2px solid var(--color-bosque);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-lino);
 }
 
 /* Restricción global: nada se mueve si la persona pidió menos movimiento. */

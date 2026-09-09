@@ -6,6 +6,7 @@ import Kicker from '../components/ui/Kicker.astro';
 import TituloSeccion from '../components/ui/TituloSeccion.astro';
 import Marcas from '../components/sections/Marcas.astro';
 import FormularioMarcas from '../components/sections/FormularioMarcas.astro';
+import Sumate from '../components/sections/Sumate.astro';
 import { getCopy } from '../lib/copy';
 import { publicables } from '../lib/contenido';
 
@@ -43,4 +44,5 @@ const marcas = publicables(
 
   <Marcas lang={lang} marcas={marcas} />
   <FormularioMarcas lang={lang} />
+  <Sumate lang={lang} />
 </Base>

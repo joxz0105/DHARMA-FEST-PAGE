@@ -2,17 +2,27 @@
 interface Props {
   href: string;
   variante?: 'solido' | 'contorno';
+  /** Solo afecta a "contorno": de qué fondo viene el llamador. */
+  tono?: 'claro' | 'oscuro';
   class?: string;
 }
 
-const { href, variante = 'solido', class: clase = '' } = Astro.props;
+const { href, variante = 'solido', tono = 'oscuro', class: clase = '' } = Astro.props;
 
-// Sólido: relleno copal con texto bosque, que sí cumple AA en cualquier tamaño.
-// Contorno: pensado para fondos oscuros, con texto lino.
+// Sólido: relleno copal con texto bosque, que sí cumple AA en cualquier tamaño
+// (el fondo siempre es copal, nunca hay copal como texto).
+// Contorno: no tiene relleno propio, así que copal sí actúa como texto/borde
+// contra lo que haya detrás. Sobre fondo oscuro (tono="oscuro", el default,
+// preserva el comportamiento de siempre) va con lino. Sobre fondo claro
+// (tono="claro") copal no cumple AA ni siquiera en 3:1 (ver la regla en
+// tokens.css / README): se usa copal-ink.
+const estiloContorno =
+  tono === 'oscuro'
+    ? 'border border-copal text-lino hover:bg-copal hover:text-bosque'
+    : 'border border-copal-ink text-copal-ink hover:bg-copal-ink hover:text-lino';
+
 const estilo =
-  variante === 'solido'
-    ? 'bg-copal text-bosque hover:bg-copal-ink hover:text-lino'
-    : 'border border-copal text-lino hover:bg-copal hover:text-bosque';
+  variante === 'solido' ? 'bg-copal text-bosque hover:bg-copal-ink hover:text-lino' : estiloContorno;
 ---
 
 <a

@@ -6,6 +6,7 @@ import Seccion from '../../components/ui/Seccion.astro';
 import Kicker from '../../components/ui/Kicker.astro';
 import Galeria from '../../components/ui/Galeria.astro';
 import Boton from '../../components/ui/Boton.astro';
+import Sumate from '../../components/sections/Sumate.astro';
 import { getCopy } from '../../lib/copy';
 
 export async function getStaticPaths() {
@@ -63,4 +64,6 @@ const d = entrada.data;
 
     {d.ctaUrl && <Boton href={d.ctaUrl} class="mt-12">{copy.hero.cta}</Boton>}
   </Seccion>
+
+  <Sumate lang={lang} />
 </Base>

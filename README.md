@@ -38,6 +38,15 @@ Todo el texto de las secciones fijas vive en `src/content/sitio/es.json` y
 `en.json`. Los dos archivos deben tener exactamente las mismas claves; hay un
 test que lo verifica.
 
+**Excepción: `ejes[].slug` no es texto, es código.** A diferencia del resto de
+las claves, `slug` guarda el mismo valor en español en los dos archivos
+(`charlas`, `artistas`, `mercadito`...) porque `src/components/sections/Ejes.astro`
+lo usa para elegir la imagen (`imagenesPorSlug`) y el área de la grilla bento
+(`areasPorSlug`) de cada eje — es una clave de emparejamiento, no una etiqueta
+visible. Traducirlo, reordenar el array o agregar un octavo eje rompe el build
+(`Ejes.astro` lanza un error si un slug no tiene imagen o área) hasta que se
+agregue la imagen y la entrada de grilla que le correspondan.
+
 ## Accesibilidad
 
 `tests/e2e/accesibilidad.spec.ts` corre axe-core contra `/`, `/experiencias`,
@@ -53,6 +62,17 @@ mitad de esa transición y medir un contraste que no existe en reposo. Con
 movimiento reducido, `<Reveal>` salta directo al estado final (el mismo
 camino que ya toma para quien pide menos movimiento en su sistema), así que
 axe mide los colores reales del diseño.
+
+**`color-contrast: incomplete` en `/` y `/en/` no es un defecto.** axe no
+puede evaluar el contraste del texto del hero (`<Hero>`) porque está sobre
+una fotografía, no sobre un color plano, y lo reporta como `incomplete`
+(no como violación) para que un humano lo revise. La mitigación ya existe:
+un scrim en degradado con el color `bosque` (`rgba(30,53,39,…)`) se superpone
+a la foto detrás del texto (ver el `<div aria-hidden>` con el
+`linear-gradient` en `Hero.astro`), pensado para que el texto `lino` quede
+legible en cualquier foto razonable. Si alguien "arregla" este incomplete
+agregando una excepción de axe o tocando el scrim sin haber mirado la foto
+real primero, probablemente esté resolviendo un problema que no existe.
 
 ## Presupuesto de peso
 
@@ -78,8 +98,25 @@ Estas cosas están construidas pero apagadas, esperando material o permiso:
 - **Correos.** El formulario funciona de punta a punta pero **no guarda nada**.
   Para conectarlo, escribir un `Proveedor` en `src/lib/subscribe.ts` y cambiar
   la constante `PROVEEDOR`. Ningún componente más se toca.
+  **Advertencia sobre esa costura:** `subscribe()` se empaqueta dentro del
+  `<script>` inline de `<Sumate>` (ver `Sumate.astro`), es decir que
+  **cualquier proveedor real corre en el navegador del visitante**, con su
+  código a la vista en el HTML final. Eso limita la elección a un endpoint de
+  formulario con clave pública (Brevo, el embed de Mailchimp, Formspree y
+  similares). Un SDK de servidor con una API key secreta (Supabase, un
+  Mailchimp con API key clásica, etc.) **no funciona así**, sin agregar un
+  backend — y este proyecto excluye un backend por decisión explícita del
+  cliente (ver "Despliegue" abajo). Si el proveedor elegido solo ofrece un SDK
+  de servidor, hace falta repensar la arquitectura, no solo cambiar
+  `PROVEEDOR`.
 - **Testimonios y marcas.** Están en el repo con `"permiso": false`, así que sus
   secciones no se renderizan. Cambiar a `true` solo con autorización del cliente.
+  **Sobre marcas en particular:** hoy hay 53 registros en
+  `src/content/marcas/marcas.json`, todos sin logo — `Marcas.astro` solo
+  pinta el nombre de texto plano dentro de una tarjeta. Si se activa
+  `permiso` antes de tener logos, el resultado son 53 tarjetas de puro texto
+  repetidas en las tres páginas que usan `<Marcas>` (`/`, `/marcas` y
+  `/2027`, en los dos idiomas): hacen falta los logos primero.
 - **Fecha del 2027.** Sin fecha, el bloque va sin cuenta regresiva. Para
   activarla, pasarle `fechaObjetivo` a `<Fest2027>`. Esa cuenta regresiva se
   calcula una sola vez, en el momento del build (el sitio es estático): no se

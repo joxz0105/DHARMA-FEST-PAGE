@@ -6,6 +6,7 @@ import Kicker from '../../../components/ui/Kicker.astro';
 import TarjetaExperiencia from '../../../components/ui/TarjetaExperiencia.astro';
 import TituloSeccion from '../../../components/ui/TituloSeccion.astro';
 import Reveal from '../../../components/ui/Reveal.astro';
+import Sumate from '../../../components/sections/Sumate.astro';
 import { getCopy } from '../../../lib/copy';
 import { experienciasDe } from '../../../lib/contenido';
 
@@ -68,4 +69,6 @@ const pasadas = todas.filter((e) => e.estado === 'pasada');
 
     {todas.length === 0 && <p class="mt-16 text-salvia">{copy.experiencias.vacio}</p>}
   </Seccion>
+
+  <Sumate lang={lang} />
 </Base>

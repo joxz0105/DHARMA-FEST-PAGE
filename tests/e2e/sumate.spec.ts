@@ -42,3 +42,24 @@ test('la versión inglesa del formulario también valida', async ({ page }) => {
   await page.getByRole('button', { name: /join/i }).click();
   await expect(page.getByRole('alert')).toBeVisible();
 });
+
+// <Sumate> antes solo vivía en /, /2027 y /nosotros: el listado de
+// experiencias, el detalle de una experiencia y /marcas dejaban al
+// visitante sin ningún camino hacia el único mecanismo de conversión del
+// sitio. Una página por grupo, en los dos idiomas, alcanza para blindarlo
+// sin volver la suite interminable.
+const paginasConSumate = [
+  '/experiencias',
+  '/en/experiencias',
+  '/experiencias/conecta-con-tu-piel',
+  '/en/experiencias/conecta-con-tu-piel',
+  '/marcas',
+  '/en/marcas',
+];
+
+for (const ruta of paginasConSumate) {
+  test(`${ruta} incluye el formulario de suscripción`, async ({ page }) => {
+    await page.goto(ruta);
+    await expect(page.locator('#sumate')).toBeVisible();
+  });
+}

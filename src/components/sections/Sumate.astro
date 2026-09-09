@@ -65,7 +65,20 @@ const destinoGracias = localizePath('/gracias', lang);
   const aviso = document.getElementById('error-sumate');
   const boton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 
-  if (form && campo && aviso && boton) {
+  if (!form || !campo || !aviso || !boton) {
+    // Este formulario es el único mecanismo de conversión del sitio: si
+    // alguno de estos selectores deja de coincidir (p. ej. al tocar el
+    // markup de arriba), que falle ruidosamente en vez de quedar mudo.
+    console.error(
+      '[Sumate] No se pudo enganchar el formulario de suscripción. Faltan:',
+      {
+        form: !form,
+        campo: !campo,
+        aviso: !aviso,
+        boton: !boton,
+      },
+    );
+  } else {
     const lang = (form.dataset.lang ?? 'es') as Lang;
     let enVuelo = false;
 

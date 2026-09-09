@@ -30,7 +30,8 @@
     "kicker": "What Dharma means",
     "titulo": "So much more",
     "tituloEnfasis": "than wellness",
-    "cuerpo": "It's movement, connection, community, awareness, and space to come back to ourselves. It's sharing, learning, supporting local, caring for our surroundings, and discovering new ways to feel good."
+    "cuerpo": "It's movement, connection, community, awareness, and space to come back to ourselves. It's sharing, learning, supporting local, caring for our surroundings, and discovering new ways to feel good.",
+    "imagenAlt": "People sharing a Dharma experience"
   },
   "ejesSeccion": {
     "kicker": "What you'll find",
@@ -41,7 +42,8 @@
     "kicker": "Campo Lago",
     "titulo": "Our home, where",
     "tituloEnfasis": "the magic happens",
-    "cuerpo": "The place we return to, edition after edition. Nature, a lake, and space for the community to come together."
+    "cuerpo": "The place we return to, edition after edition. Nature, a lake, and space for the community to come together.",
+    "imagenAlt": "Campo Lago, home of Dharma Fest, surrounded by nature"
   },
   "experiencias": {
     "kicker": "All year round",
@@ -89,7 +91,8 @@
     "kicker": "Behind Dharma",
     "tituloPagina": "Who we are",
     "cita": "We believe wellness has more than one shape. You live it, you share it, and you build it together.",
-    "autor": "Dharma Fest Team"
+    "autor": "Dharma Fest Team",
+    "imagenAlt": "Dharma Fest team"
   },
   "sumate": {
     "kicker": "Start your path",
@@ -126,6 +129,9 @@
     "menu": "Menu",
     "navPrincipal": "Main navigation",
     "navPrincipalMovil": "Main navigation (mobile)",
-    "idioma": "Language"
+    "idioma": "Language",
+    "idiomaActual": "current language",
+    "verEnIdioma": "View this page in",
+    "nombresIdioma": { "es": "Español", "en": "English" }
   }
 }

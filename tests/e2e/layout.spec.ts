@@ -57,13 +57,16 @@ test('el enlace de salto lleva al contenido principal', async ({ page }) => {
 test('el conmutador de idioma preserva la página', async ({ page }) => {
   await page.goto('/');
 
+  // El nombre accesible debe hablar el idioma de la página ACTUAL: en la
+  // home española, "Ver esta página en English" (no la frase en inglés).
   await abrirMenuSiHaceFalta(page);
-  await page.getByRole('link', { name: /english/i }).click();
+  await page.getByRole('link', { name: /ver esta página en english/i }).click();
   await expect(page).toHaveURL(/\/en\/$/);
 
   // Página recién cargada: el menú móvil vuelve a arrancar cerrado.
+  // Ahora en inglés, debe leerse "View this page in Español".
   await abrirMenuSiHaceFalta(page);
-  await page.getByRole('link', { name: /español/i }).click();
+  await page.getByRole('link', { name: /view this page in español/i }).click();
   await expect(page).toHaveURL(/localhost:4321\/$/);
 });
 
@@ -72,6 +75,39 @@ test('cada página declara hreflang para ambos idiomas', async ({ page }) => {
   await expect(page.locator('link[rel="alternate"][hreflang="es"]')).toHaveCount(1);
   await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
   await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
+});
+
+test.describe('el canonical y su hreflang autoreferencial coinciden', () => {
+  // Si difieren (p. ej. canonical con barra final y hreflang sin ella), los
+  // motores de búsqueda descartan el clúster bilingüe completo: por eso
+  // cada página se compara consigo misma, no solo se revisa que exista.
+  const paginas = [
+    '/',
+    '/en/',
+    '/marcas',
+    '/en/marcas',
+    '/experiencias',
+    '/en/experiencias',
+    '/experiencias/conecta-con-tu-piel',
+    '/en/experiencias/conecta-con-tu-piel',
+    '/nosotros',
+    '/en/nosotros',
+    '/2027',
+    '/en/2027',
+  ];
+
+  for (const ruta of paginas) {
+    test(`${ruta}`, async ({ page }) => {
+      await page.goto(ruta);
+
+      const lang = await page.locator('html').getAttribute('lang');
+      const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+      expect(canonical).toBeTruthy();
+
+      const autoreferencial = page.locator(`link[rel="alternate"][hreflang="${lang}"]`);
+      await expect(autoreferencial).toHaveAttribute('href', canonical!);
+    });
+  }
 });
 
 test.describe('menú móvil', () => {
