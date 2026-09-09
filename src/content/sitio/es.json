@@ -18,13 +18,13 @@
     "cta": "Sumate a la comunidad"
   },
   "ejes": [
-    { "nombre": "Charlas", "descripcion": "Conocimiento que se comparte." },
-    { "nombre": "Artistas", "descripcion": "Música en vivo todo el día." },
-    { "nombre": "Mercadito", "descripcion": "Marcas locales, hechas acá." },
-    { "nombre": "Actividades", "descripcion": "Respiración, movimiento, cuerpo." },
-    { "nombre": "Gastronomía", "descripcion": "Comida real, gente real." },
-    { "nombre": "Asociaciones", "descripcion": "Causas que nos importan." },
-    { "nombre": "Entretenimiento", "descripcion": "Arte, fuego y sorpresa." }
+    { "slug": "charlas", "nombre": "Charlas", "descripcion": "Conocimiento que se comparte." },
+    { "slug": "artistas", "nombre": "Artistas", "descripcion": "Música en vivo todo el día." },
+    { "slug": "mercadito", "nombre": "Mercadito", "descripcion": "Marcas locales, hechas acá." },
+    { "slug": "actividades", "nombre": "Actividades", "descripcion": "Respiración, movimiento, cuerpo." },
+    { "slug": "gastronomia", "nombre": "Gastronomía", "descripcion": "Comida real, gente real." },
+    { "slug": "asociaciones", "nombre": "Asociaciones", "descripcion": "Causas que nos importan." },
+    { "slug": "entretenimiento", "nombre": "Entretenimiento", "descripcion": "Arte, fuego y sorpresa." }
   ],
   "filosofia": {
     "kicker": "Qué significa Dharma",

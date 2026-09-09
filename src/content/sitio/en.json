@@ -18,13 +18,13 @@
     "cta": "Join the community"
   },
   "ejes": [
-    { "nombre": "Talks", "descripcion": "Knowledge worth sharing." },
-    { "nombre": "Artists", "descripcion": "Live music all day long." },
-    { "nombre": "Market", "descripcion": "Local brands, made right here." },
-    { "nombre": "Activities", "descripcion": "Breathwork, movement, body." },
-    { "nombre": "Food", "descripcion": "Real food, real people." },
-    { "nombre": "Partners", "descripcion": "Causes that matter to us." },
-    { "nombre": "Entertainment", "descripcion": "Art, fire, and surprise." }
+    { "slug": "charlas", "nombre": "Talks", "descripcion": "Knowledge worth sharing." },
+    { "slug": "artistas", "nombre": "Artists", "descripcion": "Live music all day long." },
+    { "slug": "mercadito", "nombre": "Market", "descripcion": "Local brands, made right here." },
+    { "slug": "actividades", "nombre": "Activities", "descripcion": "Breathwork, movement, body." },
+    { "slug": "gastronomia", "nombre": "Food", "descripcion": "Real food, real people." },
+    { "slug": "asociaciones", "nombre": "Partners", "descripcion": "Causes that matter to us." },
+    { "slug": "entretenimiento", "nombre": "Entertainment", "descripcion": "Art, fire, and surprise." }
   ],
   "filosofia": {
     "kicker": "What Dharma means",

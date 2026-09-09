@@ -28,9 +28,10 @@ test('los siete ejes existen como texto real, no solo en el marquee', async ({ p
 test('toda imagen de contenido en las secciones superiores tiene alt', async ({ page }) => {
   await page.goto('/');
   // La imagen de fondo del hero es la única excepción deliberada: es
-  // decoración y lleva alt="" a propósito (ver test siguiente), así que
-  // se excluye aquí para no confundir "decorativa" con "le falta el alt".
-  const imagenes = page.locator('main img:not([alt=""])');
+  // decoración y lleva alt="" a propósito (ver test siguiente). Se excluye
+  // por su sección (data-hero), no por tener alt="", para que cualquier
+  // otra imagen que llegue vacía por accidente siga fallando este test.
+  const imagenes = page.locator('main img:not(section[data-hero] img)');
   const total = await imagenes.count();
   expect(total).toBeGreaterThan(0);
 
@@ -40,10 +41,13 @@ test('toda imagen de contenido en las secciones superiores tiene alt', async ({ 
   }
 });
 
-test('la imagen de fondo del hero es decorativa', async ({ page }) => {
+test('la imagen de fondo del hero es decorativa, y es la única sin alt', async ({ page }) => {
   await page.goto('/');
   // Es el LCP: decoración de fondo, el h1 ya comunica el mensaje.
-  await expect(page.locator('main img').first()).toHaveAttribute('alt', '');
+  await expect(page.locator('section[data-hero] img')).toHaveAttribute('alt', '');
+
+  // Ninguna otra imagen de main debería quedar sin alt por accidente.
+  await expect(page.locator('main img[alt=""]')).toHaveCount(1);
 });
 
 test('la home inglesa traduce el hero', async ({ page }) => {

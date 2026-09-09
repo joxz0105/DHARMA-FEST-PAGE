@@ -20,14 +20,40 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const copy = getCopy(lang);
 
-// El orden calza con copy.ejes. La asimetría del bento sale de estas clases.
-const imagenes = [charlas, artistas, mercadito, actividades, gastronomia, asociaciones, entretenimiento];
-const areas = [
-  'md:col-span-2 md:row-span-2',
-  '', '', '', '',
-  'md:col-span-2',
-  'md:col-span-2',
-];
+// Se indexa por slug (no por posición) para que un reordenamiento o cambio
+// en copy.ejes no desalinee silenciosamente la imagen o el bento de su eje.
+const imagenesPorSlug: Record<string, ImageMetadata> = {
+  charlas,
+  artistas,
+  mercadito,
+  actividades,
+  gastronomia,
+  asociaciones,
+  entretenimiento,
+};
+
+// La asimetría del bento sale de estas clases, también por slug.
+const areasPorSlug: Record<string, string> = {
+  charlas: 'md:col-span-2 md:row-span-2',
+  artistas: '',
+  mercadito: '',
+  actividades: '',
+  gastronomia: '',
+  asociaciones: 'md:col-span-2',
+  entretenimiento: 'md:col-span-2',
+};
+
+function imagenDe(slug: string): ImageMetadata {
+  const imagen = imagenesPorSlug[slug];
+  if (!imagen) throw new Error(`Ejes.astro: no hay imagen para el slug "${slug}"`);
+  return imagen;
+}
+
+function areaDe(slug: string): string {
+  const area = areasPorSlug[slug];
+  if (area === undefined) throw new Error(`Ejes.astro: no hay área de grilla para el slug "${slug}"`);
+  return area;
+}
 ---
 
 <Seccion fondo="arena">
@@ -43,10 +69,10 @@ const areas = [
   <ul class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-4 md:auto-rows-[210px]">
     {
       copy.ejes.map((eje, i) => (
-        <li data-eje class={`relative overflow-hidden ${areas[i]}`}>
+        <li data-eje class={`relative overflow-hidden ${areaDe(eje.slug)}`}>
           <Reveal indice={i} class="h-full">
             <Image
-              src={imagenes[i]}
+              src={imagenDe(eje.slug)}
               alt={`${eje.nombre}: ${eje.descripcion}`}
               widths={[400, 800, 1200]}
               sizes="(min-width: 768px) 25vw, 50vw"
