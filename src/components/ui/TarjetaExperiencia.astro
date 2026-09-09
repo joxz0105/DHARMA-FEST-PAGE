@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  titulo: string;
+  resumen: string;
+  fecha: Date;
+  estado: 'proxima' | 'pasada';
+  portada: ImageMetadata;
+  portadaAlt: string;
+}
+
+const { lang, slug, titulo, resumen, fecha, estado, portada, portadaAlt } = Astro.props;
+const copy = getCopy(lang);
+
+// El slug del archivo viene como `es/nombre`; la URL solo lleva la parte final.
+const nombreArchivo = slug.split('/').pop()!;
+const href = localizePath(`/experiencias/${nombreArchivo}`, lang);
+
+const etiqueta =
+  estado === 'proxima'
+    ? `${copy.experiencias.etiquetaProxima} · ${fecha.toLocaleDateString(lang, { day: 'numeric', month: 'long' })}`
+    : copy.experiencias.etiquetaPasada;
+---
+
+<article data-experiencia class="group">
+  <a href={href} class="block">
+    <Image
+      src={portada}
+      alt={portadaAlt}
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 768px) 33vw, 100vw"
+      class="aspect-[4/3] w-full object-cover"
+    />
+    <p class="mt-4 font-ui text-kicker uppercase tracking-[0.18em] text-copal-ink">
+      {etiqueta}
+    </p>
+    <h3 class="mt-2 font-display text-2xl text-bosque group-hover:text-copal-ink">
+      {titulo}
+    </h3>
+    <p class="mt-2 text-sm text-salvia">{resumen}</p>
+  </a>
+</article>

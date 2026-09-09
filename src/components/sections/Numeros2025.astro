@@ -1,0 +1,40 @@
+---
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<Seccion id="numeros-2025" fondo="bosqueDeep" class="text-center">
+  <Reveal>
+    <Kicker tono="oscuro">{copy.numeros2025.kicker}</Kicker>
+    <TituloSeccion
+      texto={copy.numeros2025.titulo}
+      enfasis={copy.numeros2025.tituloEnfasis}
+      tono="oscuro"
+      class="mt-4"
+    />
+  </Reveal>
+
+  <ul class="mt-12 grid grid-cols-2 gap-8 md:grid-cols-4">
+    {copy.numeros2025.cifras.map((c, i) => (
+      <li data-cifra>
+        <Reveal indice={i}>
+          <p class="font-display text-5xl text-copal">{c.valor}</p>
+          <p class="mt-2 font-ui text-kicker uppercase tracking-[0.20em] text-arena">
+            {c.etiqueta}
+          </p>
+        </Reveal>
+      </li>
+    ))}
+  </ul>
+</Seccion>

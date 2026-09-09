@@ -1,0 +1,60 @@
+---
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Boton from '../ui/Boton.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+
+export interface MarcaEnGrid {
+  id: string;
+  nombre: string;
+  instagram: string;
+  url?: string;
+}
+
+interface Props {
+  lang: Lang;
+  /** Ya filtradas con publicables(). Si viene vacío, la sección no se renderiza. */
+  marcas: MarcaEnGrid[];
+}
+
+const { lang, marcas } = Astro.props;
+const copy = getCopy(lang);
+---
+
+{
+  marcas.length > 0 && (
+    <Seccion id="marcas" fondo="arena">
+      <Reveal>
+        <Kicker>{copy.marcas.kicker}</Kicker>
+        <TituloSeccion
+          texto={copy.marcas.titulo}
+          enfasis={copy.marcas.tituloEnfasis}
+          class="mt-4"
+        />
+      </Reveal>
+
+      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-6">
+        {marcas.map((m, i) => (
+          <li>
+            <Reveal indice={i}>
+              <a
+                href={m.url ?? `https://www.instagram.com/${m.instagram.replace('@', '')}/`}
+                rel="noopener"
+                class="flex h-20 items-center justify-center border border-piedra/40 px-3 text-center font-ui text-xs text-piedra transition-colors hover:border-copal-ink hover:text-copal-ink"
+              >
+                {m.nombre}
+              </a>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
+
+      <Boton href={`${localizePath('/marcas', lang)}#aplicar`} class="mt-12">
+        {copy.marcas.cta}
+      </Boton>
+    </Seccion>
+  )
+}

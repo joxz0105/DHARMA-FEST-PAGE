@@ -1,0 +1,62 @@
+---
+import type { ImageMetadata } from 'astro';
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import TarjetaExperiencia from '../ui/TarjetaExperiencia.astro';
+import { getCopy } from '../../lib/copy';
+import { localizePath, type Lang } from '../../lib/i18n';
+
+export interface ExperienciaEnTarjeta {
+  slug: string;
+  titulo: string;
+  resumen: string;
+  fecha: Date;
+  estado: 'proxima' | 'pasada';
+  portada: ImageMetadata;
+  portadaAlt: string;
+}
+
+interface Props {
+  lang: Lang;
+  experiencias: ExperienciaEnTarjeta[];
+}
+
+const { lang, experiencias } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<Seccion id="experiencias">
+  <div class="flex flex-wrap items-baseline justify-between gap-4">
+    <Reveal>
+      <Kicker>{copy.experiencias.kicker}</Kicker>
+      <TituloSeccion
+        texto={copy.experiencias.titulo}
+        enfasis={copy.experiencias.tituloEnfasis}
+        class="mt-4"
+      />
+    </Reveal>
+
+    <a
+      href={localizePath('/experiencias', lang)}
+      class="font-ui text-kicker uppercase tracking-[0.24em] text-copal-ink underline-offset-8 hover:underline"
+    >
+      {copy.experiencias.verTodas} →
+    </a>
+  </div>
+
+  {
+    experiencias.length === 0 ? (
+      <p class="mt-10 text-salvia">{copy.experiencias.vacio}</p>
+    ) : (
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        {experiencias.map((e, i) => (
+          <Reveal indice={i}>
+            <TarjetaExperiencia lang={lang} {...e} />
+          </Reveal>
+        ))}
+      </div>
+    )
+  }
+</Seccion>

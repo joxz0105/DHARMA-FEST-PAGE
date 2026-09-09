@@ -1,14 +1,30 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/sections/Hero.astro';
 import Marquee from '../components/sections/Marquee.astro';
 import Filosofia from '../components/sections/Filosofia.astro';
 import Ejes from '../components/sections/Ejes.astro';
 import CampoLago from '../components/sections/CampoLago.astro';
+import Experiencias from '../components/sections/Experiencias.astro';
+import Fest2027 from '../components/sections/Fest2027.astro';
+import Numeros2025 from '../components/sections/Numeros2025.astro';
+import Marcas from '../components/sections/Marcas.astro';
 import { getCopy } from '../lib/copy';
+import { experienciasDe, publicables } from '../lib/contenido';
 
 const lang = 'es' as const;
 const copy = getCopy(lang);
+
+const todas = await getCollection('experiencias');
+const experiencias = experienciasDe(
+  todas.map((e) => ({ slug: e.id, ...e.data })),
+  lang,
+).slice(0, 3);
+
+const marcas = publicables(
+  (await getCollection('marcas')).map((m) => ({ id: m.id, ...m.data })),
+);
 ---
 
 <Base
@@ -22,4 +38,8 @@ const copy = getCopy(lang);
   <Filosofia lang={lang} />
   <Ejes lang={lang} />
   <CampoLago lang={lang} />
+  <Experiencias lang={lang} experiencias={experiencias} />
+  <Fest2027 lang={lang} />
+  <Numeros2025 lang={lang} />
+  <Marcas lang={lang} marcas={marcas} />
 </Base>
