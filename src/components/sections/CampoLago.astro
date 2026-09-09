@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+import foto from '../../assets/img/campo-lago.jpg';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<section class="grid bg-bosque md:grid-cols-2">
+  <Image
+    src={foto}
+    alt="Campo Lago, sede de Dharma Fest, rodeado de naturaleza"
+    widths={[700, 1100, 1400]}
+    sizes="(min-width: 768px) 50vw, 100vw"
+    class="h-full min-h-[320px] w-full object-cover"
+  />
+
+  <div class="flex flex-col justify-center px-6 py-[var(--spacing-seccion)] md:px-16">
+    <Reveal>
+      <Kicker tono="oscuro">{copy.campoLago.kicker}</Kicker>
+      <TituloSeccion
+        texto={copy.campoLago.titulo}
+        enfasis={copy.campoLago.tituloEnfasis}
+        tono="oscuro"
+        class="mt-4"
+      />
+      <p class="mt-6 text-arena">{copy.campoLago.cuerpo}</p>
+    </Reveal>
+  </div>
+</section>

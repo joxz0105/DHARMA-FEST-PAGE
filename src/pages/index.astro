@@ -1,6 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import Reveal from '../components/ui/Reveal.astro';
+import Hero from '../components/sections/Hero.astro';
+import Marquee from '../components/sections/Marquee.astro';
+import Filosofia from '../components/sections/Filosofia.astro';
+import Ejes from '../components/sections/Ejes.astro';
+import CampoLago from '../components/sections/CampoLago.astro';
 import { getCopy } from '../lib/copy';
 
 const lang = 'es' as const;
@@ -13,9 +17,9 @@ const copy = getCopy(lang);
   lang={lang}
   rutaCanonica="/"
 >
-  <Reveal>
-    <h1 class="font-display text-hero px-6 pt-40 md:px-10">
-      {copy.hero.titulo} <em class="italic">{copy.hero.tituloEnfasis}</em>
-    </h1>
-  </Reveal>
+  <Hero lang={lang} />
+  <Marquee lang={lang} />
+  <Filosofia lang={lang} />
+  <Ejes lang={lang} />
+  <CampoLago lang={lang} />
 </Base>

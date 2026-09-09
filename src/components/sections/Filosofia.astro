@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+import foto from '../../assets/img/filosofia.jpg';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<section class="grid bg-lino md:grid-cols-2">
+  <div class="flex flex-col justify-center px-6 py-[var(--spacing-seccion)] md:px-16">
+    <Reveal>
+      <Kicker>{copy.filosofia.kicker}</Kicker>
+      <TituloSeccion
+        texto={copy.filosofia.titulo}
+        enfasis={copy.filosofia.tituloEnfasis}
+        class="mt-4"
+      />
+      <p class="mt-6 text-salvia">{copy.filosofia.cuerpo}</p>
+    </Reveal>
+  </div>
+
+  <Image
+    src={foto}
+    alt="Personas compartiendo en una experiencia Dharma"
+    widths={[700, 1100, 1400]}
+    sizes="(min-width: 768px) 50vw, 100vw"
+    class="h-full min-h-[320px] w-full object-cover"
+  />
+</section>

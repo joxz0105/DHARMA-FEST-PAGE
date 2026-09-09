@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import Seccion from '../ui/Seccion.astro';
+import Kicker from '../ui/Kicker.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import Reveal from '../ui/Reveal.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+
+import charlas from '../../assets/img/ejes/charlas.jpg';
+import artistas from '../../assets/img/ejes/artistas.jpg';
+import mercadito from '../../assets/img/ejes/mercadito.jpg';
+import actividades from '../../assets/img/ejes/actividades.jpg';
+import gastronomia from '../../assets/img/ejes/gastronomia.jpg';
+import asociaciones from '../../assets/img/ejes/asociaciones.jpg';
+import entretenimiento from '../../assets/img/ejes/entretenimiento.jpg';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+
+// El orden calza con copy.ejes. La asimetría del bento sale de estas clases.
+const imagenes = [charlas, artistas, mercadito, actividades, gastronomia, asociaciones, entretenimiento];
+const areas = [
+  'md:col-span-2 md:row-span-2',
+  '', '', '', '',
+  'md:col-span-2',
+  'md:col-span-2',
+];
+---
+
+<Seccion fondo="arena">
+  <Reveal>
+    <Kicker>{copy.ejesSeccion.kicker}</Kicker>
+    <TituloSeccion
+      texto={copy.ejesSeccion.titulo}
+      enfasis={copy.ejesSeccion.tituloEnfasis}
+      class="mt-4"
+    />
+  </Reveal>
+
+  <ul class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-4 md:auto-rows-[210px]">
+    {
+      copy.ejes.map((eje, i) => (
+        <li data-eje class={`relative overflow-hidden ${areas[i]}`}>
+          <Reveal indice={i} class="h-full">
+            <Image
+              src={imagenes[i]}
+              alt={`${eje.nombre}: ${eje.descripcion}`}
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 768px) 25vw, 50vw"
+              class="h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,rgba(30,53,39,0.85))]"
+            />
+            <div class="absolute inset-x-0 bottom-0 p-4">
+              <p class="font-ui text-kicker uppercase tracking-[0.16em] text-lino">
+                {eje.nombre}
+              </p>
+              <p class="mt-1 font-display text-lg text-arena">{eje.descripcion}</p>
+            </div>
+          </Reveal>
+        </li>
+      ))
+    }
+  </ul>
+</Seccion>

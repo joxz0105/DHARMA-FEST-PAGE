@@ -98,8 +98,10 @@ test.describe('sin JavaScript', () => {
 
   test('el contenido dentro de Reveal sigue siendo visible', async ({ page }) => {
     await page.goto('/');
-    // El h1 de la home está envuelto en <Reveal>: sin JS, el <noscript> debe
-    // forzar opacity/transform a su estado final para que siga siendo visible.
+    // El h1 del hero es el LCP y no va envuelto en <Reveal> (tiene que pintar
+    // de inmediato). El primer .dh-reveal real de la home es el bloque de
+    // Filosofía: sin JS, el <noscript> debe forzar opacity/transform a su
+    // estado final para que siga siendo visible.
     //
     // OJO: toBeVisible() de Playwright NO basta como aserción aquí, porque su
     // chequeo de visibilidad ignora `opacity` (solo mira display, visibility

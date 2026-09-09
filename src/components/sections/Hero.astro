@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import Boton from '../ui/Boton.astro';
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+import portada from '../../assets/img/hero.jpg';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+---
+
+<section class="relative flex min-h-[92svh] items-center justify-center overflow-hidden">
+  <Image
+    src={portada}
+    alt=""
+    widths={[900, 1400, 2000, 2400]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,53,39,0.66),rgba(30,53,39,0.42)_45%,rgba(30,53,39,0.78))]"
+  >
+  </div>
+
+  <div class="relative z-10 px-6 text-center text-lino md:px-10">
+    <p class="font-ui text-kicker uppercase tracking-[0.32em] text-copal">
+      {copy.hero.kicker}
+    </p>
+
+    <h1 class="mt-5 font-display text-hero">
+      {copy.hero.titulo}<br /><em class="italic">{copy.hero.tituloEnfasis}</em>
+    </h1>
+
+    <p class="mt-4 font-ui text-sm tracking-[0.06em] opacity-90">{copy.hero.subtitulo}</p>
+
+    <Boton href="#sumate" variante="contorno" class="mt-8">{copy.hero.cta}</Boton>
+  </div>
+</section>

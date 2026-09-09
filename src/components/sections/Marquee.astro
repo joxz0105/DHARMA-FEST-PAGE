@@ -1,0 +1,41 @@
+---
+import { getCopy } from '../../lib/copy';
+import type { Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const copy = getCopy(lang);
+
+// Se duplica la lista para que el loop no muestre huecos al reiniciarse.
+const nombres = copy.ejes.map((e) => e.nombre);
+const cinta = [...nombres, ...nombres];
+---
+
+<div data-marquee aria-hidden="true" class="overflow-hidden bg-bosque py-4 text-arena">
+  <div class="dh-cinta flex w-max gap-8 whitespace-nowrap">
+    {
+      cinta.map((nombre) => (
+        <span class="font-ui text-kicker uppercase tracking-[0.28em]">
+          {nombre} <span class="text-copal">✦</span>
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .dh-cinta {
+    animation: dh-desplazar 38s linear infinite;
+  }
+
+  @keyframes dh-desplazar {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Restricción global: sin movimiento, la cinta se queda quieta. */
+  @media (prefers-reduced-motion: reduce) {
+    .dh-cinta { animation: none; }
+  }
+</style>
