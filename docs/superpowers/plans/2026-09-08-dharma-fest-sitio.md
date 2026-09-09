@@ -18,7 +18,7 @@ Cada tarea hereda implícitamente estas reglas.
 
 - **Paleta exacta.** `--dh-bosque #1E3527` · `--dh-bosque-deep #16281D` · `--dh-salvia #4A5B4F` · `--dh-lino #F6F2E9` · `--dh-arena #D9CFBB` · `--dh-piedra #8A7B5F` · `--dh-copal #E38B4A` · `--dh-copal-ink #A85A24`. No inventar tonos intermedios.
 - **Regla de contraste.** `--dh-copal` sobre fondo claro solo en texto ≥24 px, decoración, o relleno de botón con texto oscuro. Texto pequeño de acento sobre claro usa `--dh-copal-ink`. Sobre fondo oscuro, `--dh-copal` vale en cualquier tamaño.
-- **Tipografía.** Display: Cormorant Garamond 300/400 + itálica. Interfaz: Jost 300/400/500. Auto-hospedadas. Prohibido pedir fuentes a Google en runtime.
+- **Tipografía.** Display: Cormorant Garamond 300/400 + itálica. Interfaz: Jost 300/400/500. Auto-hospedadas con los paquetes **variables** de Fontsource, ya instalados. Las familias CSS se llaman **`'Cormorant Garamond Variable'`** y **`'Jost Variable'`** — con el nombre sin sufijo la fuente no carga y cae al respaldo del sistema sin avisar. Prohibido pedir fuentes a Google en runtime.
 - **Movimiento.** Toda animación se desactiva bajo `prefers-reduced-motion: reduce`, incluido el marquee.
 - **Alt obligatorio.** Toda imagen de contenido lleva `alt` no vacío, forzado por esquema Zod. El build debe fallar si falta.
 - **Idiomas.** Español en la raíz (`/`), inglés en `/en`. Los segmentos de ruta son idénticos en ambos idiomas (`/en/experiencias`, no `/en/experiences`).
@@ -82,7 +82,7 @@ Arranca el proyecto y cierra de entrada el riesgo de accesibilidad más probable
 cd "C:/Users/jovag/OneDrive/Escritorio/PROYECTOS/dharma_festcr"
 npm init -y
 npm install astro
-npm install -D typescript vitest @tailwindcss/vite tailwindcss sharp
+npm install -D typescript @astrojs/check vitest @tailwindcss/vite tailwindcss sharp
 npm install @fontsource-variable/jost @fontsource/cormorant-garamond
 ```
 
@@ -327,8 +327,8 @@ Crear `src/styles/tokens.css`. Los hex deben coincidir carácter por carácter c
   --color-copal: #E38B4A;
   --color-copal-ink: #A85A24;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-ui: 'Jost', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond Variable', Georgia, serif;
+  --font-ui: 'Jost Variable', system-ui, sans-serif;
 
   --text-hero: clamp(2.75rem, 7vw, 6rem);
   --text-seccion: clamp(2rem, 4.5vw, 3.5rem);
@@ -433,9 +433,8 @@ Crear `src/layouts/Base.astro`:
 ```astro
 ---
 import '../styles/global.css';
-import '@fontsource/cormorant-garamond/300.css';
-import '@fontsource/cormorant-garamond/300-italic.css';
-import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource-variable/cormorant-garamond';
+import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 import '@fontsource-variable/jost';
 
 interface Props {
@@ -968,7 +967,7 @@ Estos cuatro valores ingleses están **fijados por tests posteriores** y no se p
 | `hero.tituloEnfasis` | `more than one shape` | Task 6, `home-superior.spec.ts` |
 | `sumate.etiquetaCorreo` | `Your email address` | Task 8, `sumate.spec.ts` |
 | `sumate.boton` | `Join` | Task 8, `sumate.spec.ts` |
-| `a11y.saltarContenido` | `Skip to content` | Task 5, `layout.spec.ts` (variante inglesa) |
+| `a11y.saltarContenido` | `Skip to content` | Ningún test lo afirma; se fija acá para que ambos idiomas usen el mismo término |
 
 Si se cambia alguno, actualizar el test en la misma tarea.
 
@@ -1937,9 +1936,8 @@ Reemplazar por completo `src/layouts/Base.astro`:
 ```astro
 ---
 import '../styles/global.css';
-import '@fontsource/cormorant-garamond/300.css';
-import '@fontsource/cormorant-garamond/300-italic.css';
-import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource-variable/cormorant-garamond';
+import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 import '@fontsource-variable/jost';
 
 import Header from '../components/layout/Header.astro';
