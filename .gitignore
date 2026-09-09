@@ -1,0 +1,36 @@
+# dependencias
+node_modules/
+.pnpm-store/
+
+# build de next
+.next/
+out/
+next-env.d.ts
+
+# despliegue (no se usa, pero que no se cuele)
+.vercel/
+.netlify/
+
+# entorno
+.env
+.env.*
+!.env.example
+
+# datos de personas capturados por los formularios
+data/
+
+# companion de brainstorming
+.superpowers/
+
+# sistema operativo / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# pruebas
+test-results/
+playwright-report/
