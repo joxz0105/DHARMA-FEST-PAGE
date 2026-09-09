@@ -2397,6 +2397,8 @@ const areas = [
 
 Es una `<ul>` y no una pila de `<div>` porque semánticamente son siete cosas del mismo tipo. El `alt` combina nombre y descripción, así que quien no ve las fotos recibe la misma información.
 
+**Corregido durante la implementación:** el código de arriba parea imágenes y clases de grid con `copy.ejes` **por índice**, y eso es frágil — reordenar el JSON despareja las fotos en silencio, y agregar un octavo eje rompe el build con `<Image src={undefined}>`. La versión que quedó en el repo agrega un campo `slug` a cada eje (igual en ambos idiomas) y usa objetos indexados por ese slug, con un error explícito si falta. Al escribir código nuevo que consuma `copy.ejes`, usar el slug, nunca la posición.
+
 - [ ] **Step 7: Componer la home**
 
 Reemplazar el `<Base>` de `src/pages/index.astro` por:
