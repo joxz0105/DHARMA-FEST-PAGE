@@ -1,0 +1,32 @@
+# dependencias
+node_modules/
+.pnpm-store/
+
+# build
+dist/
+.astro/
+.output/
+.vercel/
+.netlify/
+
+# entorno
+.env
+.env.*
+!.env.example
+
+# companion de brainstorming
+.superpowers/
+
+# sistema operativo / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+npm-debug.log*
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# pruebas
+test-results/
+playwright-report/
