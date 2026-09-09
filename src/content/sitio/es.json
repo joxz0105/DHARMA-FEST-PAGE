@@ -79,6 +79,7 @@
     "kicker": "Lo construimos entre todos",
     "titulo": "Las marcas que",
     "tituloEnfasis": "lo hacen posible",
+    "tituloPagina": "Marcas aliadas",
     "cta": "Quiero ser parte",
     "cuerpoAplicar": "¿Tu marca quiere ser parte de la próxima edición? Escribinos por Instagram y coordinamos los detalles.",
     "ctaInstagram": "Escribinos por Instagram"
@@ -86,6 +87,7 @@
   "voces": { "kicker": "La comunidad" },
   "nosotros": {
     "kicker": "Detrás de Dharma",
+    "tituloPagina": "Quiénes somos",
     "cita": "Creemos que el bienestar no tiene una sola forma. Se vive, se comparte y se construye en comunidad.",
     "autor": "Equipo Dharma Fest"
   },
