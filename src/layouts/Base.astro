@@ -21,7 +21,12 @@ const { titulo, descripcion, lang, rutaCanonica } = Astro.props;
 
 const alternativas = alternates(rutaCanonica);
 const canonica = new URL(Astro.url.pathname, Astro.site);
-const porDefecto = alternativas.find((a) => a.lang === DEFAULT_LANG)!;
+const porDefecto = alternativas.find((a) => a.lang === DEFAULT_LANG);
+if (!porDefecto) {
+  throw new Error(
+    `alternates() no devolvió el idioma por defecto ("${DEFAULT_LANG}") para "${rutaCanonica}"`,
+  );
+}
 ---
 
 <!doctype html>

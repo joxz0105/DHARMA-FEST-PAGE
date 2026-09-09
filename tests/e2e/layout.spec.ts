@@ -49,6 +49,9 @@ test('el enlace de salto lleva al contenido principal', async ({ page }) => {
   await salto.press('Enter');
   await expect(page).toHaveURL(/#contenido$/);
   await expect(page.locator('#contenido')).toBeVisible();
+  // El propósito del enlace de salto es mover el foco, no solo cambiar la URL:
+  // <main> lleva tabindex="-1" precisamente para poder recibir el foco aquí.
+  await expect(page.locator('#contenido')).toBeFocused();
 });
 
 test('el conmutador de idioma preserva la página', async ({ page }) => {
@@ -97,6 +100,18 @@ test.describe('sin JavaScript', () => {
     await page.goto('/');
     // El h1 de la home está envuelto en <Reveal>: sin JS, el <noscript> debe
     // forzar opacity/transform a su estado final para que siga siendo visible.
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    //
+    // OJO: toBeVisible() de Playwright NO basta como aserción aquí, porque su
+    // chequeo de visibilidad ignora `opacity` (solo mira display, visibility
+    // y el bounding box). Un elemento con opacity: 0 reporta isVisible() ===
+    // true, así que si la red del <noscript> se rompe (p. ej. se pierde el
+    // !important), este test seguiría en verde aunque el contenido fuera
+    // invisible para una persona real. Por eso se afirma sobre el estilo
+    // computado: el test debe fallar si opacity no es exactamente '1'.
+    const envoltorio = page.locator('.dh-reveal').first();
+    await expect(envoltorio).toBeVisible();
+
+    const opacidad = await envoltorio.evaluate((el) => getComputedStyle(el).opacity);
+    expect(opacidad).toBe('1');
   });
 });
