@@ -12,6 +12,16 @@
 
 ---
 
+## Trampas ya encontradas — leer antes de escribir tests
+
+Cada una costó una revisión completa. No repetirlas.
+
+- **`toBeVisible()` de Playwright ignora `opacity`.** Solo mira `display`, `visibility` y la caja. Un elemento con `opacity: 0` reporta `isVisible() === true`. Para afirmar que algo se ve de verdad — cualquier cosa envuelta en `Reveal` — hay que leer el estilo computado: `await el.evaluate((e) => getComputedStyle(e).opacity)`.
+- **Un test guardián que nunca se vio fallar no es un guardián.** Al escribir un test que protege contra una regresión concreta, romper a propósito el código que protege, ver el test en rojo, y restaurarlo. Si no se puede ver fallar, no sirve.
+- **La barra de desarrollo de Astro inyecta su propio botón "Menu".** Una consulta global `getByRole('button', { name: /menu/i })` lo captura. Acotar los localizadores a la región: `page.getByRole('banner').getByRole(...)`.
+- **`grep -o '<patrón>.*</patrón>'` no cruza saltos de línea** y hace creer que un bloque desapareció del HTML construido. Usar una comprobación multilínea con Node.
+- **Los scripts de componente de Astro cargan como módulos diferidos.** Interactuar con ellos justo después de navegar puede ganarle al `addEventListener`. Esperar `page.waitForLoadState('load')` antes del primer clic.
+
 ## Global Constraints
 
 Cada tarea hereda implícitamente estas reglas.
@@ -978,8 +988,7 @@ Crear `src/content/sitio/es.json`. Todo el copy sale del Instagram del cliente, 
   },
   "a11y": {
     "saltarContenido": "Saltar al contenido",
-    "menuAbrir": "Abrir menú",
-    "menuCerrar": "Cerrar menú",
+    "menu": "Menú",
     "navPrincipal": "Navegación principal",
     "idioma": "Idioma"
   }
@@ -1845,9 +1854,7 @@ const enlaces = [
       id="menu-toggle"
       aria-expanded="false"
       aria-controls="nav-movil"
-      aria-label={copy.a11y.menuAbrir}
-      data-abrir={copy.a11y.menuAbrir}
-      data-cerrar={copy.a11y.menuCerrar}
+      aria-label={copy.a11y.menu}
       class="md:hidden"
     >
       <span aria-hidden="true" class="block h-px w-7 bg-lino"></span>
