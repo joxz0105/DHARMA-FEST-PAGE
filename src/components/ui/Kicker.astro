@@ -1,0 +1,15 @@
+---
+interface Props {
+  tono?: 'claro' | 'oscuro';
+  class?: string;
+}
+
+const { tono = 'claro', class: clase = '' } = Astro.props;
+
+// Sobre fondo claro el acento no alcanza AA en texto pequeño: se usa piedra.
+const color = tono === 'claro' ? 'text-piedra' : 'text-copal';
+---
+
+<p class={`font-ui text-kicker uppercase tracking-[0.30em] ${color} ${clase}`}>
+  <slot />
+</p>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  variante?: 'solido' | 'contorno';
+  class?: string;
+}
+
+const { href, variante = 'solido', class: clase = '' } = Astro.props;
+
+// Sólido: relleno copal con texto bosque, que sí cumple AA en cualquier tamaño.
+// Contorno: pensado para fondos oscuros, con texto lino.
+const estilo =
+  variante === 'solido'
+    ? 'bg-copal text-bosque hover:bg-copal-ink hover:text-lino'
+    : 'border border-copal text-lino hover:bg-copal hover:text-bosque';
+---
+
+<a
+  href={href}
+  class={`inline-block font-ui text-kicker uppercase tracking-[0.24em] px-7 py-3 transition-colors ${estilo} ${clase}`}
+>
+  <slot />
+</a>

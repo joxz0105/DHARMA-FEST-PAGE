@@ -1,0 +1,22 @@
+---
+interface Props {
+  fondo?: 'lino' | 'arena' | 'bosque' | 'bosqueDeep';
+  id?: string;
+  class?: string;
+}
+
+const { fondo = 'lino', id, class: clase = '' } = Astro.props;
+
+const fondos = {
+  lino: 'bg-lino',
+  arena: 'bg-arena',
+  bosque: 'bg-bosque',
+  bosqueDeep: 'bg-bosque-deep',
+} as const;
+---
+
+<section id={id} class={`${fondos[fondo]} py-[var(--spacing-seccion)] ${clase}`}>
+  <div class="mx-auto w-full max-w-[1280px] px-6 md:px-10">
+    <slot />
+  </div>
+</section>

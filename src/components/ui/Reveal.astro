@@ -1,0 +1,70 @@
+---
+import { retrasoEscalonado } from '../../lib/motion';
+
+interface Props {
+  indice?: number;
+  class?: string;
+}
+
+const { indice = 0, class: clase = '' } = Astro.props;
+const retraso = retrasoEscalonado(indice);
+---
+
+<div class={`dh-reveal ${clase}`} style={`--dh-retraso: ${retraso}ms`}>
+  <slot />
+</div>
+
+<style>
+  .dh-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 600ms var(--ease-dharma) var(--dh-retraso),
+      transform 600ms var(--ease-dharma) var(--dh-retraso);
+  }
+
+  .dh-reveal.dh-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Restricción global: sin movimiento, el contenido nace visible. */
+  @media (prefers-reduced-motion: reduce) {
+    .dh-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<noscript>
+  <style>
+    .dh-reveal { opacity: 1; transform: none; }
+  </style>
+</noscript>
+
+<script>
+  import { debeAnimar } from '../../lib/motion';
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const objetivos = document.querySelectorAll<HTMLElement>('.dh-reveal');
+
+  if (!debeAnimar(reduce)) {
+    objetivos.forEach((el) => el.classList.add('dh-visible'));
+  } else {
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        for (const entrada of entradas) {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('dh-visible');
+            observador.unobserve(entrada.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px' },
+    );
+
+    objetivos.forEach((el) => observador.observe(el));
+  }
+</script>

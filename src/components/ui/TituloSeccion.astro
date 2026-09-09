@@ -1,0 +1,20 @@
+---
+interface Props {
+  texto: string;
+  enfasis?: string;
+  nivel?: 1 | 2 | 3;
+  tono?: 'claro' | 'oscuro';
+  class?: string;
+}
+
+const { texto, enfasis, nivel = 2, tono = 'claro', class: clase = '' } = Astro.props;
+
+const Etiqueta = `h${nivel}` as 'h1' | 'h2' | 'h3';
+const tamano = nivel === 1 ? 'text-hero' : 'text-seccion';
+const color = tono === 'claro' ? 'text-bosque' : 'text-lino';
+---
+
+<Etiqueta class={`font-display ${tamano} ${color} ${clase}`}>
+  {texto}
+  {enfasis && <><br /><em class="italic">{enfasis}</em></>}
+</Etiqueta>
