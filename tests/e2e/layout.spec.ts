@@ -1,4 +1,27 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+
+/**
+ * Debajo del breakpoint md el conmutador de idioma vive dentro del menú
+ * móvil, que arranca cerrado. Si el botón de la hamburguesa es visible
+ * (viewport móvil), lo abre antes de buscar el enlace de idioma.
+ *
+ * Se busca por nombre accesible dentro del <header>: en modo dev, la
+ * barra de herramientas de Astro inyecta su propio botón "Menu" fuera
+ * del header y colisionaría con una búsqueda global por rol.
+ */
+const localizarBotonMenu = (page: Page) =>
+  page.getByRole('banner').getByRole('button', { name: /^men[uú]$/i });
+
+const abrirMenuSiHaceFalta = async (page: Page) => {
+  const hamburguesa = localizarBotonMenu(page);
+  if (!(await hamburguesa.isVisible())) return;
+
+  // Tras una navegación de página completa (MPA), el script que engancha
+  // el listener del botón puede no haberse ejecutado aún si se hace clic
+  // de inmediato; se espera a que la carga termine para evitar esa carrera.
+  await page.waitForLoadState('load');
+  await hamburguesa.click();
+};
 
 test('la home española carga con lang correcto', async ({ page }) => {
   await page.goto('/');
@@ -30,9 +53,13 @@ test('el enlace de salto lleva al contenido principal', async ({ page }) => {
 
 test('el conmutador de idioma preserva la página', async ({ page }) => {
   await page.goto('/');
+
+  await abrirMenuSiHaceFalta(page);
   await page.getByRole('link', { name: /english/i }).click();
   await expect(page).toHaveURL(/\/en\/$/);
 
+  // Página recién cargada: el menú móvil vuelve a arrancar cerrado.
+  await abrirMenuSiHaceFalta(page);
   await page.getByRole('link', { name: /español/i }).click();
   await expect(page).toHaveURL(/localhost:4321\/$/);
 });
@@ -50,7 +77,7 @@ test.describe('menú móvil', () => {
   test('abre, navega por teclado y cierra con Escape', async ({ page }) => {
     await page.goto('/');
 
-    const abrir = page.getByRole('button', { name: /abrir menú/i });
+    const abrir = localizarBotonMenu(page);
     await expect(abrir).toHaveAttribute('aria-expanded', 'false');
 
     await abrir.click();

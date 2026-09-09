@@ -45,7 +45,7 @@ const enlaces = [
       id="menu-toggle"
       aria-expanded="false"
       aria-controls="nav-movil"
-      aria-label={copy.a11y.menuAbrir}
+      aria-label={copy.a11y.menu}
       class="md:hidden"
     >
       <span aria-hidden="true" class="block h-px w-7 bg-lino"></span>
@@ -77,9 +77,10 @@ const enlaces = [
   const menu = document.getElementById('nav-movil');
 
   if (boton && menu) {
-    // El nombre accesible del botón se mantiene fijo; aria-expanded ya
-    // comunica el estado a la tecnología de asistencia. Cambiarlo en cada
-    // toggle rompería a quien busque el botón por su nombre accesible.
+    // El nombre accesible del botón ("Menú") se mantiene fijo y neutro;
+    // aria-expanded ya comunica el estado a la tecnología de asistencia.
+    // Cambiarlo en cada toggle rompería a quien busque el botón por su
+    // nombre accesible.
     const fijar = (abierto: boolean) => {
       boton.setAttribute('aria-expanded', String(abierto));
       menu.hidden = !abierto;

@@ -117,8 +117,7 @@
   },
   "a11y": {
     "saltarContenido": "Saltar al contenido",
-    "menuAbrir": "Abrir menú",
-    "menuCerrar": "Cerrar menú",
+    "menu": "Menú",
     "navPrincipal": "Navegación principal",
     "idioma": "Idioma"
   }

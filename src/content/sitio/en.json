@@ -117,8 +117,7 @@
   },
   "a11y": {
     "saltarContenido": "Skip to content",
-    "menuAbrir": "Open menu",
-    "menuCerrar": "Close menu",
+    "menu": "Menu",
     "navPrincipal": "Main navigation",
     "idioma": "Language"
   }
