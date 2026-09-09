@@ -167,10 +167,13 @@ La 4ta edición en detalle. **Bloqueada parcialmente: no hay fecha** (§10).
 
 Quiénes somos y asociaciones aliadas. **Bloqueada: no se sabe quién está detrás** (§10).
 
-### `/gracias` y `/privacidad`
+### `/privacidad`
 
-Confirmación post-formulario (una variante por tipo de captura) y política de privacidad
-(maquetada, texto pendiente del cliente).
+Política de privacidad maquetada, texto pendiente del cliente.
+
+La confirmación tras enviar un formulario **no es una página aparte**: ocurre en el mismo lugar
+del formulario, con `role="status"`. No se pierde el contexto y el lector de pantalla anuncia el
+cambio sin recargar.
 
 ## 7. Modelo de contenido
 
