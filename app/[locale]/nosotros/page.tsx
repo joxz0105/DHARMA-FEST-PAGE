@@ -31,11 +31,11 @@ export default async function Nosotros({
   return (
     <main id="contenido" tabIndex={-1} className="pt-28">
       <Seccion>
-        <TituloDisplay como="h1" className="text-palido">
+        <TituloDisplay como="h1" className="text-verde-hondo">
           {t("nosotrosTitulo")}
         </TituloDisplay>
         {/* El cuerpo es copy literal del deck (lamina 2), no borrador. */}
-        <p className="mt-10 max-w-2xl font-texto text-xl leading-relaxed text-hueso/90">
+        <p className="mt-10 max-w-2xl font-texto text-xl leading-relaxed text-tinta/90">
           {t("nosotrosCuerpo")}
         </p>
         {/* PENDIENTE DEL CLIENTE: no se sabe quien esta detras de la marca.

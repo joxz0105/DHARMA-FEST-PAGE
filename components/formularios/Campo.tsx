@@ -19,12 +19,12 @@ export function Campo({
   filas?: number;
 }) {
   const clases =
-    "rounded border border-hueso/30 bg-transparent px-4 py-3 font-texto text-hueso placeholder:text-hueso/40";
+    "rounded border border-tinta/25 bg-transparent px-4 py-3 font-texto text-tinta placeholder:text-tinta/40";
   const idError = error ? `${nombre}-error` : undefined;
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="flex flex-col gap-2 font-texto text-sm text-hueso/85">
+      <label className="flex flex-col gap-2 font-texto text-sm text-tinta/80">
         {etiqueta}
         {filas ? (
           <textarea name={nombre} rows={filas} className={clases} />
@@ -41,7 +41,7 @@ export function Campo({
         )}
       </label>
       {error ? (
-        <p id={idError} role="alert" className="font-texto text-sm text-lima">
+        <p id={idError} role="alert" className="font-texto text-sm text-verde-texto">
           {textoError}
         </p>
       ) : null}

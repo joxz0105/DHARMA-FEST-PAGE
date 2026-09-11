@@ -21,7 +21,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
   return {
-    title: "Dharma Fest · Camp Lago, Costa Rica",
+    title: "Dharma Fest · Campo Lago, Costa Rica",
     description: t("quienesSomosCuerpo"),
     alternates: alternativas("", locale),
     openGraph: {

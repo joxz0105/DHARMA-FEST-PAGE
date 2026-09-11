@@ -31,3 +31,36 @@ Clasifica por tamaño, y eso alcanza para separar fotos de logos, pero **no** pa
 saber qué foto corresponde a cuál actividad o tema. Ese pareo se hizo mirando las
 imágenes y está escrito a mano en `content/actividades.json` y `content/temas.json`.
 Si se vuelve a correr el script con un deck nuevo, hay que revisar ese pareo.
+
+## `recolorear_logos.py`
+
+Los 61 logos de marcas y los 4 de asociaciones vienen **blancos** del deck,
+porque ahí viven sobre láminas oscuras. El sitio es claro: sobre papel blanco
+desaparecen por completo.
+
+Este script les cambia el color a `--color-tinta` conservando el canal alfa.
+Es idempotente, así que se puede correr las veces que haga falta.
+
+```
+python scripts/recolorear_logos.py
+```
+
+Se corre **después** de `extraer_imagenes.py`. La salida está commiteada.
+
+### Si cambiás una imagen y el navegador sigue mostrando la vieja
+
+Next 16 cachea las imágenes ya optimizadas en **`.next/dev/cache/images`** —
+no en `.next/cache/images`, que es donde uno las busca primero. Ahí guarda
+también las variantes AVIF, que son las que sirve al navegador aunque `curl`
+reciba el PNG.
+
+Para verlo actualizado hay que **apagar el servidor**, borrar esa carpeta y
+volver a levantarlo. Borrarla con el servidor corriendo no alcanza: la vuelve
+a escribir al salir.
+
+```
+rm -rf .next/dev/cache/images
+```
+
+No afecta a las pruebas: los e2e corren contra un build de producción en
+`.next-test`, que se genera de cero en cada corrida.

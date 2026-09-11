@@ -8,9 +8,9 @@ export function ImpactoSocial() {
   const t = useTranslations("home");
   return (
     <Seccion id="impacto">
-      <TituloDisplay className="text-lima-humo">{t("impactoTitulo")}</TituloDisplay>
-      <p className="mt-2 font-display text-3xl italic text-palido">{t("impactoSubtitulo")}</p>
-      <p className="mt-6 max-w-xl font-texto text-lg text-hueso/85">{t("impactoCuerpo")}</p>
+      <TituloDisplay className="text-verde-hondo">{t("impactoTitulo")}</TituloDisplay>
+      <p className="mt-2 font-display text-3xl italic text-verde-hondo">{t("impactoSubtitulo")}</p>
+      <p className="mt-6 max-w-xl font-texto text-lg text-tinta/80">{t("impactoCuerpo")}</p>
       <div className="mt-14">
         <MuroLogos
           logos={getAsociaciones()}

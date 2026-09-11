@@ -10,8 +10,8 @@ export function MarcasQueConfian() {
   return (
     <Seccion id="marcas">
       <FondoSelva opacidad={0.2} />
-      <TituloDisplay className="text-lima">{t("marcasTitulo")}</TituloDisplay>
-      <p className="mt-1 font-display text-3xl italic text-palido md:text-4xl">
+      <TituloDisplay className="text-verde-texto">{t("marcasTitulo")}</TituloDisplay>
+      <p className="mt-1 font-display text-3xl italic text-verde-hondo md:text-4xl">
         {t("marcasSubtitulo")}
       </p>
       <div className="mt-16">

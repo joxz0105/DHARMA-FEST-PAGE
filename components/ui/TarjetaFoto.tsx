@@ -1,5 +1,13 @@
 import Image from "next/image";
 
+/**
+ * Tarjeta de foto con etiqueta, como las del deck.
+ *
+ * La etiqueta va DEBAJO de la foto, no encima. En la version oscura iba sobre
+ * un degradado negro; con el tema claro ese degradado seria una mancha oscura
+ * justo de lo que el cliente pidio sacar, y aclararlo dejaba la etiqueta
+ * ilegible sobre fotos claras. Fuera de la imagen se lee siempre.
+ */
 export function TarjetaFoto({
   src,
   alt,
@@ -12,23 +20,18 @@ export function TarjetaFoto({
   prioridad?: boolean;
 }) {
   return (
-    <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl">
-      <Image
-        src={`/img/${src}`}
-        alt={alt}
-        fill
-        priority={prioridad}
-        sizes="(max-width: 768px) 50vw, 20vw"
-        className="object-cover"
-      />
-      {/* El degradado no es adorno: sostiene el contraste de la etiqueta. */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-noche via-noche/75 to-transparent"
-      />
-      <figcaption className="absolute bottom-4 left-4 right-4 font-texto text-sm text-hueso">
-        {etiqueta}
-      </figcaption>
+    <figure className="flex flex-col gap-3">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl ring-1 ring-tinta/10">
+        <Image
+          src={`/img/${src}`}
+          alt={alt}
+          fill
+          priority={prioridad}
+          sizes="(max-width: 768px) 50vw, 20vw"
+          className="object-cover"
+        />
+      </div>
+      <figcaption className="font-texto text-sm text-tinta/80">{etiqueta}</figcaption>
     </figure>
   );
 }

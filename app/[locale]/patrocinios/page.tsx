@@ -46,8 +46,8 @@ export default async function Patrocinios({
       <Mercadito />
       <MarcasQueConfian />
       <Seccion id="propuesta">
-        <TituloDisplay className="text-lima">{t("propuestaTitulo")}</TituloDisplay>
-        <p className="mt-6 max-w-xl font-texto text-lg text-hueso/85">{t("propuestaCuerpo")}</p>
+        <TituloDisplay className="text-verde-texto">{t("propuestaTitulo")}</TituloDisplay>
+        <p className="mt-6 max-w-xl font-texto text-lg text-tinta/80">{t("propuestaCuerpo")}</p>
         <div className="mt-10">
           <FormPropuesta />
         </div>

@@ -42,25 +42,25 @@ export default async function Festival2027({
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-noche via-noche/55 to-noche/30"
+          className="absolute inset-0 bg-gradient-to-t from-papel via-papel/60 to-transparent"
         />
         <div className="relative z-10 w-full px-6 pb-20 md:px-12 lg:px-20">
-          <TituloDisplay como="h1" className="text-hueso">
+          <TituloDisplay como="h1" className="text-tinta">
             {t("festivalTitulo")}
           </TituloDisplay>
-          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-palido">
+          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-verde-hondo">
             {t("festivalIntro")}
           </p>
           {/* PENDIENTE DEL CLIENTE: no hay fecha del festival. Spec §10.1.
               Cuando llegue, aqui van la cuenta regresiva y el JSON-LD de Event,
               que es lo que hace que Google muestre el evento con fecha. */}
-          <p className="mt-6 font-texto text-lg text-lima">{t("festivalFechaPendiente")}</p>
+          <p className="mt-6 font-texto text-lg text-verde-texto">{t("festivalFechaPendiente")}</p>
         </div>
       </section>
 
       <Seccion>
         {/* BORRADOR: copy propio, pendiente de aprobacion del cliente. Spec §8. */}
-        <p className="max-w-2xl font-texto text-lg leading-relaxed text-hueso/85">
+        <p className="max-w-2xl font-texto text-lg leading-relaxed text-tinta/80">
           {t("festivalCuerpo")}
         </p>
       </Seccion>

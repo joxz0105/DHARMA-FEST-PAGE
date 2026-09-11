@@ -1,36 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  /* Rampa de marca. Todo vive en el tono 64-65deg; cambia solo la luminosidad.
-     Muestreada pixel a pixel del deck de patrocinios del cliente.
+  /* Paleta clara, tomada del manual de marca que entrego el cliente
+     (LogoDharmaFest). El verde oficial es #71B725, tono 89deg — NO es el lima
+     del deck de patrocinios (#C6D03F, tono 64), que era diseno de lamina.
      No repintar a ojo: tests/unit/contraste.test.ts vigila estos valores. */
-  --color-noche: #111211;
-  --color-lima: #c6d03f;
-  --color-lima-humo: #98a138;
-  --color-lima-hondo: #80872d;
-  --color-palido: #e4e8ad;
-  --color-hueso: #ffffff;
+
+  /* Superficies */
+  --color-papel: #ffffff;
+  --color-hueso: #fbfcf7;
+  --color-palido: #e1f6b6;
+
+  /* El verde de marca. Se usa como RELLENO (botones, barras, bloques),
+     nunca como texto: sobre blanco da 2.47:1 y no pasa AA. */
+  --color-verde: #71b725;
+
+  /* El verde para TEXTO y enlaces. 4.96:1 sobre blanco. */
+  --color-verde-texto: #4a7d18;
+
+  /* Verde hondo para display grande sobre papel. */
+  --color-verde-hondo: #3c6411;
+
+  /* Texto principal. Casi negro con sesgo verde, nunca #000. */
+  --color-tinta: #1c2a14;
+
   /* Unico color fuera de la rampa. Solo el paquete Oro. */
-  --color-oro: #b59f15;
+  --color-oro: #8a6f00;
 
   --font-display: var(--fuente-bodoni), Georgia, "Times New Roman", serif;
   --font-texto: var(--fuente-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background-color: var(--color-noche);
-  color: var(--color-hueso);
+  background-color: var(--color-papel);
+  color: var(--color-tinta);
   font-family: var(--font-texto);
   -webkit-font-smoothing: antialiased;
 }
 
-/* El foco se ve siempre, y se ve en lima. */
+/* El foco se ve siempre. Sobre claro, el verde de texto. */
 :focus-visible {
-  outline: 3px solid var(--color-lima);
+  outline: 3px solid var(--color-verde-texto);
   outline-offset: 3px;
 }
 

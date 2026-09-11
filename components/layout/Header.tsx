@@ -18,14 +18,15 @@ export function Header({ locale }: { locale: string }) {
   return (
     <header className="absolute inset-x-0 top-0 z-40 flex items-center justify-between gap-6 px-6 py-6 md:px-12">
       <Link href={base || "/"} aria-label="Dharma Fest">
-        {/* portada-03 es el logotipo de Dharma. El de Camp Lago es portada-02. */}
+        {/* Logotipo oficial, vectorial, sacado del manual de marca que entrego
+            el cliente (DharmaFest-LogoEditable). Version verde, para claro. */}
         <Image
-          src="/img/portada-03.png"
+          src="/img/logo-dharmafest.svg"
           alt="Dharma Fest"
-          width={200}
-          height={96}
+          width={210}
+          height={72}
           priority
-          className="h-10 w-auto object-contain"
+          className="h-9 w-auto md:h-11"
         />
       </Link>
 
@@ -34,7 +35,7 @@ export function Header({ locale }: { locale: string }) {
           <Link
             key={enlace.href}
             href={enlace.href}
-            className="text-hueso/85 transition-colors hover:text-lima"
+            className="text-tinta/80 transition-colors hover:text-verde-texto"
           >
             {enlace.texto}
           </Link>

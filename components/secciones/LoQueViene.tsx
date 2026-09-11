@@ -8,14 +8,14 @@ export function LoQueViene() {
   return (
     <Seccion id="lo-que-viene">
       <Kicker>{t("loQueVieneKicker")}</Kicker>
-      <TituloDisplay className="mt-4 text-lima">{t("loQueVieneTitulo")}</TituloDisplay>
+      <TituloDisplay className="mt-4 text-verde-texto">{t("loQueVieneTitulo")}</TituloDisplay>
       <ul className="mt-12 flex max-w-2xl flex-col gap-5">
         {t("loQueViene")
           .split("·")
           .map((item) => (
             <li
               key={item}
-              className="border-l-2 border-lima pl-5 font-texto text-lg text-hueso/90"
+              className="border-l-2 border-verde pl-5 font-texto text-lg text-tinta/90"
             >
               {item.trim()}
             </li>

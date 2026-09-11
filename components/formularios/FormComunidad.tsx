@@ -15,7 +15,7 @@ export function FormComunidad() {
 
   if (estado.ok) {
     return (
-      <p role="status" className="font-texto text-lg text-lima">
+      <p role="status" className="font-texto text-lg text-verde-texto">
         {t("graciasComunidad")}
       </p>
     );
@@ -38,7 +38,7 @@ export function FormComunidad() {
       <button
         type="submit"
         disabled={pendiente}
-        className="self-start rounded-full bg-lima px-8 py-3 font-texto text-noche transition-colors hover:bg-palido disabled:opacity-60"
+        className="self-start rounded-full bg-verde px-8 py-3 font-texto text-tinta transition-colors hover:bg-verde/85 disabled:opacity-60"
       >
         {pendiente ? t("enviando") : t("enviar")}
       </button>

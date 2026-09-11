@@ -8,7 +8,7 @@ test.describe("home", () => {
 
   test("el hero lleva el nombre y el dato del festival", async ({ page }) => {
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Dharma");
-    await expect(page.getByText("4ta edición · 2 días · Camp Lago")).toBeVisible();
+    await expect(page.getByText("3ra edición · 2 días · Campo Lago")).toBeVisible();
   });
 
   test("la foto del hero tiene un alt con sentido", async ({ page }) => {
@@ -89,6 +89,6 @@ test.describe("home", () => {
 
 test("la home en inglés traduce el hero y mantiene las cifras", async ({ page }) => {
   await page.goto("/en");
-  await expect(page.getByText("4th edition · 2 days · Camp Lago")).toBeVisible();
+  await expect(page.getByText("3rd edition · 2 days · Campo Lago")).toBeVisible();
   await expect(page.locator("#cifras")).toContainText("+4000");
 });

@@ -47,7 +47,7 @@ export function MenuMovil({ enlaces }: { enlaces: { href: string; texto: string 
         aria-expanded={abierto}
         aria-controls="menu-movil"
         onClick={() => setAbierto((v) => !v)}
-        className="flex size-10 items-center justify-center rounded-full border border-hueso/30 text-hueso"
+        className="flex size-10 items-center justify-center rounded-full border border-tinta/25 text-tinta"
       >
         <span className="sr-only">{abierto ? t("cerrarMenu") : t("abrirMenu")}</span>
         <span aria-hidden className="text-lg leading-none">
@@ -58,7 +58,7 @@ export function MenuMovil({ enlaces }: { enlaces: { href: string; texto: string 
       <div
         id="menu-movil"
         hidden={!abierto}
-        className="fixed inset-0 z-50 flex flex-col gap-8 bg-noche px-6 pt-24"
+        className="fixed inset-0 z-50 flex flex-col gap-8 bg-papel px-6 pt-24"
       >
         <button
           type="button"
@@ -66,7 +66,7 @@ export function MenuMovil({ enlaces }: { enlaces: { href: string; texto: string 
             setAbierto(false);
             botonRef.current?.focus();
           }}
-          className="absolute right-6 top-6 flex size-10 items-center justify-center rounded-full border border-hueso/30 text-hueso"
+          className="absolute right-6 top-6 flex size-10 items-center justify-center rounded-full border border-tinta/25 text-tinta"
         >
           <span className="sr-only">{t("cerrarMenu")}</span>
           <span aria-hidden className="text-lg leading-none">
@@ -80,7 +80,7 @@ export function MenuMovil({ enlaces }: { enlaces: { href: string; texto: string 
               <li key={enlace.href}>
                 <Link
                   href={enlace.href}
-                  className="font-display text-4xl text-palido transition-colors hover:text-lima"
+                  className="font-display text-4xl text-verde-hondo transition-colors hover:text-verde-texto"
                 >
                   {enlace.texto}
                 </Link>

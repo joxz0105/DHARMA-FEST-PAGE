@@ -13,14 +13,14 @@ export function CampoLago() {
   return (
     <Seccion id="sede">
       <Kicker>{t("sedeKicker")}</Kicker>
-      <TituloDisplay className="mt-4 text-palido">{t("sedeTitulo")}</TituloDisplay>
-      <p className="mt-6 max-w-xl font-texto text-lg text-hueso/85">{t("sedeCuerpo")}</p>
+      <TituloDisplay className="mt-4 text-verde-hondo">{t("sedeTitulo")}</TituloDisplay>
+      <p className="mt-6 max-w-xl font-texto text-lg text-tinta/80">{t("sedeCuerpo")}</p>
 
       <ul className="mt-10 flex flex-wrap gap-3">
         {espacios.map((espacio) => (
           <li
             key={espacio.slug}
-            className="rounded-full border border-hueso/35 px-5 py-2 font-texto text-sm text-hueso/90"
+            className="rounded-full border border-tinta/30 px-5 py-2 font-texto text-sm text-tinta/90"
           >
             {espacio.nombre}
           </li>

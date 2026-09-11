@@ -29,16 +29,16 @@ export default async function Privacidad({
   return (
     <main id="contenido" tabIndex={-1} className="pt-24">
       <Seccion>
-        <TituloDisplay como="h1" className="text-palido">
+        <TituloDisplay como="h1" className="text-verde-hondo">
           {t("titulo")}
         </TituloDisplay>
         {/* PENDIENTE DEL CLIENTE: el texto legal y la identidad del responsable
             del tratamiento los entrega Dharma Fest. Ver spec §9 y §10.5.
             No inventar una politica de privacidad. */}
-        <p className="mt-10 max-w-2xl font-texto text-lg leading-relaxed text-hueso/85">
+        <p className="mt-10 max-w-2xl font-texto text-lg leading-relaxed text-tinta/80">
           {t("pendiente")}
         </p>
-        <p className="mt-6 max-w-2xl font-texto text-lg leading-relaxed text-hueso/70">
+        <p className="mt-6 max-w-2xl font-texto text-lg leading-relaxed text-tinta/65">
           {t("mientrasTanto")}
         </p>
       </Seccion>
