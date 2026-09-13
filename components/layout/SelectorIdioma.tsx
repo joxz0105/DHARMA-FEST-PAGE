@@ -28,8 +28,8 @@ export function SelectorIdioma() {
           onClick={() => router.push(rutaEn(codigo))}
           className={
             codigo === idioma
-              ? "text-verde-texto underline underline-offset-4"
-              : "text-tinta/65 hover:text-tinta"
+              ? "text-verde underline underline-offset-4"
+              : "text-hueso/80 hover:text-hueso"
           }
         >
           {codigo.toUpperCase()}

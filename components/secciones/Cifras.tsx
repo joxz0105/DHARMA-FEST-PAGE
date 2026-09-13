@@ -11,14 +11,14 @@ export function Cifras() {
 
   return (
     <Seccion id="cifras">
-      <FondoSelva opacidad={0.25} />
-      <TituloDisplay className="text-center text-verde-texto">{t("cifrasTitulo")}</TituloDisplay>
+      <FondoSelva scrim={50} />
+      <TituloDisplay className="text-center text-palido">{t("cifrasTitulo")}</TituloDisplay>
       <div className="mt-16 grid gap-12 md:grid-cols-3">
         <Cifra valor={cifras.personas} prefijo="+" rotulo={t("cifrasPersonas")} />
         <Cifra valor={cifras.experienciasAnuales} prefijo="+" rotulo={t("cifrasExperiencias")} />
         <Cifra valor={cifras.crecimiento} sufijo="%" rotulo={t("cifrasCrecimiento")} />
       </div>
-      <p className="mt-14 text-center font-texto text-tinta/75">{t("cifrasBase")}</p>
+      <p className="mt-14 text-center font-texto text-hueso/80">{t("cifrasBase")}</p>
     </Seccion>
   );
 }

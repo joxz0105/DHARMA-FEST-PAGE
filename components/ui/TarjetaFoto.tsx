@@ -21,7 +21,7 @@ export function TarjetaFoto({
 }) {
   return (
     <figure className="flex flex-col gap-3">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl ring-1 ring-tinta/10">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl ring-1 ring-hueso/20">
         <Image
           src={`/img/${src}`}
           alt={alt}
@@ -31,7 +31,7 @@ export function TarjetaFoto({
           className="object-cover"
         />
       </div>
-      <figcaption className="font-texto text-sm text-tinta/80">{etiqueta}</figcaption>
+      <figcaption className="font-texto text-sm text-hueso/90">{etiqueta}</figcaption>
     </figure>
   );
 }

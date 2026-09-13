@@ -21,11 +21,16 @@
   /* Verde hondo para display grande sobre papel. */
   --color-verde-hondo: #3c6411;
 
+  /* Velo verde sobre las fotos de fondo, como las laminas del deck. Encima va
+     letra blanca: da 8.47:1, con margen de sobra aunque la foto sea clara. */
+  --color-velo: #33560f;
+
   /* Texto principal. Casi negro con sesgo verde, nunca #000. */
   --color-tinta: #1c2a14;
 
-  /* Unico color fuera de la rampa. Solo el paquete Oro. */
-  --color-oro: #8a6f00;
+  /* Unico color fuera de la rampa. Solo el paquete Oro, que vive sobre foto
+     oscurecida: 5.52:1 contra ese fondo. Un oro mas oscuro se apagaba ahi. */
+  --color-oro: #c7ae1f;
 
   --font-display: var(--fuente-bodoni), Georgia, "Times New Roman", serif;
   --font-texto: var(--fuente-archivo), ui-sans-serif, system-ui, sans-serif;

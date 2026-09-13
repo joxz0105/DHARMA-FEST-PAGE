@@ -5,6 +5,7 @@ import { Actividades } from "@/components/secciones/Actividades";
 import { Entradas } from "@/components/secciones/Entradas";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
 import { alternativas } from "@/lib/rutas";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -43,25 +44,27 @@ export default async function Festival2027({
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-papel via-papel/60 to-transparent"
+          data-fondo="verde"
+        className="absolute inset-0 bg-gradient-to-t from-[rgba(16,26,10,0.92)] via-[rgba(16,26,10,0.72)] to-[rgba(16,26,10,0.34)] md:from-[rgba(16,26,10,0.72)] md:via-[rgba(16,26,10,0.42)] md:to-[rgba(16,26,10,0.18)]"
         />
         <div className="relative z-10 w-full px-6 pb-20 md:px-12 lg:px-20">
-          <TituloDisplay como="h1" className="text-tinta">
+          <TituloDisplay como="h1" className="text-hueso">
             {t("festivalTitulo")}
           </TituloDisplay>
-          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-verde-hondo">
+          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-hueso">
             {t("festivalIntro")}
           </p>
           {/* PENDIENTE DEL CLIENTE: no hay fecha del festival. Spec §10.1.
               Cuando llegue, aqui van la cuenta regresiva y el JSON-LD de Event,
               que es lo que hace que Google muestre el evento con fecha. */}
-          <p className="mt-6 font-texto text-lg text-verde-texto">{t("festivalFechaPendiente")}</p>
+          <p className="mt-6 font-texto text-lg text-hueso">{t("festivalFechaPendiente")}</p>
         </div>
       </section>
 
       <Seccion>
+        <FondoFoto src="2025/2025-dsc9765.jpg" scrim={39} posicion="center 35%" />
         {/* BORRADOR: copy propio, pendiente de aprobacion del cliente. Spec §8. */}
-        <p className="max-w-2xl font-texto text-lg leading-relaxed text-tinta/80">
+        <p className="max-w-2xl font-texto text-lg leading-relaxed text-hueso/90">
           {t("festivalCuerpo")}
         </p>
       </Seccion>

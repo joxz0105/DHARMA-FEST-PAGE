@@ -11,8 +11,8 @@ export function Cifra({
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="font-texto text-sm text-tinta/75">{rotulo}</p>
-      <p className="self-start rounded-xl border border-verde px-6 py-3 font-display text-5xl text-verde-texto md:text-6xl">
+      <p className="font-texto text-sm text-hueso/85">{rotulo}</p>
+      <p className="self-start rounded-xl border border-verde px-6 py-3 font-display text-5xl text-verde md:text-6xl">
         {prefijo}
         {valor}
         {sufijo}

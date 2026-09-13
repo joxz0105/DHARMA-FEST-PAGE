@@ -47,7 +47,7 @@ export function MenuMovil({ enlaces }: { enlaces: { href: string; texto: string 
         aria-expanded={abierto}
         aria-controls="menu-movil"
         onClick={() => setAbierto((v) => !v)}
-        className="flex size-10 items-center justify-center rounded-full border border-tinta/25 text-tinta"
+        className="flex size-10 items-center justify-center rounded-full border border-hueso/60 text-hueso"
       >
         <span className="sr-only">{abierto ? t("cerrarMenu") : t("abrirMenu")}</span>
         <span aria-hidden className="text-lg leading-none">

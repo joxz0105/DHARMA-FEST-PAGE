@@ -18,7 +18,7 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`flex flex-col items-center gap-1.5 ${className}`}>
       <Image
-        src="/img/logo-campolago.png"
+        src="/img/logo-campolago-blanco.png"
         alt=""
         width={453}
         height={112}
@@ -31,7 +31,7 @@ export function Logo({ className = "" }: { className?: string }) {
         width={1401}
         height={480}
         priority
-        className="h-8 w-auto md:h-10"
+        className="h-8 w-auto brightness-0 invert md:h-10"
       />
     </span>
   );

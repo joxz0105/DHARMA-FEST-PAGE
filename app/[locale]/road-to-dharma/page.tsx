@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
 import { alternativas } from "@/lib/rutas";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -41,21 +42,23 @@ export default async function RoadPage({
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-papel via-papel/60 to-transparent"
+          data-fondo="verde"
+        className="absolute inset-0 bg-gradient-to-t from-[rgba(16,26,10,0.8)] via-[rgba(16,26,10,0.55)] to-[rgba(16,26,10,0.28)] md:from-[rgba(16,26,10,0.72)] md:via-[rgba(16,26,10,0.42)] md:to-[rgba(16,26,10,0.18)]"
         />
         <div className="relative z-10 w-full px-6 pb-20 md:px-12 lg:px-20">
-          <TituloDisplay como="h1" className="text-verde-hondo">
+          <TituloDisplay como="h1" className="text-palido">
             {t("roadTitulo")}
           </TituloDisplay>
-          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-tinta/90">
+          <p className="mt-8 max-w-2xl font-texto text-xl leading-relaxed text-hueso/90">
             {t("roadIntro")}
           </p>
         </div>
       </section>
 
       <Seccion>
+        <FondoFoto src="2025/2025-dsc9274.jpg" scrim={54} posicion="center 45%" />
         {/* BORRADOR: copy propio, pendiente de aprobacion del cliente. Spec §8. */}
-        <p className="max-w-2xl font-texto text-lg leading-relaxed text-tinta/80">
+        <p className="max-w-2xl font-texto text-lg leading-relaxed text-hueso/90">
           {t("roadCuerpo")}
         </p>
         <ul className="mt-10 flex flex-wrap gap-3">
@@ -64,7 +67,7 @@ export default async function RoadPage({
             .map((dato) => (
               <li
                 key={dato}
-                className="rounded-full border border-tinta/30 px-5 py-2 font-texto text-sm text-tinta/90"
+                className="rounded-full border border-hueso/45 px-5 py-2 font-texto text-sm text-hueso/90"
               >
                 {dato.trim()}
               </li>

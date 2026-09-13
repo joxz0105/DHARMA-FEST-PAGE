@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Boton } from "@/components/ui/Boton";
 import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
@@ -18,19 +19,14 @@ export function Entradas() {
 
   return (
     <Seccion id="entradas">
-      <FondoFoto src="2025/2025-dsc9274.jpg" velo={86} posicion="center 40%" />
-      <TituloDisplay className="text-verde-hondo">{t("titulo")}</TituloDisplay>
-      <p className="mt-6 max-w-xl font-texto text-lg text-tinta/90">{t("porTiquetera")}</p>
+      <FondoFoto src="2025/2025-dsc9274.jpg" scrim={54} posicion="center 40%" />
+      <TituloDisplay className="text-palido">{t("titulo")}</TituloDisplay>
+      <p className="mt-6 max-w-xl font-texto text-lg text-hueso/90">{t("porTiquetera")}</p>
 
       {entradasUrl ? (
-        <a
-          href={entradasUrl}
-          className="mt-8 inline-block rounded-full bg-verde px-8 py-4 font-texto text-tinta transition-colors hover:bg-verde/85"
-        >
-          {t("comprar")}
-        </a>
+        <Boton href={entradasUrl} className="mt-8">{t("comprar")}</Boton>
       ) : (
-        <p className="mt-4 font-texto text-lg text-verde-texto">{t("proximamente")}</p>
+        <p className="mt-4 font-texto text-lg text-palido">{t("proximamente")}</p>
       )}
     </Seccion>
   );

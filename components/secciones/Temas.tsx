@@ -12,8 +12,8 @@ export function Temas() {
 
   return (
     <Seccion id="temas">
-      <FondoFoto src="2025/2025-dsc9142.jpg" velo={91} />
-      <TituloDisplay className="text-verde-hondo">{t("temasTitulo")}</TituloDisplay>
+      <FondoFoto src="2025/2025-dsc9142.jpg" scrim={56} />
+      <TituloDisplay className="text-palido">{t("temasTitulo")}</TituloDisplay>
       <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
         {temas.map((tema) => (
           <li key={tema.slug}>
@@ -25,7 +25,7 @@ export function Temas() {
           </li>
         ))}
       </ul>
-      <p className="mt-12 text-center font-texto text-lg text-tinta/75">{t("temasCierre")}</p>
+      <p className="mt-12 text-center font-texto text-lg text-hueso/80">{t("temasCierre")}</p>
     </Seccion>
   );
 }

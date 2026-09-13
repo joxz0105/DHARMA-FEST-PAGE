@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { FondoSelva } from "@/components/ui/FondoSelva";
 import { Kicker } from "@/components/ui/Kicker";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
@@ -11,8 +12,9 @@ export function Galeria() {
 
   return (
     <Seccion id="galeria">
+      <FondoSelva scrim={58} />
       <Kicker>{t("galeriaKicker")}</Kicker>
-      <TituloDisplay italica className="mt-4 text-verde-hondo">
+      <TituloDisplay italica className="mt-4 text-palido">
         {t("galeriaTitulo")}
       </TituloDisplay>
 
@@ -22,9 +24,9 @@ export function Galeria() {
         linea, en vez de bordes por imagen — asi la retícula no duplica el
         grosor donde dos fotos se tocan.
       */}
-      <ul className="mt-14 grid grid-cols-2 gap-px bg-tinta/15 md:grid-cols-3">
+      <ul className="mt-14 grid grid-cols-2 gap-px bg-hueso/25 md:grid-cols-3">
         {fotos.map((foto) => (
-          <li key={foto.archivo} className="relative aspect-square overflow-hidden bg-papel">
+          <li key={foto.archivo} className="relative aspect-square overflow-hidden">
             {/* Decorativas a proposito: son personas reales que no conocemos,
                 y un alt inventado seria peor que ninguno. La seccion ya se
                 anuncia con su titulo. */}

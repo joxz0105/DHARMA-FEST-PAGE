@@ -19,15 +19,16 @@ export function RoadToDharma({ locale }: { locale: string }) {
         sizes="100vw"
         className="-z-10 object-cover object-[center_72%]"
       />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-papel/72" />
+      <div aria-hidden data-fondo="verde"
+        className="absolute inset-0 -z-10 bg-[rgba(16,26,10,0.55)]" />
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-        <TituloDisplay className="text-verde-hondo md:basis-2/5">{t("roadTitulo")}</TituloDisplay>
+        <TituloDisplay className="text-palido md:basis-2/5">{t("roadTitulo")}</TituloDisplay>
         <ReglaVertical />
         <div className="md:basis-3/5">
-          <p className="font-texto text-lg leading-relaxed text-tinta/90">{t("roadCuerpo")}</p>
+          <p className="font-texto text-lg leading-relaxed text-hueso/90">{t("roadCuerpo")}</p>
           <Link
             href={`${base}/road-to-dharma`}
-            className="mt-8 inline-block border-b border-verde pb-1 font-texto text-verde-texto transition-colors hover:text-verde-hondo"
+            className="mt-8 inline-block border-b border-verde pb-1 font-texto text-palido transition-colors hover:text-verde"
           >
             {t("roadCta")}
           </Link>

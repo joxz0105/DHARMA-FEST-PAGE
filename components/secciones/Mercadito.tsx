@@ -14,15 +14,16 @@ export function Mercadito() {
         sizes="100vw"
         className="-z-10 object-cover"
       />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-papel/78" />
-      <TituloDisplay className="text-verde-hondo">{t("mercaditoTitulo")}</TituloDisplay>
-      <p className="mt-6 max-w-xl font-texto text-lg text-tinta/90">{t("mercaditoCuerpo")}</p>
+      <div aria-hidden data-fondo="verde"
+        className="absolute inset-0 -z-10 bg-[rgba(16,26,10,0.55)]" />
+      <TituloDisplay className="text-palido">{t("mercaditoTitulo")}</TituloDisplay>
+      <p className="mt-6 max-w-xl font-texto text-lg text-hueso/90">{t("mercaditoCuerpo")}</p>
       {/* PENDIENTE DEL CLIENTE: no hay precio ni condiciones del stand del
           Mercadito. Spec §10.4. El CTA lleva al formulario general hasta que
           el cliente defina que incluye y cuanto cuesta. */}
       <Link
         href="#propuesta"
-        className="mt-10 inline-block border-b border-verde pb-1 font-texto text-verde-texto transition-colors hover:text-verde-hondo"
+        className="mt-10 inline-block border-b border-verde pb-1 font-texto text-palido transition-colors hover:text-verde"
       >
         {t("mercaditoCta")}
       </Link>

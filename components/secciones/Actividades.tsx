@@ -13,7 +13,7 @@ export function Actividades() {
   return (
     <Seccion id="actividades">
       <FondoSelva />
-      <TituloDisplay className="text-center text-verde-hondo">
+      <TituloDisplay className="text-center text-palido">
         {t("actividadesTitulo")}
       </TituloDisplay>
       <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-5">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { alternativas } from "@/lib/rutas";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -27,18 +28,19 @@ export default async function Privacidad({
   const t = await getTranslations("privacidad");
 
   return (
-    <main id="contenido" tabIndex={-1} className="pt-24">
-      <Seccion>
-        <TituloDisplay como="h1" className="text-verde-hondo">
+    <main id="contenido" tabIndex={-1}>
+      <Seccion className="pt-40">
+        <FondoFoto src="2025/2025-dsc9376.jpg" scrim={62} posicion="center 55%" />
+        <TituloDisplay como="h1" className="text-palido">
           {t("titulo")}
         </TituloDisplay>
         {/* PENDIENTE DEL CLIENTE: el texto legal y la identidad del responsable
             del tratamiento los entrega Dharma Fest. Ver spec §9 y §10.5.
             No inventar una politica de privacidad. */}
-        <p className="mt-10 max-w-2xl font-texto text-lg leading-relaxed text-tinta/80">
+        <p className="mt-10 max-w-2xl font-texto text-lg leading-relaxed text-hueso/85">
           {t("pendiente")}
         </p>
-        <p className="mt-6 max-w-2xl font-texto text-lg leading-relaxed text-tinta/65">
+        <p className="mt-6 max-w-2xl font-texto text-lg leading-relaxed text-hueso/75">
           {t("mientrasTanto")}
         </p>
       </Seccion>

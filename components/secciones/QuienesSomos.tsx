@@ -9,14 +9,14 @@ export function QuienesSomos() {
   const t = useTranslations("home");
   return (
     <Seccion id="quienes-somos">
-      <FondoFoto src="2025/2025-dsc9303.jpg" velo={90} posicion="center 35%" />
+      <FondoFoto src="2025/2025-dsc9303.jpg" scrim={50} posicion="center 35%" />
       <Kicker>{t("quienesSomosKicker")}</Kicker>
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-        <TituloDisplay className="text-verde-hondo md:basis-2/5">
+        <TituloDisplay className="text-palido md:basis-2/5">
           {t("quienesSomosTitulo")}
         </TituloDisplay>
         <ReglaVertical />
-        <p className="font-texto text-xl leading-relaxed text-tinta/90 md:basis-3/5">
+        <p className="font-texto text-xl leading-relaxed text-hueso/90 md:basis-3/5">
           {t("quienesSomosCuerpo")}
         </p>
       </div>

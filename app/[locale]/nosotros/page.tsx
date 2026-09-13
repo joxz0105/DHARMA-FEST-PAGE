@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ImpactoSocial } from "@/components/secciones/ImpactoSocial";
 import { CampoLago } from "@/components/secciones/CampoLago";
 import { alternativas } from "@/lib/rutas";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -29,13 +30,14 @@ export default async function Nosotros({
   const t = await getTranslations("borrador");
 
   return (
-    <main id="contenido" tabIndex={-1} className="pt-28">
-      <Seccion>
-        <TituloDisplay como="h1" className="text-verde-hondo">
+    <main id="contenido" tabIndex={-1}>
+      <Seccion className="pt-40">
+        <FondoFoto src="2025/2025-dsc9142.jpg" scrim={56} posicion="center 40%" />
+        <TituloDisplay como="h1" className="text-palido">
           {t("nosotrosTitulo")}
         </TituloDisplay>
         {/* El cuerpo es copy literal del deck (lamina 2), no borrador. */}
-        <p className="mt-10 max-w-2xl font-texto text-xl leading-relaxed text-tinta/90">
+        <p className="mt-10 max-w-2xl font-texto text-xl leading-relaxed text-hueso/90">
           {t("nosotrosCuerpo")}
         </p>
         {/* PENDIENTE DEL CLIENTE: no se sabe quien esta detras de la marca.

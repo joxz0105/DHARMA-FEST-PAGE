@@ -10,7 +10,7 @@ const VERDE = "#71B725";
 const VERDE_TEXTO = "#4A7D18";
 const VERDE_HONDO = "#3C6411";
 const TINTA = "#1C2A14";
-const ORO = "#8A6F00";
+const ORO = "#C7AE1F";
 
 describe("contraste de la paleta clara", () => {
   it("el texto principal se lee sobre cualquier superficie clara", () => {
@@ -28,8 +28,10 @@ describe("contraste de la paleta clara", () => {
     expect(ratio(VERDE_HONDO, PAPEL)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("el oro pasa AA sobre papel", () => {
-    expect(ratio(ORO, PAPEL)).toBeGreaterThanOrEqual(4.5);
+  it("el oro se lee sobre la foto oscurecida, que es donde vive", () => {
+    // El paquete Oro se muestra sobre seccion con foto y scrim, no sobre papel.
+    const FONDO_CON_SCRIM = "#2A3A1E";
+    expect(ratio(ORO, FONDO_CON_SCRIM)).toBeGreaterThanOrEqual(4.5);
   });
 
   it("el verde de marca NO sirve como texto, y por eso solo se usa de relleno", () => {
@@ -59,7 +61,7 @@ describe("los tokens del CSS son los del manual de marca", () => {
     "--color-verde-texto": "#4a7d18",
     "--color-verde-hondo": "#3c6411",
     "--color-tinta": "#1c2a14",
-    "--color-oro": "#8a6f00",
+    "--color-oro": "#c7ae1f",
   };
 
   for (const [token, hex] of Object.entries(ESPERADOS)) {

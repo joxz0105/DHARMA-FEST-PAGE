@@ -17,6 +17,12 @@ export function Header({ locale }: { locale: string }) {
 
   return (
     <header className="absolute inset-x-0 top-0 z-40 flex items-center justify-between gap-6 px-6 py-6 md:px-12">
+      {/* Velo superior: la cabecera flota sobre la foto del hero y sin esto los
+          enlaces blancos se pierden en las zonas claras de la imagen. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-velo/85 to-transparent"
+      />
       {/* El nombre accesible va en el enlace: las dos imagenes del lockup son
           decorativas, si no el lector de pantalla lo leeria dos veces. */}
       <Link href={base || "/"} aria-label="Campo Lago Dharma Fest">
@@ -28,7 +34,7 @@ export function Header({ locale }: { locale: string }) {
           <Link
             key={enlace.href}
             href={enlace.href}
-            className="text-tinta/80 transition-colors hover:text-verde-texto"
+            className="text-hueso/90 transition-colors hover:text-verde"
           >
             {enlace.texto}
           </Link>
