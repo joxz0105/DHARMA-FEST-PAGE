@@ -7,6 +7,8 @@ import marcas from "@/content/marcas.json";
 import medios from "@/content/medios.json";
 import paquetes from "@/content/paquetes.json";
 import temas from "@/content/temas.json";
+import galeria from "@/content/galeria.json";
+import sitio from "@/content/sitio.json";
 import manifiesto from "@/content/manifiesto-imagenes.json";
 import {
   esquemaActividad,
@@ -41,9 +43,26 @@ export const getEspacios = () =>
   validar(z.array(esquemaEspacio).length(3), espacios, "espacios.json");
 export const getMedios = () => validar(z.array(esquemaMedio).min(1), medios, "medios.json");
 
-/** Fotos de la galeria: laminas 7, 8 y 9 del deck. */
-export const getFotosGaleria = () =>
-  manifiesto.filter((i) => i.grupo === "foto" && [7, 8, 9].includes(i.pagina));
+/**
+ * Fotos de la galeria: seleccion a mano de las 63 que el cliente entrego del
+ * Dharma Fest 2025. Antes salian recortadas del deck, que eran peores.
+ */
+export const getFotosGaleria = () => galeria;
+
+/**
+ * Ajustes que el cliente cambia sin tocar componentes. `entradasUrl` es null
+ * hasta que pase el link de la tiquetera; `whatsapp` hasta que pase el numero.
+ */
+export const getSitio = () =>
+  validar(
+    z.object({
+      _nota: z.string().optional(),
+      entradasUrl: z.string().url().nullable(),
+      whatsapp: z.string().nullable(),
+    }),
+    sitio,
+    "sitio.json",
+  );
 
 /**
  * Fotos de la sede. NO van pareadas con los nombres de los salones: el deck

@@ -4,6 +4,7 @@ import { alternativas } from "@/lib/rutas";
 import { Actividades } from "@/components/secciones/Actividades";
 import { CampoLago } from "@/components/secciones/CampoLago";
 import { Cifras } from "@/components/secciones/Cifras";
+import { Entradas } from "@/components/secciones/Entradas";
 import { Galeria } from "@/components/secciones/Galeria";
 import { Hero } from "@/components/secciones/Hero";
 import { ImpactoSocial } from "@/components/secciones/ImpactoSocial";
@@ -42,6 +43,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <main id="contenido" tabIndex={-1}>
       <Hero locale={locale} />
       <QuienesSomos />
+      <Entradas />
       <Actividades />
       <Temas />
       <Galeria />

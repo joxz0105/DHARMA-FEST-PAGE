@@ -16,7 +16,7 @@
     "contacto": "Contacto"
   },
   "home": {
-    "heroDatos": "3ra edición · 2 días · Campo Lago",
+    "heroDatos": "3ra edición · Febrero 2027 · Campo Lago",
     "heroCta": "Sumate a la comunidad",
     "heroFotoAlt": "El higuerón de Campo Lago al atardecer, sede del Dharma Fest",
     "quienesSomosKicker": "Sobre Dharma",
@@ -107,7 +107,7 @@
     "roadDato": "De 80 a 200 participantes · Formato íntimo · Durante todo el año",
     "festivalTitulo": "Dharma Fest 2027",
     "festivalIntro": "La tercera edición. Por primera vez, dos días completos.",
-    "festivalFechaPendiente": "Fecha por confirmar",
+    "festivalFechaPendiente": "Febrero 2027",
     "festivalCuerpo": "Dos días en Campo Lago con programación ampliada en movimiento, salud, gastronomía y música, más de 30 marcas en el Mercadito y 2.000 asistentes proyectados.",
     "nosotrosTitulo": "Nosotros",
     "nosotrosCuerpo": "Producimos las mejores experiencias de bienestar de Costa Rica. Conectamos personas con lo que las hace sentir bien y a las marcas, con su público meta.",
@@ -115,5 +115,11 @@
     "noEncontradaTitulo": "Esta página no existe",
     "noEncontradaCuerpo": "Puede que el enlace esté viejo. Volvé al inicio y seguí desde ahí.",
     "volverAlInicio": "Volver al inicio"
+  },
+  "entradas": {
+    "titulo": "Entradas",
+    "porTiquetera": "Las entradas se venden por medio de nuestra tiquetera.",
+    "proximamente": "Link de venta próximamente.",
+    "comprar": "Comprar entradas"
   }
 }

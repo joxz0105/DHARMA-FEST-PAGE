@@ -11,9 +11,9 @@ const textura = getTexturaFondo();
  * tenue sobre el verde palido del manual: se intuye el follaje sin bajar la
  * luz de la pagina. Decorativa: alt vacio.
  */
-export function FondoSelva({ opacidad = 0.12 }: { opacidad?: number }) {
+export function FondoSelva({ opacidad = 0.3 }: { opacidad?: number }) {
   return (
-    <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden bg-palido/45">
+    <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden bg-palido/60">
       {textura ? (
         <Image
           src={`/img/${textura.archivo}`}
@@ -24,7 +24,7 @@ export function FondoSelva({ opacidad = 0.12 }: { opacidad?: number }) {
           className="object-cover"
         />
       ) : null}
-      <div className="absolute inset-0 bg-gradient-to-b from-papel via-papel/40 to-papel" />
+      <div className="absolute inset-0 bg-gradient-to-b from-papel/85 via-papel/55 to-papel/90" />
     </div>
   );
 }

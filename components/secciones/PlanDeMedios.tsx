@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 import { getMedios } from "@/lib/contenido";
@@ -10,6 +11,7 @@ export function PlanDeMedios() {
 
   return (
     <Seccion id="medios">
+      <FondoFoto src="2025/2025-dsc9655.jpg" velo={91} />
       <TituloDisplay className="text-verde-hondo">{t("mediosTitulo")}</TituloDisplay>
       <div className="mt-14 grid gap-12 md:grid-cols-2">
         <div>

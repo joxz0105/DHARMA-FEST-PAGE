@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TarjetaFoto } from "@/components/ui/TarjetaFoto";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
@@ -11,6 +12,7 @@ export function Temas() {
 
   return (
     <Seccion id="temas">
+      <FondoFoto src="2025/2025-dsc9142.jpg" velo={91} />
       <TituloDisplay className="text-verde-hondo">{t("temasTitulo")}</TituloDisplay>
       <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
         {temas.map((tema) => (

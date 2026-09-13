@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Kicker } from "@/components/ui/Kicker";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 import { getEspacios, getFotosSede } from "@/lib/contenido";
@@ -12,6 +13,7 @@ export function CampoLago() {
 
   return (
     <Seccion id="sede">
+      <FondoFoto src="2025/2025-dsc9376.jpg" velo={88} posicion="center 60%" />
       <Kicker>{t("sedeKicker")}</Kicker>
       <TituloDisplay className="mt-4 text-verde-hondo">{t("sedeTitulo")}</TituloDisplay>
       <p className="mt-6 max-w-xl font-texto text-lg text-tinta/80">{t("sedeCuerpo")}</p>

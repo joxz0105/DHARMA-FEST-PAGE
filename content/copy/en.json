@@ -16,7 +16,7 @@
     "contacto": "Contact"
   },
   "home": {
-    "heroDatos": "3rd edition · 2 days · Campo Lago",
+    "heroDatos": "3rd edition · February 2027 · Campo Lago",
     "heroCta": "Join the community",
     "heroFotoAlt": "The Campo Lago fig tree at dusk, home of Dharma Fest",
     "quienesSomosKicker": "About Dharma",
@@ -107,7 +107,7 @@
     "roadDato": "80 to 200 participants · Intimate format · All year round",
     "festivalTitulo": "Dharma Fest 2027",
     "festivalIntro": "The third edition. Two full days for the first time.",
-    "festivalFechaPendiente": "Date to be confirmed",
+    "festivalFechaPendiente": "February 2027",
     "festivalCuerpo": "Two days at Campo Lago with an expanded programme across movement, health, food and music, more than 30 brands at the Mercadito and 2,000 projected attendees.",
     "nosotrosTitulo": "About us",
     "nosotrosCuerpo": "We produce the finest wellness experiences in Costa Rica. We connect people with what makes them feel good, and brands with the audience they are looking for.",
@@ -115,5 +115,11 @@
     "noEncontradaTitulo": "This page does not exist",
     "noEncontradaCuerpo": "The link may be out of date. Head back to the start and pick it up from there.",
     "volverAlInicio": "Back to the start"
+  },
+  "entradas": {
+    "titulo": "Tickets",
+    "porTiquetera": "Tickets are sold through our ticketing partner.",
+    "proximamente": "Sales link coming soon.",
+    "comprar": "Buy tickets"
   }
 }

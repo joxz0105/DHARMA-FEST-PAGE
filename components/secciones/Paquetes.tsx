@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 import { getPaquetes } from "@/lib/contenido";
@@ -16,6 +17,7 @@ export function Paquetes() {
 
   return (
     <Seccion id="paquetes">
+      <FondoFoto src="2025/2025-dsc9727.jpg" velo={92} />
       <TituloDisplay className="text-verde-hondo">{t("paquetesTitulo")}</TituloDisplay>
       <p className="mt-6 max-w-xl font-texto text-lg text-tinta/80">{t("paquetesCuerpo")}</p>
 

@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@/components/ui/Kicker";
 import { ReglaVertical } from "@/components/ui/ReglaVertical";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -8,6 +9,7 @@ export function QuienesSomos() {
   const t = useTranslations("home");
   return (
     <Seccion id="quienes-somos">
+      <FondoFoto src="2025/2025-dsc9303.jpg" velo={90} posicion="center 35%" />
       <Kicker>{t("quienesSomosKicker")}</Kicker>
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
         <TituloDisplay className="text-verde-hondo md:basis-2/5">

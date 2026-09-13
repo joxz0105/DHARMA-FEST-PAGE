@@ -34,9 +34,17 @@ for (const ruta of RUTAS) {
   });
 }
 
-test("el 2027 avisa que la fecha está pendiente del cliente", async ({ page }) => {
+test("el 2027 anuncia la fecha que confirmó el cliente", async ({ page }) => {
   await page.goto("/2027");
-  await expect(page.getByText("Fecha por confirmar")).toBeVisible();
+  await expect(page.getByText("Febrero 2027")).toBeVisible();
+});
+
+test("las entradas dicen que van por tiquetera, sin botón que no lleve a nada", async ({ page }) => {
+  await page.goto("/");
+  const entradas = page.locator("#entradas");
+  await expect(entradas).toContainText("tiquetera");
+  // Mientras entradasUrl sea null no debe haber enlace de compra.
+  await expect(entradas.getByRole("link")).toHaveCount(0);
 });
 
 test("una ruta inexistente da 404 con página propia", async ({ page }) => {

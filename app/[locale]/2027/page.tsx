@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Actividades } from "@/components/secciones/Actividades";
+import { Entradas } from "@/components/secciones/Entradas";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
 import { alternativas } from "@/lib/rutas";
 import { Seccion } from "@/components/ui/Seccion";
@@ -66,6 +67,7 @@ export default async function Festival2027({
       </Seccion>
 
       <Actividades />
+      <Entradas />
 
       <Seccion id="sumate">
         <FormComunidad />

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Kicker } from "@/components/ui/Kicker";
+import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
 
@@ -7,6 +8,7 @@ export function LoQueViene() {
   const t = useTranslations("patrocinios");
   return (
     <Seccion id="lo-que-viene">
+      <FondoFoto src="2025/2025-dsc9493.jpg" velo={89} posicion="center 30%" />
       <Kicker>{t("loQueVieneKicker")}</Kicker>
       <TituloDisplay className="mt-4 text-verde-texto">{t("loQueVieneTitulo")}</TituloDisplay>
       <ul className="mt-12 flex max-w-2xl flex-col gap-5">
