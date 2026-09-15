@@ -34,6 +34,31 @@ export const esquemaPaquete = z.object({
 
 export const esquemaMarca = z.object({ nombre: z.string().min(1), logo: z.string() });
 
+/**
+ * Programa de beneficios. El descuento se declara como RANGO del programa
+ * ("entre 5% y 10% en las marcas aliadas") y no como porcentaje por marca,
+ * que es la forma legalmente expuesta: un numero pegado a un logo es una
+ * oferta concreta de un tercero. El porcentaje por marca llega con el
+ * catalogo de /beneficios, donde cada linea carga sus condiciones y vigencia.
+ *
+ * `confirmado` no se renderiza. Existe para que se vea de un vistazo cuales
+ * marcas ya dieron el si por escrito y cuales siguen siendo ejemplo.
+ */
+export const esquemaBeneficios = z.object({
+  _nota: z.string().optional(),
+  rangoDescuento: z
+    .object({
+      min: z.number().int().positive().max(100),
+      max: z.number().int().positive().max(100),
+    })
+    .refine((r) => r.min < r.max, "rangoDescuento: el minimo tiene que ser menor que el maximo"),
+  marcas: z
+    .array(
+      z.object({ nombre: z.string().min(1), logo: z.string(), confirmado: z.boolean() }),
+    )
+    .min(1),
+});
+
 export const esquemaAsociacion = esquemaMarca;
 
 /** Los salones no llevan imagen: el deck no dice cual foto es cual. Ver spec §10. */
@@ -46,6 +71,7 @@ export type Actividad = z.infer<typeof esquemaActividad>;
 export type Tema = z.infer<typeof esquemaTema>;
 export type Paquete = z.infer<typeof esquemaPaquete>;
 export type Marca = z.infer<typeof esquemaMarca>;
+export type Beneficios = z.infer<typeof esquemaBeneficios>;
 export type Asociacion = z.infer<typeof esquemaAsociacion>;
 export type Espacio = z.infer<typeof esquemaEspacio>;
 export type Medio = z.infer<typeof esquemaMedio>;

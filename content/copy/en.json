@@ -121,5 +121,21 @@
     "porTiquetera": "Tickets are sold through our ticketing partner.",
     "proximamente": "Sales link coming soon.",
     "comprar": "Buy tickets"
+  },
+  "beneficios": {
+    "kicker": "Beyond the programme",
+    "titulo": "Your ticket is worth more than you paid",
+    "cuerpo": "Dharma Fest does not end at the stage. The brands that join us turn up with something for you, and it is already included in what you paid to walk in.",
+    "standsTitulo": "At the stands",
+    "standsCuerpo": "Partner brands hand out gifts from their stall in the Mercadito, across both days of the festival.",
+    "llegadaTitulo": "First come, first served",
+    "llegadaCuerpo": "Several bring limited quantities. Arrive early and you take home more.",
+    "experienciaTitulo": "With the Experience pass",
+    "experienciaCuerpo": "The Experience pass unlocks gifts that regular tickets do not include.",
+    "descuentoTitulo": "And money off their products",
+    "descuento": "Between {min}% and {max}% off products from our partner brands, just for holding a ticket.",
+    "marcasAliadas": "A few of our partner brands",
+    "brazalete": "No codes, no paperwork: show your ticket, or your wristband once you are at the festival.",
+    "cta": "Get your ticket"
   }
 }

@@ -121,5 +121,21 @@
     "porTiquetera": "Las entradas se venden por medio de nuestra tiquetera.",
     "proximamente": "Link de venta próximamente.",
     "comprar": "Comprar entradas"
+  },
+  "beneficios": {
+    "kicker": "Además de las actividades",
+    "titulo": "Tu entrada vale más de lo que pagaste",
+    "cuerpo": "Dharma Fest no termina en el escenario. Las marcas que nos acompañan llegan con algo para vos, y ya viene incluido en lo que pagaste por entrar.",
+    "standsTitulo": "En los stands",
+    "standsCuerpo": "Las marcas aliadas reparten regalías desde su stand en el Mercadito, los dos días del festival.",
+    "llegadaTitulo": "Por orden de llegada",
+    "llegadaCuerpo": "Varias traen cantidades limitadas. Quien llega temprano se lleva más.",
+    "experienciaTitulo": "Con el pase Experiencia",
+    "experienciaCuerpo": "El pase Experiencia desbloquea regalías que las entradas regulares no traen.",
+    "descuentoTitulo": "Y descuento en sus productos",
+    "descuento": "Entre {min}% y {max}% de descuento en los productos de las marcas aliadas, solo por tener tu entrada.",
+    "marcasAliadas": "Algunas de las marcas aliadas",
+    "brazalete": "No hay código ni trámite: mostrás tu entrada, o el brazalete si ya estás en el festival.",
+    "cta": "Conseguí tu entrada"
   }
 }

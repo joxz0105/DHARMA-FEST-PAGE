@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Actividades } from "@/components/secciones/Actividades";
 import { Entradas } from "@/components/secciones/Entradas";
 import { FormComunidad } from "@/components/formularios/FormComunidad";
+import { QueIncluye } from "@/components/secciones/QueIncluye";
 import { alternativas } from "@/lib/rutas";
 import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Seccion } from "@/components/ui/Seccion";
@@ -70,6 +71,7 @@ export default async function Festival2027({
       </Seccion>
 
       <Actividades />
+      <QueIncluye />
       <Entradas />
 
       <Seccion id="sumate">

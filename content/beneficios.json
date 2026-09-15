@@ -1,0 +1,10 @@
+{
+  "_nota": "OJO: NINGUNA de estas marcas ha confirmado el descuento. Al 2026-09-15 el programa no se le ha propuesto a nadie, y estas cuatro estan aca como EJEMPLO para enseñarle la idea a Dharma. Antes de que esto sea publico, cada marca tiene que confirmar por escrito su beneficio, sus condiciones y su vigencia: publicar el descuento de un tercero convierte a Dharma en anunciante y lo vuelve exigible (art. 113 del reglamento 37899-MEIC a la Ley 7472). Ver docs/superpowers/specs/2026-09-15-programa-beneficios-design.md §8. Para cambiar las marcas, se edita la lista de abajo y nada mas; los nombres y logos tienen que existir en marcas.json.",
+  "rangoDescuento": { "min": 5, "max": 10 },
+  "marcas": [
+    { "nombre": "Vita Açaí", "logo": "marcas-04.png", "confirmado": false },
+    { "nombre": "Puro Shot", "logo": "marcas-05.png", "confirmado": false },
+    { "nombre": "Verti Greens", "logo": "marcas-48.png", "confirmado": false },
+    { "nombre": "Sencha Tea", "logo": "marcas-58.png", "confirmado": false }
+  ]
+}
