@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   getActividades,
   getAsociaciones,
+  getBeneficios,
   getCifras,
   getEspacios,
   getFotosGaleria,
@@ -101,12 +102,39 @@ describe("logos", () => {
   });
 });
 
+describe("programa de beneficios", () => {
+  it("el rango de descuento es coherente", () => {
+    const { min, max } = getBeneficios().rangoDescuento;
+    expect(min).toBeLessThan(max);
+    expect(max).toBeLessThanOrEqual(100);
+  });
+
+  it("no inventa marcas: todas están en marcas.json, con el mismo logo", () => {
+    const catalogo = new Map(getMarcas().map((m) => [m.nombre, m.logo]));
+    for (const marca of getBeneficios().marcas) {
+      expect(catalogo.get(marca.nombre), `${marca.nombre} no está en marcas.json`).toBe(
+        marca.logo,
+      );
+    }
+  });
+
+  it("el porcentaje va como rango del programa, nunca pegado a una marca", () => {
+    // Un numero junto a un logo es la oferta concreta de un tercero y la
+    // vuelve exigible (art. 113). El desglose por marca vive en /beneficios,
+    // donde cada linea carga sus condiciones y su vigencia.
+    for (const marca of getBeneficios().marcas) {
+      expect(Object.keys(marca).sort()).toEqual(["confirmado", "logo", "nombre"]);
+    }
+  });
+});
+
 describe("las imágenes referenciadas existen de verdad", () => {
   const referencias = [
     ...getActividades().map((i) => i.imagen),
     ...getTemas().map((i) => i.imagen),
     ...getMarcas().map((i) => i.logo),
     ...getAsociaciones().map((i) => i.logo),
+    ...getBeneficios().marcas.map((i) => i.logo),
     ...getFotosGaleria().map((i) => i.archivo),
     ...getFotosSede().map((i) => i.archivo),
   ];

@@ -3,6 +3,7 @@ import actividades from "@/content/actividades.json";
 import asociaciones from "@/content/asociaciones.json";
 import cifras from "@/content/cifras.json";
 import espacios from "@/content/espacios.json";
+import beneficios from "@/content/beneficios.json";
 import marcas from "@/content/marcas.json";
 import medios from "@/content/medios.json";
 import paquetes from "@/content/paquetes.json";
@@ -13,6 +14,7 @@ import manifiesto from "@/content/manifiesto-imagenes.json";
 import {
   esquemaActividad,
   esquemaAsociacion,
+  esquemaBeneficios,
   esquemaCifras,
   esquemaEspacio,
   esquemaMarca,
@@ -42,6 +44,13 @@ export const getAsociaciones = () =>
 export const getEspacios = () =>
   validar(z.array(esquemaEspacio).length(3), espacios, "espacios.json");
 export const getMedios = () => validar(z.array(esquemaMedio).min(1), medios, "medios.json");
+
+/**
+ * Programa de beneficios. Va `.min(1)` y NO cantidad exacta como los de
+ * arriba: la lista crece cada vez que una marca confirma, y con `.length(n)`
+ * cada marca que sumara el cliente romperia el build.
+ */
+export const getBeneficios = () => validar(esquemaBeneficios, beneficios, "beneficios.json");
 
 /**
  * Fotos de la galeria: seleccion a mano de las 63 que el cliente entrego del
