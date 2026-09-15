@@ -25,7 +25,10 @@ export default defineConfig({
     // Directorio de build propio: si comparte .next con el `npm run dev` que
     // esta corriendo, los dos procesos se pisan los artefactos y el servidor
     // se cae a mitad de la corrida.
-    env: { DHARMA_DIST_DIR: ".next-test" },
+    // NEXT_PUBLIC_SITIO fija el origen para que las pruebas de canonica,
+    // hreflang y sitemap comparen contra algo estable. Sin esto, SITIO caeria
+    // en localhost y los asserts dependerian de donde corre la suite.
+    env: { DHARMA_DIST_DIR: ".next-test", NEXT_PUBLIC_SITIO: "https://dharmafestcr.com" },
     url: `http://localhost:${PUERTO}`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,

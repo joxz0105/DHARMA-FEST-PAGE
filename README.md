@@ -29,17 +29,36 @@ Por separado: `npm test`, `npm run build`, `npm run test:e2e`.
 Los e2e levantan **su propio servidor de producción en el puerto 3100**, con su propio
 directorio de build. No pisan el `npm run dev` que tengas abierto.
 
-## No se despliega
+## Despliegue
 
-Este proyecto se trabaja **en local**. Para mostrarle avances al cliente se abre un túnel
-temporal:
+El sitio **está en Vercel**, en el proyecto `dharma-fest-page`, enlazado a este repo:
+
+- Producción: <https://dharma-fest-page.vercel.app> — sale de `main`
+- Cada rama y cada PR generan su propio preview
+
+**Mergear a `main` publica.** No hay paso manual intermedio.
+
+Para mostrar algo sin publicarlo, sirve el preview de la rama, o un túnel temporal:
 
 ```bash
 cloudflared tunnel --url http://localhost:3000
 ```
 
-Hay un MCP de Vercel conectado y Next.js hace el despliegue de un clic. **No lo hagas** sin
-que el cliente lo pida.
+### El dominio
+
+`SITIO`, en `lib/rutas.ts`, es el origen de canónicas, hreflang, sitemap y robots. **No se
+escribe a mano.** Sale, en este orden, de `NEXT_PUBLIC_SITIO`, del dominio de producción que
+Vercel expone solo, o de localhost.
+
+Cuando Dharma pase el dominio real se agrega en Vercel y esto lo toma sin tocar código.
+
+### Antes de publicar
+
+`content/beneficios.json` lleva cuatro marcas con `confirmado: false`. Están como ejemplo para
+enseñar la idea: ninguna aceptó dar un descuento. Publicar el logo de una marca junto a una
+oferta que no aceptó convierte a Dharma en anunciante y la vuelve exigible (art. 113 b) del
+reglamento 37899-MEIC a la Ley 7472). O confirman por escrito, o se quitan los logos y queda el
+rango del programa solo.
 
 ## Cómo está armado
 
