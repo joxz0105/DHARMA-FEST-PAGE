@@ -1,0 +1,59 @@
+# Mergear a main publica en Vercel sin paso manual en medio. Esto es lo unico
+# que se interpone: si falla, el PR se ve rojo antes de que alguien lo mergee.
+name: verificar
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Si se empuja dos veces seguidas a la misma rama, la corrida vieja se cancela.
+concurrency:
+  group: verificar-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 24 para igualar el runtime del proyecto en Vercel. Si alla se cambia,
+      # cambiarlo aca tambien o se prueba contra un Node distinto del que sirve.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+
+      # Solo chromium: los dos proyectos de Playwright (Desktop Chrome y
+      # Pixel 7) corren sobre chromium, asi que bajar firefox y webkit seria
+      # regalar minutos.
+      - name: Instalar chromium para Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Unitarias
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Los e2e levantan su propio build en el 3100. Se bajan los workers
+      # porque en local, con tres, el navegador se queda sin memoria y falla
+      # con "Unable to capture screenshot", que parece un fallo del sitio y no
+      # lo es. Los runners de GitHub tienen menos nucleos todavia.
+      - name: End-to-end
+        run: npx playwright test --workers=2
+
+      - name: Guardar el reporte si algo falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
