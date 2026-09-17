@@ -54,11 +54,15 @@ Cuando Dharma pase el dominio real se agrega en Vercel y esto lo toma sin tocar 
 
 ### Antes de publicar
 
-`content/beneficios.json` lleva cuatro marcas con `confirmado: false`. Están como ejemplo para
-enseñar la idea: ninguna aceptó dar un descuento. Publicar el logo de una marca junto a una
-oferta que no aceptó convierte a Dharma en anunciante y la vuelve exigible (art. 113 b) del
-reglamento 37899-MEIC a la Ley 7472). O confirman por escrito, o se quitan los logos y queda el
-rango del programa solo.
+**Beneficios Dharma es una maqueta.** Las 15 marcas de `content/beneficios.json` llevan
+`confirmado: false`, y sus porcentajes y categorías son de ejemplo: el programa no se le ha
+propuesto a ninguna. Están para enseñarle la idea a los dueños de Dharma.
+
+Cada tarjeta dice «MARCA: X% de descuento en…», que es la oferta concreta de un tercero.
+Publicarla sin que la marca la haya aceptado convierte a Dharma en anunciante y la vuelve
+exigible (art. 113 b) del reglamento 37899-MEIC a la Ley 7472). Antes de que el sitio se muestre
+al público, cada marca confirma por escrito su beneficio, condiciones y vigencia, o sale del
+JSON.
 
 ## Cómo está armado
 
@@ -66,6 +70,7 @@ rango del programa solo.
 |---|---|
 | `app/[locale]/` | Páginas. El layout raíz vive acá dentro para que `next/root-params` exponga el idioma |
 | `components/secciones/` | Una por sección de página |
+| `components/beneficios/` | El catálogo de Beneficios Dharma, al molde del mall de Davivienda |
 | `components/ui/` | Primitivas del lenguaje visual del deck |
 | `content/` | Datos en JSON, validados con Zod al cargarlos |
 | `lib/leads.ts` | **Único** punto de escritura de datos personales |
@@ -74,6 +79,12 @@ rango del programa solo.
 
 **El contenido no vive en el código.** Para cambiar una cifra, sumar una marca o ajustar un
 beneficio de patrocinio se toca un JSON en `content/`, no un componente.
+
+**Para sumar una marca a Beneficios Dharma** se agrega un objeto a `beneficios` en
+`content/beneficios.json`, con el nombre y el logo tal como están en `marcas.json`. Si es una
+categoría nueva, se agrega también a `categorias`, con su foto: su página, su pastilla de
+filtro y su entrada del sitemap salen solas. El «entre X% y Y%» de `/2027` se recalcula del
+catálogo.
 
 ## Datos de personas
 
@@ -90,12 +101,22 @@ Estas no dependen de que alguien se acuerde:
 
 - **Los precios de patrocinio no se publican.** Están en `content/paquetes.json` para tenerlos
   a mano, pero un test recorre `/patrocinios` y falla si aparece un monto o un `US$`.
-- **El lima nunca va sobre fondo claro.** Da 1.68:1. Hay un test de contraste WCAG sobre toda
-  la paleta.
-- **`palido` (`#E4E8AD`) no es un beige**, es lima al 79% de luz. Un test comprueba que
-  comparte tono con el lima.
+- **El verde de marca (`#71B725`) nunca va como texto.** Da 2.47:1 sobre blanco; se usa de
+  relleno, con texto en tinta encima. Hay un test de contraste WCAG sobre toda la paleta.
+- **Los tres verdes comparten familia de tono**, y los tokens del CSS son los del manual.
+- **El texto sobre fotos se lee de verdad.** axe no sabe medir contraste sobre una imagen, así
+  que un test esconde el texto, fotografía el fondo real y lo mide, en escritorio y en móvil.
+  Lee cualquier sintaxis de color y mezcla la opacidad del texto con su fondo: un
+  `text-hueso/80` se mide como el gris que realmente se ve. Si falla, lo que corresponde es
+  oscurecer la foto donde cae el texto o subir la opacidad, no bajar el umbral.
+- **El foco se ve también sobre las fotos.** Ahí el anillo es pálido; sobre claro, verde.
 - **La casilla de consentimiento no viene premarcada.**
 - **Los logos son PNG con transparencia.** En JPEG salen con un rectángulo de fondo.
+- **Beneficios Dharma no inventa marcas ni deja categorías vacías.** Cada beneficio apunta a
+  una marca de `marcas.json` y a una categoría que existe; una categoría mal escrita tumba el
+  build con un mensaje que dice cuál.
+- **Cada marca tiene su logo recortado** en `public/img/logos-recortados/`. Si falla, correr
+  `python scripts/recortar_logos.py`.
 
 ## Falta del cliente
 

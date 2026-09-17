@@ -52,6 +52,27 @@ export const getMedios = () => validar(z.array(esquemaMedio).min(1), medios, "me
  */
 export const getBeneficios = () => validar(esquemaBeneficios, beneficios, "beneficios.json");
 
+export const getCategoriaBeneficio = (slug: string) =>
+  getBeneficios().categorias.find((c) => c.slug === slug);
+
+/**
+ * El "entre X% y Y%" que se anuncia en /2027 sale del catalogo, no se
+ * escribe a mano: si alguien cambia un porcentaje, el anuncio no puede
+ * quedarse prometiendo otro numero.
+ */
+export function getRangoDescuento() {
+  const porcentajes = getBeneficios().beneficios.map((b) => b.descuento);
+  return { min: Math.min(...porcentajes), max: Math.max(...porcentajes) };
+}
+
+/**
+ * Que clave de copy anuncia el rango. Si todas las marcas dan lo mismo (por
+ * ejemplo, cuando confirma la primera), "entre 10% y 10%" no se puede decir.
+ */
+export function claveDelRango({ min, max }: { min: number; max: number }) {
+  return min === max ? "descuentoUnico" : "descuento";
+}
+
 /**
  * Fotos de la galeria: seleccion a mano de las 63 que el cliente entrego del
  * Dharma Fest 2025. Antes salian recortadas del deck, que eran peores.

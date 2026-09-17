@@ -32,8 +32,21 @@ test("el sitemap lista las rutas en ambos idiomas", async ({ request }) => {
   const respuesta = await request.get("/sitemap.xml");
   expect(respuesta.status()).toBe(200);
   const xml = await respuesta.text();
-  for (const ruta of ["/patrocinios", "/en/patrocinios", "/road-to-dharma", "/2027"]) {
-    expect(xml, `falta ${ruta} en el sitemap`).toContain(`dharmafestcr.com${ruta}`);
+  for (const ruta of [
+    "/patrocinios",
+    "/en/patrocinios",
+    "/road-to-dharma",
+    "/2027",
+    "/beneficios",
+    "/en/beneficios",
+    "/beneficios/movimiento",
+    "/en/beneficios/movimiento",
+  ]) {
+    // Con el <loc> completo: como subcadena, "/beneficios" aparecia dentro de
+    // las URL de categoria y el test pasaba aunque faltara la pagina indice.
+    expect(xml, `falta ${ruta} en el sitemap`).toContain(
+      `<loc>https://dharmafestcr.com${ruta}</loc>`,
+    );
   }
 });
 
@@ -45,9 +58,19 @@ test("robots.txt existe y apunta al sitemap", async ({ request }) => {
 
 test("cada página tiene un título distinto", async ({ page }) => {
   const titulos = new Set<string>();
-  for (const ruta of ["/", "/2027", "/road-to-dharma", "/patrocinios", "/nosotros", "/privacidad"]) {
+  const rutas = [
+    "/",
+    "/2027",
+    "/beneficios",
+    "/beneficios/movimiento",
+    "/road-to-dharma",
+    "/patrocinios",
+    "/nosotros",
+    "/privacidad",
+  ];
+  for (const ruta of rutas) {
     await page.goto(ruta);
     titulos.add(await page.title());
   }
-  expect(titulos.size).toBe(6);
+  expect(titulos.size).toBe(rutas.length);
 });

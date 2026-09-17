@@ -1,7 +1,15 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const RUTAS = ["/road-to-dharma", "/2027", "/nosotros", "/patrocinios", "/privacidad"];
+const RUTAS = [
+  "/road-to-dharma",
+  "/2027",
+  "/beneficios",
+  "/beneficios/movimiento",
+  "/nosotros",
+  "/patrocinios",
+  "/privacidad",
+];
 
 for (const ruta of RUTAS) {
   test.describe(ruta, () => {
@@ -56,6 +64,7 @@ test("una ruta inexistente da 404 con página propia", async ({ page }) => {
 
 const DESTINOS = [
   ["Dharma Fest 2027", "/2027"],
+  ["Beneficios Dharma", "/beneficios"],
   ["Road to Dharma", "/road-to-dharma"],
   ["Patrocinios", "/patrocinios"],
   ["Nosotros", "/nosotros"],

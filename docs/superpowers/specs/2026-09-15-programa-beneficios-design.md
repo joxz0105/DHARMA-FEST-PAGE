@@ -1,6 +1,23 @@
 # Programa de beneficios — diseño
 
-Fecha: 2026-09-15 · Rama: `main` · Extiende: `2026-09-09-dharma-fest-v2-design.md`
+Fecha: 2026-09-15 · Revisada: 2026-09-16, tras la revisión del cliente · Extiende:
+`2026-09-09-dharma-fest-v2-design.md`
+
+## 0. Lo que pidió el cliente al verlo (2026-09-16)
+
+Vio la sección de descuentos dentro de `/2027` y pidió tres cosas, por WhatsApp:
+
+1. **Que fuera una pestaña aparte**, no un bloque dentro del festival.
+2. **Que se viera con la diagramación del mall de Davivienda** (`compras.davivienda.cr`),
+   organizada por categorías. Mandó dos capturas: el menú de categorías desplegado y una página
+   de categoría («SALUD», conteo de resultados, «Ordenar», grilla de tarjetas con imagen,
+   categoría en versalitas y un título tipo «COSME CLINIC: 30% DTO EN SERVICIOS MÉDICOS»).
+3. **Que arriba dijera «Dharma Fest 2027» y a la par «Beneficios Dharma».** Se leyó como la barra
+   de navegación, que ya tenía «Dharma Fest 2027» como primer enlace.
+
+Eso adelantó el Tiempo 2 y cambió dos decisiones de esta spec, que quedan registradas abajo: el
+porcentaje ahora va **por marca** en cada tarjeta, porque es exactamente el formato de la
+referencia; y el filtro por categoría existe desde el día uno, porque es el eje del pedido.
 
 ## 1. Qué es
 
@@ -44,11 +61,10 @@ se lanza. De ahí la separación:
 
 | | Tiempo 1 | Tiempo 2 |
 |---|---|---|
-| Dónde | Sección en `/2027` | Ruta propia `/beneficios` |
-| Marcas necesarias | 4, como muestra | 12–15 por escrito |
-| Qué muestra | El mecanismo + rango de descuento | El catálogo marca por marca |
-| Riesgo legal | Real mientras no confirmen | Real, se controla con papel |
-| Estado | **Hecho** (maqueta) | Pendiente del cliente |
+| Dónde | Sección en `/2027` | Pestaña **Beneficios Dharma**, `/beneficios` |
+| Qué muestra | El mecanismo + el rango de descuento | El catálogo por categorías |
+| Marcas | Ninguna nombrada | 15, **de ejemplo** |
+| Estado | **Hecho** | **Hecho como maqueta**; publicable cuando confirmen |
 
 ## 4. Tiempo 1 — «Qué incluye tu entrada» (hecho)
 
@@ -56,99 +72,131 @@ se lanza. De ahí la separación:
 deliberado: primero se construye el valor, después aparece el botón de comprar.
 
 Tres puntos sobre el día del festival: en los stands · por orden de llegada · con el pase
-Experiencia. Debajo, un cuarto bloque con el descuento y cuatro logos. Cierra con la línea del
-canje y un enlace a `#entradas`. Cuando exista `/beneficios`, ese enlace apunta ahí.
+Experiencia. Debajo, un bloque que anuncia los descuentos con su rango y un botón **«Ver
+Beneficios Dharma»**. Cierra con la línea del canje y un enlace a `#entradas`.
 
-### El descuento va como rango del programa
+Los cuatro logos que tuvo este bloque en su primera versión **se sacaron**: el cliente pidió que
+el catálogo viviera aparte. Hay un test que vigila que no vuelvan.
 
-El diseño original no nombraba marcas ni porcentajes, para que la sección pudiera salir sin
-exposición legal. **El cliente pidió lo contrario**, y con razón de negocio: los dueños de Dharma
-necesitan ver cómo se vería, y «5%–10% de descuento» es lo concreto que hace la idea vendible.
-
-La forma que se eligió acota el riesgo sin quitarle fuerza: el porcentaje se declara **como rango
-del programa** —«entre 5% y 10% en los productos de las marcas aliadas»— y no pegado a cada logo.
-Un número junto a una marca es la oferta concreta de esa marca; un rango del programa es una
-afirmación de Dharma sobre su propio programa. El desglose por marca llega con `/beneficios`,
-donde cada línea carga sus condiciones y su vigencia. Hay un test que vigila que ningún objeto de
-`beneficios.json` gane un campo de porcentaje por marca.
-
-**Esto es una maqueta, no material publicable.** Las cuatro marcas de `content/beneficios.json`
-—Vita Açaí, Puro Shot, Verti Greens, Sencha Tea— están ahí como ejemplo y llevan
-`confirmado: false`. Ninguna ha dicho que sí. Antes de que esta sección sea pública, cada una
-tiene que confirmar por escrito; si no, se quitan los logos y queda el rango solo.
-
-Se eligieron esas cuatro por dos razones: son marcas de producto, que es de lo que habla el copy,
-y sus logos se leen en blanco a tamaño chico. Los finos —Ceres Orgánica, matcha-lā, Nutriplus,
-Ondalina— se lavan sobre la foto. Cambiarlas es editar la lista del JSON y nada más.
+El «entre X% y Y%» **no se escribe a mano**: `getRangoDescuento()` lo calcula del catálogo. Si
+alguien cambia un porcentaje, el anuncio no puede quedarse prometiendo otro número.
 
 Fondo: `2025/2025-dsc9370.jpg`, scrim 48. Es una persona del festival 2025 con el brazalete verde
 puesto. En móvil la sección es más alta y el brazalete entra en el recorte; en escritorio no, y
 se prefiere el rostro.
 
-Copy en el namespace `beneficios` de `content/copy/{es,en}.json`, para que el Tiempo 2 lo
-extienda sin mover nada.
-
 **Pendiente del cliente:** confirmar que las regalías se repiten en 2027. Por eso el copy
 describe cómo funciona el festival y no promete marcas ni cantidades.
 
-## 5. Tiempo 2 — `/beneficios`
+## 5. Tiempo 2 — Beneficios Dharma (hecho como maqueta)
 
 Pública, sin gate. Una lista abierta de descuentos **vende entradas**; una escondida no vende
 ninguna, y el candado no impide que alguien pida el descuento en el local — solo impide que un
 comprador real encuentre su beneficio.
 
-Estructura:
+### Navegación
 
-1. **Hero** con `FondoFoto`. La bajada aclara la dirección del beneficio, que es el malentendido
-   garantizado: *el descuento es en las marcas, no en la entrada.*
-2. **Tres pasos** sobre papel: comprás tu entrada → mostrás tu QR o tu brazalete → recibís el
-   beneficio.
-3. **Bloque «En el festival»** — canje en el stand, beneficios fuertes.
-4. **Bloque «Todo el año»** — canje en el local o la web, con vigencia y tope visibles.
-5. **Bases y condiciones**, con la fórmula *«cada marca otorga y honra su beneficio»*.
-6. **Bloque chico** «¿tenés una marca y querés estar acá?» hacia `/patrocinios`.
+«Beneficios Dharma» va en la barra **justo después de «Dharma Fest 2027»**, como pidió el
+cliente: son las dos caras de la misma entrada. Es el quinto enlace. Se midió a 1024, 1100 y
+1180 px en los dos idiomas: entra en una sola fila, sin partir ningún enlace y sin montarse
+sobre el selector de idioma. Hay un test que lo vigila en esos tres anchos, que son los que el
+test de desborde de la home (1280 px) se saltaba.
 
-Las tarjetas van al molde de `Paquetes.tsx`, con una inversión: **el peso visual lo lleva el
-texto del beneficio, no el logo.** No es preferencia estética. Los 58 PNG están recoloreados a un
-tono plano `#1C2A14` y la mediana es 324×240 px; no existe versión a color en el repo y escalarlos
-da borroso y monocromo. Logos a color es material nuevo que hay que pedirle al cliente.
+No se replicó el menú desplegable de categorías que tiene Davivienda en la barra. Las categorías
+viven en la página, que es donde el pedido las puso («verse … por categorías»); un desplegable
+en la cabecera es un paso siguiente si el cliente lo pide.
 
-Filtro por categoría cuando pase de ~20 marcas. Antes no hace falta.
+### Rutas
 
-La página declara el número de marcas explícito («15 marcas aliadas, y sumando»). Un contador
-honesto se lee como programa en crecimiento; un grid con huecos se lee como abandono.
+- `/beneficios` — todos los beneficios.
+- `/beneficios/[categoria]` — una por categoría del JSON, generadas al construir. Una categoría
+  que no existe da la 404 propia del sitio.
 
-**Nav:** entra a la barra como quinto enlace. Verificar el desborde horizontal en anchos
-intermedios: el test solo corre a 1280 y a 412 px, justo salteándose donde se rompe.
+Cada categoría es **una página, no un filtro en el navegador**: el enlace de «Movimiento» se
+puede mandar por WhatsApp y abre ya filtrado, y Google lo indexa. Entran solas al sitemap.
+
+### Estructura, al molde de Davivienda
+
+1. **Encabezado con foto**, más bajo que el resto del sitio (es un catálogo; quien entra quiere
+   llegar a las tarjetas). En la página general dice «Beneficios Dharma»; en cada categoría, el
+   nombre de la categoría, con su propia foto del 2025.
+2. **Caja de categorías** a la izquierda, con el conteo de cada una y la activa en verde y con
+   `aria-current="page"`. En móvil se vuelve una fila de pastillas que se acomoda en varias
+   líneas, sin scroll lateral.
+3. **Conteo de resultados y «Ordenar»**: relevancia (el orden del JSON), mayor descuento, marca
+   A–Z. Es lo único del catálogo que corre en el navegador.
+4. **Grilla de tarjetas**, tres columnas en escritorio: el logo sobre fondo pálido con una
+   insignia «-10%», la categoría en versalitas y el título «MARCA: 10% DE DESCUENTO EN …».
+5. **Cómo usar tus beneficios**: tres pasos, la condición *«cada marca otorga y honra su propio
+   beneficio»*, el botón a entradas y, al pie y chico, el anzuelo para marcas hacia
+   `/patrocinios#propuesta`.
+
+### Por qué la imagen de la tarjeta es el logo y no una foto
+
+Davivienda usa fotos promocionales. Aquí no hay fotos de producto de ninguna marca, y poner una
+del festival sugeriría algo que no es. El logo va sobre `palido`: los 58 PNG están recoloreados a
+tinta, que es justo lo que se lee sobre ese fondo.
+
+Los PNG del deck traían mucho margen transparente —Cuarzo Rosa ocupa el 10% de su archivo— y
+con `object-contain` esos logos salían diminutos. `scripts/recortar_logos.py` escribe copias
+recortadas en `public/img/logos-recortados/`, para las 58 marcas, sin tocar los originales que
+usa el muro de `/patrocinios`.
+
+### El porcentaje ahora va por marca
+
+La versión del 2026-09-15 declaraba el porcentaje solo como rango del programa y tenía un test
+que impedía pegarlo a una marca. **El pedido del cliente lo contradice**: la referencia es
+exactamente «MARCA: X% DTO EN …». Se siguió la referencia y se reemplazó ese test.
+
+La consecuencia es la que ya estaba escrita en §8: cada tarjeta es la oferta concreta de un
+tercero, exigible si se publica. Por eso el catálogo es **maqueta** hasta que cada marca confirme
+por escrito, y por eso la condición de la página dice que cada marca otorga y honra su beneficio.
+
+### Las 15 marcas del ejemplo
+
+Cuatro categorías. Las de Movimiento y las de Cuidado personal tienen respaldo en el
+`Cronograma.docx` del cliente (listas de Movimiento y del Mercadito); la de Vita Açaí, Puro Shot
+y Verti Greens es inferida del nombre. Los porcentajes, entre 5% y 10%, son los que dio el
+usuario para la demo; cuál marca tiene cuál es invención.
+
+| Categoría | Marcas | Foto |
+|---|---|---|
+| Alimentación | Vita Açaí, Puro Shot, Verti Greens, Sencha Tea | bandejas de microvegetales |
+| Movimiento | Spinning Center, Doer Fitness, Pranayama Costa Rica, Circl Mobility | clase de yoga |
+| Salud y bienestar | Piel y Mente, AllRecovery, Aquí y Ahora | meditación |
+| Cuidado personal | Oleana, Cuarzo Rosa, nipskin, Brixta | puesto del Mercadito |
 
 ## 6. Modelo de contenido
 
-`content/beneficios.json`, un objeto por beneficio con los ocho campos de la confirmación
-escrita. Ese documento es simultáneamente el contenido del JSON, el esquema de Zod y la prueba
-legal:
+`content/beneficios.json` tiene dos listas:
 
 ```
-marca · logo · categoria · beneficio {es,en} · condiciones {es,en}
-donde · nivel ("festival" | "anual") · vigenciaHasta · link
+categorias: slug · nombre {es,en} · descripcion {es,en} · foto · scrim · posicion
+beneficios: marca · logo · categoria · descuento · sobre {es,en} · confirmado
 ```
 
-Dos reglas que el repo impone y que es fácil romper por copiar el patrón de al lado:
+El título de cada tarjeta se arma con el copy (`{marca}: {descuento}% de descuento {sobre}`), no
+concatenando en el código, para que el inglés pueda cambiar el orden («{marca}: {descuento}% off
+{sobre}»).
 
-- El getter va **`.min(1)`**, no `.length(n)`. Casi todos los de `lib/contenido.ts` usan cantidad
-  exacta; con ese patrón, cada marca que sume el cliente rompe el build.
-- El copy en inglés **no puede ser idéntico al español** o falla `tests/unit/copy.test.ts`. Un
-  nombre propio bilingüe obliga a sumarlo a `PERMITIDAS`.
+**La referencia cruzada se valida en el esquema, no solo en los tests.** Un beneficio que apunta
+a una categoría mal escrita, dos categorías con el mismo slug, o una categoría sin beneficios
+tumban el build con un mensaje que dice cuál. Una categoría vacía sería una página en blanco.
 
-**Los beneficios vencidos se filtran al renderizar, y un bloque sin beneficios vivos no se
-dibuja.** Eso es lo que separa un catálogo vivo de uno muerto. Se consideró que un vencimiento
-tumbara el build y se descartó: rompería en un momento aleatorio, mientras alguien hace otra
-cosa. En su lugar, un test unitario falla cuando un bloque entero se queda sin beneficios vivos,
-que es exactamente cuándo hay que enterarse.
+`confirmado` no se renderiza. Existe para que se vea de un vistazo quién dio el sí por escrito.
+Hoy las 15 están en `false`, y un test lo fija: el día que llegue la primera confirmación, ese
+test se actualiza a propósito y el cambio se ve en el diff.
 
-Nota: el sitio se prerenderiza, así que el filtro se evalúa al construir. Aceptable mientras el
-proyecto se corra local; si algún día se despliega, hay que revisarlo.
+Reglas que el repo impone y que es fácil romper por copiar el patrón de al lado:
 
-`beneficios.json` **nunca** se deriva de `marcas.json`. Arranca de cero con las confirmadas.
+- El getter va **sin cantidad exacta**. Casi todos los de `lib/contenido.ts` usan `.length(n)`;
+  con ese patrón, cada marca que sume el cliente rompería el build.
+- El copy en inglés **no puede ser idéntico al español** o falla `tests/unit/copy.test.ts`.
+
+**Quedó fuera, a propósito:** condiciones y vigencia por beneficio, y el filtro de vencidos que
+proponía la primera versión. No hay ni un dato de vigencia todavía, y un campo que todas las
+tarjetas dejan vacío no protege nada. Entran con la primera confirmación escrita, que es la que
+trae esos datos.
 
 ## 7. Mecánica de canje
 
@@ -197,17 +245,17 @@ Dos formulaciones que importan:
 
 ## 9. Falta del cliente
 
-### Bloqueante para publicar el Tiempo 1
+### Bloqueante para mostrarlo al público
 
-Hoy es una maqueta para enseñarle la idea a los dueños de Dharma, y el sitio corre local. Para
-que salga a un dominio hacen falta dos cosas:
+Hoy es una maqueta para enseñarle la idea a los dueños de Dharma. El sitio **sí** está en Vercel
+(`dharma-fest-page`, sale de `main`), así que mergear publica. Antes de que el público lo vea:
 
-- **Las cuatro marcas del ejemplo confirman por escrito**, o se quitan los logos y queda el rango
-  solo. Publicar el logo de una marca junto a un descuento que no aceptó es lo que el art. 113 b)
-  vuelve exigible.
+- **Cada una de las 15 marcas confirma por escrito** su beneficio, condiciones y vigencia, o sale
+  de `beneficios.json`. Una tarjeta con el logo de una marca y un porcentaje que no aceptó es lo
+  que el art. 113 b) vuelve exigible.
 - **Confirmar que las regalías del Mercadito se repiten en 2027.**
 
-### Bloqueante para el Tiempo 2
+### Bloqueante para que el programa funcione
 
 - **12–15 confirmaciones por escrito**, con los ocho campos. Orden de ataque: los ~9 estudios y
   gimnasios y los ~9 servicios de salud primero, que pueden decir que sí sin consultar a un
@@ -260,33 +308,84 @@ anzuelo para marcas como un bloque al pie, no como sección de igual peso.
 ## 11. Pruebas
 
 `lib/rutas.ts` **no es la fuente de verdad**: `RUTAS` solo alimenta `app/sitemap.ts`. El hreflang
-lo arma cada página llamando `alternativas()` a mano, y hay **cuatro listas de rutas
-hardcodeadas** en los tests e2e:
+lo arma cada página llamando `alternativas()` a mano, y hay **listas de rutas hardcodeadas** en
+los tests e2e (`legibilidad`, `paginas`, `seo`). Agregar una ruta sin editarlas no rompe nada, y
+ese es el peligro: la página nace sin cobertura. `/beneficios` y sus categorías están en las
+tres.
 
-- `tests/e2e/legibilidad.spec.ts:16`
-- `tests/e2e/paginas.spec.ts:4` y `:59`
-- `tests/e2e/seo.spec.ts:35` y `:48`
+### El test de legibilidad nunca había medido bien en móvil
 
-Agregar la ruta sin editarlas a mano no rompe nada, y ese es el peligro: la página nace sin
-cobertura de accesibilidad, h1, título ni versión en inglés, y los tests siguen en verde.
+Al sumar las categorías, `legibilidad.spec.ts` falló en móvil con fondos casi blancos
+(luminancia 0.91) donde había una foto oscura. La causa no estaba en la página: el test captura
+la pantalla a la densidad del dispositivo emulado —el Pixel 7 tiene 2.625— y la recorría con
+coordenadas CSS. En móvil medía en otro lugar de la página, 2.6 veces más arriba.
 
-`legibilidad.spec.ts` además **falla** si se agrega la ruta a su lista y la página no tiene
-ninguna sección con `data-fondo="verde"`. Es una decisión de diseño forzada por el test: o la
-página lleva hero con foto, o no entra a esa lista.
+Aprobaba las páginas viejas **por casualidad**: donde caía, había un encabezado oscuro. En
+Beneficios caía en el catálogo claro.
 
-Guardas ya puestas (Tiempo 1):
+Se corrigió capturando en píxeles CSS (`scale: "css"`) y con una guarda que falla si la captura y
+las coordenadas no están en la misma escala. Para comprobar que el test ahora detecta algo, se
+oscureció a propósito un título sobre la foto y falló en escritorio y en móvil, midiendo el fondo
+real (luminancia 0.06 y 0.15).
 
-- `beneficios.json` no puede inventar marcas: nombre y logo tienen que coincidir con
-  `marcas.json`.
-- Los logos referenciados existen en disco.
-- El rango es coherente (`min < max`, `max <= 100`).
-- Ningún objeto de `marcas` gana un campo de porcentaje propio — el porcentaje va como rango del
-  programa, no pegado a una marca.
+### Y tampoco medía los textos con opacidad
 
-Guardas pendientes (Tiempo 2):
+La revisión del cambio encontró un segundo agujero, más grande. Tailwind 4 escribe
+`text-hueso/80` como `oklab(…)`, y el test leía el color con una expresión regular pensada para
+`rgb()`: salía una luminancia de millones y **el texto aprobaba siempre, sin medirse**. Además
+ignoraba el alfa. En `/beneficios`, 7 de 10 textos sobre foto nunca se habían medido; en el resto
+del sitio, lo mismo.
 
-- Un bloque sin beneficios vivos no se dibuja (test unitario).
-- Ningún beneficio vencido se renderiza.
+Ahora el color se normaliza pintándolo en un canvas, se mezcla con el fondo real según su alfa,
+y un color que no se pueda leer hace fallar el test. También mide enlaces, etiquetas y texto en
+línea: la etiqueta del consentimiento vive en un `span` y quedaba fuera. Se comprobó con una
+mutación (el texto de condiciones al 40%): falla en los dos anchos leyendo alfa 0.40.
+
+**Con el test corregido aparecieron fallas reales en páginas que ya estaban publicadas**, y se
+arreglaron en este mismo cambio:
+
+| Dónde | Qué pasaba | Arreglo |
+|---|---|---|
+| Home, `#sumate` | Etiquetas, casilla y aviso de la Ley 8968 en tinta sobre la foto: el aviso daba 2.2:1 | El formulario va en un panel claro |
+| Todos los formularios | Borde de campo en tinta al 25%: 1.7:1 | Tinta al 55% (3:1) |
+| Home, Road to Dharma | Cuerpo a 3.47:1 y el enlace a 4.32:1 sobre la pared clara | Oscurecido de 0.55 a 0.68 y cuerpo en hueso pleno |
+| `/patrocinios`, hero | «¿Por qué Dharma?» sobre el cielo: 2.55:1 | Refuerzo lateral, como el de `FondoFoto` |
+| `/patrocinios`, Mercadito | La foto era un salón blanco: caja gris plana y cuerpo a 3.47:1 | Foto de un puesto del 2025 con `FondoFoto` |
+| `Kicker`, en todo el sitio | Al 80% se caía en fondos apenas claros | Hueso pleno |
+| Beneficios, cierre | Condiciones y anzuelo de marcas al 80–85% | Hueso pleno |
+
+La misma revisión encontró que el anillo de foco (verde de texto) no llegaba a 3:1 sobre las
+fotos. Ahí ahora es pálido, en las secciones con foto y en la cabecera, salvo el menú móvil, que
+es claro.
+
+### Guardas de Beneficios Dharma
+
+Unitarias:
+
+- No inventa marcas: nombre y logo coinciden con `marcas.json`, y ninguna se repite.
+- Cada beneficio cae en una categoría que existe, y ninguna categoría queda vacía; una categoría
+  mal escrita tumba la validación.
+- El rango de `/2027` es el del catálogo, y si todas las marcas dan lo mismo no dice «entre 10% y
+  10%».
+- Cada marca de `marcas.json` tiene su logo recortado.
+- Mientras sea maqueta, ninguna marca figura como confirmada.
+- El anillo de foco llega a 3:1 en claro y sobre foto, y la regla está en el CSS.
+
+End-to-end (`tests/e2e/beneficios.spec.ts`), con los conteos leídos del JSON:
+
+- Lista todos los beneficios y dice cuántos son.
+- Cada categoría lleva a su página, con sus tarjetas y marcada como actual.
+- Cada tarjeta dice marca, porcentaje y sobre qué aplica, en español y en inglés.
+- Los dos órdenes funcionan, con guardas para que una lista vacía no «esté ordenada».
+- Una categoría inexistente da la 404 propia.
+- El cuerpo no se desborda, y a 320 px ningún título de categoría se corta (el hero tiene
+  `overflow-hidden`, así que un título ancho se recortaba en silencio).
+- Las rutas de categoría de `legibilidad` y del sitemap se leen del JSON o se comparan con la URL
+  completa.
+- `/2027` anuncia el rango del catálogo, ya no lleva logos y manda a Beneficios Dharma.
+- En la cabecera, Beneficios Dharma va justo después de Dharma Fest 2027, en escritorio y en el
+  menú móvil.
+- La cabecera entra en una fila a 1024, 1100 y 1180 px, en los dos idiomas.
 
 ## 12. Fuera de alcance
 

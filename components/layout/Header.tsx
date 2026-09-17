@@ -8,8 +8,12 @@ export function Header({ locale }: { locale: string }) {
   const t = useTranslations("nav");
   const base = locale === "es" ? "" : `/${locale}`;
 
+  // Beneficios va pegado al festival porque lo pidio el cliente: "arriba debe
+  // decir Dharma Fest 2027 y a la par Beneficios Dharma". Son las dos caras de
+  // la misma entrada.
   const enlaces = [
     { href: `${base}/2027`, texto: t("festival") },
+    { href: `${base}/beneficios`, texto: t("beneficios") },
     { href: `${base}/road-to-dharma`, texto: t("road") },
     { href: `${base}/patrocinios`, texto: t("patrocinios") },
     { href: `${base}/nosotros`, texto: t("nosotros") },

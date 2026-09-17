@@ -45,6 +45,18 @@ describe("contraste de la paleta clara", () => {
     expect(ratio(TINTA, VERDE), "tinta sobre verde").toBeGreaterThanOrEqual(4.5);
   });
 
+  it("el anillo de foco se distingue en claro y sobre foto (3:1)", () => {
+    // Sobre foto el fondo oscurecido va de luminancia 0.02 a 0.14. Estos dos
+    // grises son los extremos de ese rango.
+    const FOTO_OSCURA = "#2A3A1E";
+    const FOTO_CLARA = "#686868";
+    expect(ratio(VERDE_TEXTO, PAPEL), "verde de texto sobre papel").toBeGreaterThanOrEqual(3);
+    expect(ratio(VERDE_TEXTO, FOTO_OSCURA), "por eso sobre foto no sirve").toBeLessThan(3);
+    for (const fondo of [FOTO_OSCURA, FOTO_CLARA]) {
+      expect(ratio(PALIDO, fondo), `pálido sobre ${fondo}`).toBeGreaterThanOrEqual(3);
+    }
+  });
+
   it("es simétrico", () => {
     expect(ratio(VERDE_TEXTO, PAPEL)).toBeCloseTo(ratio(PAPEL, VERDE_TEXTO), 5);
   });
@@ -73,6 +85,12 @@ describe("los tokens del CSS son los del manual de marca", () => {
   it("el tema es claro y no queda ningún fondo oscuro declarado", () => {
     expect(css).toContain("color-scheme: light");
     expect(css).not.toContain("#111211");
+  });
+
+  it("sobre las fotos y en la cabecera el anillo de foco es pálido", () => {
+    expect(css).toContain("section:has(> [data-fondo]) :focus-visible");
+    expect(css).toContain("header :focus-visible:not(#menu-movil *)");
+    expect(css).toMatch(/:not\(#menu-movil \*\)\s*\{\s*outline-color: var\(--color-palido\);/);
   });
 
   it("los tres verdes comparten familia de tono", () => {

@@ -34,30 +34,71 @@ export const esquemaPaquete = z.object({
 
 export const esquemaMarca = z.object({ nombre: z.string().min(1), logo: z.string() });
 
+/** Categoria del catalogo de Beneficios Dharma. El slug es el segmento de la URL. */
+export const esquemaCategoriaBeneficio = z.object({
+  slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug: minusculas, numeros y guiones"),
+  nombre: textoBilingue,
+  descripcion: textoBilingue,
+  foto: z.string(),
+  /** Oscurecido de la foto del encabezado. Lo vigila tests/e2e/legibilidad. */
+  scrim: z.number().int().min(0).max(90),
+  posicion: z.string().optional(),
+});
+
 /**
- * Programa de beneficios. El descuento se declara como RANGO del programa
- * ("entre 5% y 10% en las marcas aliadas") y no como porcentaje por marca,
- * que es la forma legalmente expuesta: un numero pegado a un logo es una
- * oferta concreta de un tercero. El porcentaje por marca llega con el
- * catalogo de /beneficios, donde cada linea carga sus condiciones y vigencia.
+ * Un beneficio de una marca aliada.
  *
  * `confirmado` no se renderiza. Existe para que se vea de un vistazo cuales
  * marcas ya dieron el si por escrito y cuales siguen siendo ejemplo.
  */
-export const esquemaBeneficios = z.object({
-  _nota: z.string().optional(),
-  rangoDescuento: z
-    .object({
-      min: z.number().int().positive().max(100),
-      max: z.number().int().positive().max(100),
-    })
-    .refine((r) => r.min < r.max, "rangoDescuento: el minimo tiene que ser menor que el maximo"),
-  marcas: z
-    .array(
-      z.object({ nombre: z.string().min(1), logo: z.string(), confirmado: z.boolean() }),
-    )
-    .min(1),
+export const esquemaBeneficio = z.object({
+  marca: z.string().min(1),
+  logo: z.string(),
+  categoria: z.string(),
+  descuento: z.number().int().min(1).max(100),
+  /** Sobre que aplica: "en todos sus productos" / "all products". */
+  sobre: textoBilingue,
+  confirmado: z.boolean(),
 });
+
+/**
+ * Catalogo de Beneficios Dharma, organizado por categorias como el mall de
+ * Davivienda que el cliente puso de referencia.
+ *
+ * La referencia cruzada se valida aca y no solo en los tests: una categoria
+ * mal escrita tumba el build con un mensaje que dice cual, en vez de dejar un
+ * beneficio huerfano que no aparece en ninguna pagina de categoria.
+ */
+export const esquemaBeneficios = z
+  .object({
+    _nota: z.string().optional(),
+    categorias: z.array(esquemaCategoriaBeneficio).min(1),
+    beneficios: z.array(esquemaBeneficio).min(1),
+  })
+  .superRefine((datos, ctx) => {
+    const slugs = new Set(datos.categorias.map((c) => c.slug));
+    if (slugs.size !== datos.categorias.length) {
+      ctx.addIssue({ code: "custom", path: ["categorias"], message: "hay slugs repetidos" });
+    }
+    datos.beneficios.forEach((b, i) => {
+      if (!slugs.has(b.categoria)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["beneficios", i, "categoria"],
+          message: `${b.marca}: la categoria "${b.categoria}" no existe`,
+        });
+      }
+    });
+    for (const slug of slugs) {
+      if (!datos.beneficios.some((b) => b.categoria === slug)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["categorias"],
+          message: `la categoria "${slug}" no tiene beneficios: su pagina saldria vacia`,
+        });
+      }
+    }
+  });
 
 export const esquemaAsociacion = esquemaMarca;
 
@@ -72,6 +113,8 @@ export type Tema = z.infer<typeof esquemaTema>;
 export type Paquete = z.infer<typeof esquemaPaquete>;
 export type Marca = z.infer<typeof esquemaMarca>;
 export type Beneficios = z.infer<typeof esquemaBeneficios>;
+export type Beneficio = z.infer<typeof esquemaBeneficio>;
+export type CategoriaBeneficio = z.infer<typeof esquemaCategoriaBeneficio>;
 export type Asociacion = z.infer<typeof esquemaAsociacion>;
 export type Espacio = z.infer<typeof esquemaEspacio>;
 export type Medio = z.infer<typeof esquemaMedio>;
