@@ -53,6 +53,16 @@ body {
   outline-offset: 3px;
 }
 
+/* Sobre las fotos oscurecidas, el verde de texto no se distingue: el fondo
+   ahi tiene luminancia de 0.02 a 0.14 y el anillo quedaba por debajo del 3:1
+   que pide la norma para un indicador de foco. Palido da 5:1 o mas.
+   Cubre las secciones con FondoFoto (y los heroes con velo propio) y la
+   cabecera, que flota sobre la foto, salvo el menu movil, que es claro. */
+section:has(> [data-fondo]) :focus-visible,
+header :focus-visible:not(#menu-movil *) {
+  outline-color: var(--color-palido);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

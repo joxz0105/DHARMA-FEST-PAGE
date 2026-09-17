@@ -2,9 +2,11 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  claveDelRango,
   getActividades,
   getAsociaciones,
   getBeneficios,
+  getCategoriaBeneficio,
   getCifras,
   getEspacios,
   getFotosGaleria,
@@ -12,9 +14,11 @@ import {
   getMarcas,
   getMedios,
   getPaquetes,
+  getRangoDescuento,
   getTemas,
   getTexturaFondo,
 } from "@/lib/contenido";
+import { esquemaBeneficios } from "@/lib/esquemas";
 
 describe("cifras", () => {
   it("son las del deck", () => {
@@ -102,29 +106,67 @@ describe("logos", () => {
   });
 });
 
-describe("programa de beneficios", () => {
-  it("el rango de descuento es coherente", () => {
-    const { min, max } = getBeneficios().rangoDescuento;
-    expect(min).toBeLessThan(max);
-    expect(max).toBeLessThanOrEqual(100);
-  });
-
+describe("Beneficios Dharma", () => {
   it("no inventa marcas: todas están en marcas.json, con el mismo logo", () => {
     const catalogo = new Map(getMarcas().map((m) => [m.nombre, m.logo]));
-    for (const marca of getBeneficios().marcas) {
-      expect(catalogo.get(marca.nombre), `${marca.nombre} no está en marcas.json`).toBe(
-        marca.logo,
-      );
+    for (const b of getBeneficios().beneficios) {
+      expect(catalogo.get(b.marca), `${b.marca} no está en marcas.json`).toBe(b.logo);
     }
   });
 
-  it("el porcentaje va como rango del programa, nunca pegado a una marca", () => {
-    // Un numero junto a un logo es la oferta concreta de un tercero y la
-    // vuelve exigible (art. 113). El desglose por marca vive en /beneficios,
-    // donde cada linea carga sus condiciones y su vigencia.
-    for (const marca of getBeneficios().marcas) {
-      expect(Object.keys(marca).sort()).toEqual(["confirmado", "logo", "nombre"]);
+  it("ninguna marca aparece dos veces", () => {
+    const marcas = getBeneficios().beneficios.map((b) => b.marca);
+    expect(new Set(marcas).size).toBe(marcas.length);
+  });
+
+  it("cada beneficio cae en una categoría que existe, y ninguna categoría queda vacía", () => {
+    const { categorias, beneficios } = getBeneficios();
+    const slugs = categorias.map((c) => c.slug);
+    for (const b of beneficios) expect(slugs, b.marca).toContain(b.categoria);
+    for (const slug of slugs) {
+      expect(beneficios.some((b) => b.categoria === slug), `${slug} sin beneficios`).toBe(true);
     }
+  });
+
+  it("una categoría mal escrita tumba la validación, no deja una tarjeta huérfana", () => {
+    const datos = structuredClone(getBeneficios());
+    datos.beneficios[0].categoria = "no-existe";
+    const resultado = esquemaBeneficios.safeParse(datos);
+    expect(resultado.success).toBe(false);
+  });
+
+  it("el rango que se anuncia en /2027 es el del catálogo, no uno escrito a mano", () => {
+    const porcentajes = getBeneficios().beneficios.map((b) => b.descuento);
+    expect(getRangoDescuento()).toEqual({
+      min: Math.min(...porcentajes),
+      max: Math.max(...porcentajes),
+    });
+  });
+
+  it("si todas las marcas dan lo mismo, no anuncia 'entre 10% y 10%'", () => {
+    expect(claveDelRango({ min: 10, max: 10 })).toBe("descuentoUnico");
+    expect(claveDelRango({ min: 5, max: 10 })).toBe("descuento");
+  });
+
+  it("encuentra una categoría por su slug y no inventa una que no existe", () => {
+    expect(getCategoriaBeneficio("movimiento")?.nombre.es).toBe("Movimiento");
+    expect(getCategoriaBeneficio("no-existe")).toBeUndefined();
+  });
+
+  it("cada marca tiene su logo recortado, para que una nueva no salga diminuta", () => {
+    // Las tarjetas usan public/img/logos-recortados/. Si falla, correr
+    // python scripts/recortar_logos.py
+    const faltan = getMarcas()
+      .map((m) => m.logo)
+      .filter((logo) => !existsSync(path.join(process.cwd(), "public/img/logos-recortados", logo)));
+    expect(faltan).toEqual([]);
+  });
+
+  it("mientras sea una maqueta, ninguna marca figura como confirmada", () => {
+    // Si alguna pasa a true es porque la marca confirmo por escrito. Este
+    // test esta para que ese cambio se haga a proposito y se vea en el diff,
+    // no para impedirlo: cuando llegue la primera confirmacion, se actualiza.
+    expect(getBeneficios().beneficios.filter((b) => b.confirmado)).toEqual([]);
   });
 });
 
@@ -134,7 +176,8 @@ describe("las imágenes referenciadas existen de verdad", () => {
     ...getTemas().map((i) => i.imagen),
     ...getMarcas().map((i) => i.logo),
     ...getAsociaciones().map((i) => i.logo),
-    ...getBeneficios().marcas.map((i) => i.logo),
+    ...getBeneficios().beneficios.map((i) => i.logo),
+    ...getBeneficios().categorias.map((i) => i.foto),
     ...getFotosGaleria().map((i) => i.archivo),
     ...getFotosSede().map((i) => i.archivo),
   ];

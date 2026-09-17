@@ -1,10 +1,171 @@
 {
-  "_nota": "OJO: NINGUNA de estas marcas ha confirmado el descuento. Al 2026-09-15 el programa no se le ha propuesto a nadie, y estas cuatro estan aca como EJEMPLO para enseñarle la idea a Dharma. Antes de que esto sea publico, cada marca tiene que confirmar por escrito su beneficio, sus condiciones y su vigencia: publicar el descuento de un tercero convierte a Dharma en anunciante y lo vuelve exigible (art. 113 del reglamento 37899-MEIC a la Ley 7472). Ver docs/superpowers/specs/2026-09-15-programa-beneficios-design.md §8. Para cambiar las marcas, se edita la lista de abajo y nada mas; los nombres y logos tienen que existir en marcas.json.",
-  "rangoDescuento": { "min": 5, "max": 10 },
-  "marcas": [
-    { "nombre": "Vita Açaí", "logo": "marcas-04.png", "confirmado": false },
-    { "nombre": "Puro Shot", "logo": "marcas-05.png", "confirmado": false },
-    { "nombre": "Verti Greens", "logo": "marcas-48.png", "confirmado": false },
-    { "nombre": "Sencha Tea", "logo": "marcas-58.png", "confirmado": false }
+  "_nota": "OJO: NINGUNA de estas marcas ha confirmado el descuento. Al 2026-09-16 el programa no se le ha propuesto a nadie; las marcas, las categorias y los porcentajes estan como EJEMPLO para enseñarle la idea a Dharma. Antes de que esto sea publico, cada marca tiene que confirmar por escrito su beneficio, sus condiciones y su vigencia: publicar el descuento de un tercero convierte a Dharma en anunciante y lo vuelve exigible (art. 113 del reglamento 37899-MEIC a la Ley 7472). Ver docs/superpowers/specs/2026-09-15-programa-beneficios-design.md. Reglas que vigilan los tests: marca y logo tienen que existir en marcas.json, cada beneficio apunta a una categoria que existe, y ninguna categoria puede quedar vacia (seria una pagina en blanco). El rango 'entre X% y Y%' que se anuncia en /2027 se calcula de esta lista: no se escribe a mano. Las categorias con respaldo en el Cronograma del cliente son Movimiento y las marcas del Mercadito; la de Vita Acai, Puro Shot y Verti Greens es inferida del nombre.",
+  "categorias": [
+    {
+      "slug": "alimentacion",
+      "nombre": { "es": "Alimentación", "en": "Food & drink" },
+      "descripcion": {
+        "es": "Snacks, bebidas y productos para comer mejor, con descuento por tener tu entrada.",
+        "en": "Snacks, drinks and produce for eating well, discounted for ticket holders."
+      },
+      "foto": "2025/2025-dsc8788.jpg",
+      "scrim": 50,
+      "posicion": "center 65%"
+    },
+    {
+      "slug": "movimiento",
+      "nombre": { "es": "Movimiento", "en": "Movement" },
+      "descripcion": {
+        "es": "Estudios y clases para seguir moviéndote cuando termine el festival.",
+        "en": "Studios and classes to keep you moving once the festival is over."
+      },
+      "foto": "2025/2025-dsc8733.jpg",
+      "scrim": 57,
+      "posicion": "center 55%"
+    },
+    {
+      "slug": "salud",
+      "nombre": { "es": "Salud y bienestar", "en": "Health & wellbeing" },
+      "descripcion": {
+        "es": "Terapias y consultas para cuidarte de adentro hacia afuera.",
+        "en": "Therapies and appointments to look after yourself, inside and out."
+      },
+      "foto": "2025/2025-dsc9283.jpg",
+      "scrim": 42,
+      "posicion": "center 30%"
+    },
+    {
+      "slug": "cuidado-personal",
+      "nombre": { "es": "Cuidado personal", "en": "Personal care" },
+      "descripcion": {
+        "es": "Cosmética natural y productos para tu rutina de cuidado.",
+        "en": "Natural skincare and products for your self-care routine."
+      },
+      "foto": "2025/2025-dsc8904.jpg",
+      "scrim": 58,
+      "posicion": "center 25%"
+    }
+  ],
+  "beneficios": [
+    {
+      "marca": "Vita Açaí",
+      "logo": "marcas-04.png",
+      "categoria": "alimentacion",
+      "descuento": 10,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "Puro Shot",
+      "logo": "marcas-05.png",
+      "categoria": "alimentacion",
+      "descuento": 10,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "Verti Greens",
+      "logo": "marcas-48.png",
+      "categoria": "alimentacion",
+      "descuento": 5,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "Sencha Tea",
+      "logo": "marcas-58.png",
+      "categoria": "alimentacion",
+      "descuento": 5,
+      "sobre": { "es": "en todos sus tés", "en": "all teas" },
+      "confirmado": false
+    },
+    {
+      "marca": "Spinning Center",
+      "logo": "marcas-43.png",
+      "categoria": "movimiento",
+      "descuento": 10,
+      "sobre": { "es": "en la mensualidad", "en": "monthly membership" },
+      "confirmado": false
+    },
+    {
+      "marca": "Doer Fitness",
+      "logo": "marcas-40.png",
+      "categoria": "movimiento",
+      "descuento": 10,
+      "sobre": { "es": "en la mensualidad", "en": "monthly membership" },
+      "confirmado": false
+    },
+    {
+      "marca": "Pranayama Costa Rica",
+      "logo": "marcas-32.png",
+      "categoria": "movimiento",
+      "descuento": 10,
+      "sobre": { "es": "en clases y talleres", "en": "classes and workshops" },
+      "confirmado": false
+    },
+    {
+      "marca": "Circl Mobility",
+      "logo": "marcas-41.png",
+      "categoria": "movimiento",
+      "descuento": 5,
+      "sobre": { "es": "en paquetes de clases", "en": "class packs" },
+      "confirmado": false
+    },
+    {
+      "marca": "Piel y Mente",
+      "logo": "marcas-22.png",
+      "categoria": "salud",
+      "descuento": 10,
+      "sobre": { "es": "en la primera consulta", "en": "your first appointment" },
+      "confirmado": false
+    },
+    {
+      "marca": "AllRecovery",
+      "logo": "marcas-34.png",
+      "categoria": "salud",
+      "descuento": 10,
+      "sobre": { "es": "en la primera sesión", "en": "your first session" },
+      "confirmado": false
+    },
+    {
+      "marca": "Aquí y Ahora",
+      "logo": "marcas-46.png",
+      "categoria": "salud",
+      "descuento": 5,
+      "sobre": { "es": "en sus talleres", "en": "their workshops" },
+      "confirmado": false
+    },
+    {
+      "marca": "Oleana",
+      "logo": "marcas-53.png",
+      "categoria": "cuidado-personal",
+      "descuento": 10,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "Cuarzo Rosa",
+      "logo": "marcas-47.png",
+      "categoria": "cuidado-personal",
+      "descuento": 10,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "nipskin",
+      "logo": "marcas-56.png",
+      "categoria": "cuidado-personal",
+      "descuento": 5,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    },
+    {
+      "marca": "Brixta",
+      "logo": "marcas-62.png",
+      "categoria": "cuidado-personal",
+      "descuento": 5,
+      "sobre": { "es": "en todos sus productos", "en": "all products" },
+      "confirmado": false
+    }
   ]
 }

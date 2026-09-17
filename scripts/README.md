@@ -47,6 +47,26 @@ python scripts/recolorear_logos.py
 
 Se corre **después** de `extraer_imagenes.py`. La salida está commiteada.
 
+## `recortar_logos.py`
+
+Los PNG del deck traen mucho margen transparente: Cuarzo Rosa ocupa el 10% de su
+archivo. Con `object-contain` el navegador escala la caja entera, margen incluido,
+y en las tarjetas de Beneficios Dharma esos logos salían diminutos.
+
+Este script escribe copias recortadas en `public/img/logos-recortados/`, para
+**todas** las marcas de `content/marcas.json`, así una marca que se sume al
+catálogo ya tiene la suya. No pisa los originales: el muro de logos de
+`/patrocinios` ya está aprobado como se ve, y `extraer_imagenes.py` los
+regeneraría.
+
+```
+python scripts/recortar_logos.py
+```
+
+Se corre **después** de `recolorear_logos.py`, porque recorta los logos ya
+pasados a tinta. La salida está commiteada. Si una marca nueva no tiene su copia,
+`tests/unit/contenido.test.ts` lo avisa.
+
 ### Si cambiás una imagen y el navegador sigue mostrando la vieja
 
 Next 16 cachea las imágenes ya optimizadas en **`.next/dev/cache/images`** —

@@ -1,23 +1,19 @@
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { Boton } from "@/components/ui/Boton";
 import { FondoFoto } from "@/components/ui/FondoFoto";
 import { Kicker } from "@/components/ui/Kicker";
-import { MuroLogos } from "@/components/ui/MuroLogos";
 import { Seccion } from "@/components/ui/Seccion";
 import { TituloDisplay } from "@/components/ui/TituloDisplay";
-import { getBeneficios } from "@/lib/contenido";
+import { claveDelRango, getRangoDescuento } from "@/lib/contenido";
 
 /**
  * Que incluye tu entrada.
  *
- * Primer tiempo del programa de beneficios. Cuenta el MECANISMO, no las
- * ofertas: ninguna marca prometida por nombre, ningun porcentaje, ninguna
- * vigencia. Por eso se puede publicar hoy, sin una sola marca confirmada, y
- * no hay nada exigible bajo el art. 113 del reglamento a la Ley 7472 — que
- * es lo que si pasa al publicar el descuento concreto de un tercero.
- *
- * El segundo tiempo es /beneficios, con el catalogo marca por marca. Cuando
- * exista, el enlace del pie apunta ahi en vez de a #entradas.
+ * Cuenta las regalias del dia del festival y anuncia los descuentos, pero el
+ * catalogo de descuentos NO vive aca: el cliente pidio que fuera una pestaña
+ * aparte, Beneficios Dharma, organizada por categorias. Esta seccion solo
+ * dice que existe y manda para alla.
  *
  * Va entre Actividades y Entradas a proposito: primero se construye el valor
  * y despues aparece el boton de comprar, no al reves.
@@ -29,7 +25,11 @@ import { getBeneficios } from "@/lib/contenido";
  */
 export function QueIncluye() {
   const t = useTranslations("beneficios");
-  const { rangoDescuento, marcas } = getBeneficios();
+  const idioma = useLocale();
+  const base = idioma === "es" ? "" : `/${idioma}`;
+  // Sale del catalogo: si alguien cambia un porcentaje alla, este numero lo
+  // sigue solo.
+  const rango = getRangoDescuento();
 
   const puntos = [
     ["stands", t("standsTitulo"), t("standsCuerpo")],
@@ -62,30 +62,14 @@ export function QueIncluye() {
         ))}
       </ul>
 
-      {/* El descuento se declara como RANGO DEL PROGRAMA, no como porcentaje
-          pegado a cada logo. Un numero junto a una marca es una oferta
-          concreta de un tercero y la vuelve exigible; el desglose por marca
-          va en /beneficios, donde cada linea carga condiciones y vigencia.
-
-          PENDIENTE DEL CLIENTE: las marcas de beneficios.json todavia no han
-          confirmado nada. Ver la nota del JSON antes de publicar. */}
       <div className="mt-16 max-w-6xl border-t border-hueso/30 pt-6">
         <h3 className="font-display text-3xl text-hueso">{t("descuentoTitulo")}</h3>
         <p className="mt-3 max-w-2xl font-texto text-lg text-palido">
-          {t("descuento", { min: rangoDescuento.min, max: rangoDescuento.max })}
+          {t(claveDelRango(rango), { min: rango.min, max: rango.max })}
         </p>
-
-        <p className="mt-10 font-texto text-sm text-hueso/75">{t("marcasAliadas")}</p>
-        {/* tono="hueso" porque los 58 logos vienen recoloreados a tinta para
-            fondo claro y sobre la foto desaparecerian. */}
-        <div className="mt-6 max-w-3xl">
-          <MuroLogos
-            logos={marcas}
-            columnas="grid-cols-2 sm:grid-cols-4"
-            alto="h-14 md:h-16"
-            tono="hueso"
-          />
-        </div>
+        <Boton href={`${base}/beneficios`} className="mt-8">
+          {t("verBeneficios")}
+        </Boton>
       </div>
 
       <p className="mt-14 max-w-xl font-texto text-lg text-palido">{t("brazalete")}</p>

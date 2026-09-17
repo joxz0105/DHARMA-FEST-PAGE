@@ -20,6 +20,9 @@ playwright-report/
 /.next-test/
 /out/
 
+# python (scripts/)
+__pycache__/
+
 # production
 /build
 

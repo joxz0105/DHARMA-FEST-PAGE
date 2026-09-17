@@ -19,13 +19,16 @@ export function RoadToDharma({ locale }: { locale: string }) {
         sizes="100vw"
         className="-z-10 object-cover object-[center_72%]"
       />
+      {/* 0.68 y cuerpo en hueso pleno: el texto cae sobre la pared clara de
+          arriba. Con 0.55 y hueso al 90% el cuerpo daba 3.47:1, y con 0.62 el
+          enlace en palido todavia daba 4.32. */}
       <div aria-hidden data-fondo="verde"
-        className="absolute inset-0 -z-10 bg-[rgba(16,26,10,0.55)]" />
+        className="absolute inset-0 -z-10 bg-[rgba(16,26,10,0.68)]" />
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
         <TituloDisplay className="text-palido md:basis-2/5">{t("roadTitulo")}</TituloDisplay>
         <ReglaVertical />
         <div className="md:basis-3/5">
-          <p className="font-texto text-lg leading-relaxed text-hueso/90">{t("roadCuerpo")}</p>
+          <p className="font-texto text-lg leading-relaxed text-hueso">{t("roadCuerpo")}</p>
           <Link
             href={`${base}/road-to-dharma`}
             className="mt-8 inline-block border-b border-verde pb-1 font-texto text-palido transition-colors hover:text-verde"

@@ -18,8 +18,11 @@ export function Campo({
   textoError?: string;
   filas?: number;
 }) {
+  // Borde en tinta al 55%: el contorno de un campo necesita 3:1 contra el
+  // fondo para que se reconozca como campo. Al 25% daba 1.7:1 y en la home,
+  // sobre la foto, directamente no se veia.
   const clases =
-    "rounded border border-tinta/25 bg-transparent px-4 py-3 font-texto text-tinta placeholder:text-tinta/40";
+    "rounded border border-tinta/55 bg-papel px-4 py-3 font-texto text-tinta placeholder:text-tinta/40";
   const idError = error ? `${nombre}-error` : undefined;
 
   return (

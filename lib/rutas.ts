@@ -32,6 +32,7 @@ export const SITIO = origen();
 export const RUTAS = [
   "",
   "/2027",
+  "/beneficios",
   "/road-to-dharma",
   "/patrocinios",
   "/nosotros",
